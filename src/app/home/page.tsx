@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Bg from '../../Images/stranger things.jpg.jpeg';
 import Strange from '../../Images/Strange.jpg';
 
 import HeroSection from "@/Components/Hero";
 import CountDown from "@/Components/countDown";
+import About from "@/Components/About";
 
 export default function HomePage() {
     return (
@@ -13,9 +13,10 @@ export default function HomePage() {
                 <Image src={Strange} alt="Background" fill className="object-cover" priority />
                 <div className="!fixed !top-0 !left-0 !w-full !h-full bg-black/70"></div>
             </div>
-            <div className="relative z-10 w-full min-h-screen">
+            <div className="relative z-10 w-full min-h-screen pb-20">
                 <HeroSection />
-                {/* <CountDown /> */}
+                <CountDown />
+                <About />
             </div>
         </React.Fragment>
     )
