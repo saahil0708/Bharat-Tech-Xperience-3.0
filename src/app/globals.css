@@ -7,3 +7,17 @@
   box-sizing: border-box;
   font-family: 'Azonix', sans-serif;
 }
+
+@layer base {
+  body {
+    @apply bg-black text-white antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(180deg, #666 0%, #333 50%, #000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
