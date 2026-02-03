@@ -4,6 +4,8 @@ import MindFlare from '../../Images/MindFlare.png';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { supabase } from '../../lib/supabaseClient';
+import StrangerThingsModal from '../../Components/StrangerThingsModal';
 
 type Member = {
     name: string;
@@ -45,13 +47,95 @@ export default function RegisterPage() {
     // Fee calculation: 100 per person
     const totalFee = totalParticipants * 100;
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [notification, setNotification] = useState<{ isOpen: boolean; type: 'success' | 'error'; title: string; message: string }>({
+        isOpen: false,
+        type: 'success',
+        title: '',
+        message: ''
+    });
+
+    const closeNotification = () => {
+        setNotification(prev => ({ ...prev, isOpen: false }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log({ teamName, leader, members, totalFee, projectDescription, pptLink });
+        setIsLoading(true);
+
+        try {
+            // 1. Insert into 'teams' table
+            const { data: teamData, error: teamError } = await supabase
+                .from('teams')
+                .insert([
+                    {
+                        team_name: teamName,
+                        leader_name: leader.name,
+                        leader_email: leader.email,
+                        leader_phone: leader.phone,
+                        project_description: projectDescription,
+                        ppt_link: pptLink,
+                        total_fee: totalFee,
+                        total_participants: totalParticipants
+                    },
+                ])
+                .select()
+                .single();
+
+            if (teamError) throw teamError;
+
+            const teamId = teamData.id;
+
+            // 2. Insert into 'team_members' table
+            // Filter out empty members just in case, though form validation handles required fields
+            const validMembers = members.filter(m => m.name && m.email && m.phone);
+
+            if (validMembers.length > 0) {
+                const membersToInsert = validMembers.map(member => ({
+                    team_id: teamId,
+                    name: member.name,
+                    email: member.email,
+                    phone: member.phone
+                }));
+
+                const { error: membersError } = await supabase
+                    .from('team_members')
+                    .insert(membersToInsert);
+
+                if (membersError) throw membersError;
+            }
+
+            setNotification({
+                isOpen: true,
+                type: 'success',
+                title: 'WELCOME TO THE PARTY',
+                message: 'Your squad has been registered. The gate is open. Prepare for the Xperience.'
+            });
+
+            // Optional: Reset form could go here
+
+        } catch (error: any) {
+            console.error('Error inserting data:', error);
+            setNotification({
+                isOpen: true,
+                type: 'error',
+                title: 'SOMETHING STRANGE',
+                message: 'Registration failed. The demogorgons might be interfering. Error: ' + (error.message || 'Unknown error')
+            });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <main className="!min-h-screen !bg-black !text-white !pt-10 !pb-12 !px-4 selection:!bg-red-900 selection:!text-white relative overflow-hidden">
+            <StrangerThingsModal
+                isOpen={notification.isOpen}
+                onClose={closeNotification}
+                type={notification.type}
+                title={notification.title}
+                message={notification.message}
+            />
             {/* Background Ambience */}
             <div className="fixed inset-0 pointer-events-none">
                 <Image
@@ -253,10 +337,11 @@ export default function RegisterPage() {
 
                                 <button
                                     type="submit"
-                                    className="!bg-red-600 !text-white cursor-pointer !px-3 !py-3 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden rounded-md"
+                                    disabled={isLoading}
+                                    className="!bg-red-600 !text-white cursor-pointer !px-3 !py-3 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    <span className="relative z-10">INITIATE PROTOCOL</span>
-                                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                                    <span className="relative z-10">{isLoading ? 'TRANSMITTING...' : 'INITIATE PROTOCOL'}</span>
+                                    {!isLoading && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
                                 </button>
                             </div>
                         </form>
