@@ -44,8 +44,8 @@ export default function RegisterPage() {
     // Total participants = Leader (1) + members.length
     const totalParticipants = 1 + members.length;
 
-    // Fee calculation: 100 per person
-    const totalFee = totalParticipants * 100;
+    // Fee calculation: Fixed 400 for the team
+    const totalFee = 400;
 
     const [isLoading, setIsLoading] = useState(false);
     const [notification, setNotification] = useState<{ isOpen: boolean; type: 'success' | 'error'; title: string; message: string }>({
@@ -327,12 +327,12 @@ export default function RegisterPage() {
                             {/* Fee & Submit */}
                             <div className="pt-8 !border-t !border-gray-800 flex flex-col md:flex-row justify-between items-center gap-8">
                                 <div className="text-center md:text-left bg-black/50 !pt-4 md:min-w-[200px]">
-                                    <p className="!text-gray-500 text-xs mb-2 tracking-widest">TOTAL FEE CALCULATION</p>
+                                    <p className="!text-gray-500 text-xs mb-2 tracking-widest">TOTAL TEAM FEE</p>
                                     <p className="text-4xl !font-[family-name:var(--font-azonix)] !text-white flex justify-center md:justify-start items-start gap-1">
                                         <span className="text-lg mt-1 text-red-500">₹</span>
                                         {totalFee}
                                     </p>
-                                    <p className="text-xs text-gray-600 mt-1">({Math.round(totalFee / totalParticipants)} × {totalParticipants} OPERATIVES)</p>
+                                    <p className="text-xs text-gray-600 mt-1">FIXED SQUAD ENTRY</p>
                                 </div>
 
                                 <button
