@@ -224,7 +224,7 @@ export default function HeroSection() {
 
             {/* Floating particles - Upside Down Ash */}
             <div className="absolute inset-0 pointer-events-none z-10">
-                {[...Array(20)].map((_, i) => (
+                {isLoaded && [...Array(20)].map((_, i) => (
                     <div
                         key={i}
                         className="absolute w-1 h-1 bg-gray-400 rounded-full animate-float opacity-50"

@@ -2,6 +2,7 @@
 import React from "react";
 
 import { Mail, Phone, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const Contact = () => {
     return (
@@ -27,27 +28,27 @@ const Contact = () => {
                         </p>
 
                         <div className="!grid !grid-cols-1 md:!grid-cols-3 !gap-6">
-                            <div className="!flex !flex-col !items-center !gap-4 !p-6 !px-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group">
+                            <Link href="mailto:team.theuniques@sviet.ac.in" className="!flex !flex-col !items-center !gap-4 !p-6 !px-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
                                 <Mail className="w-10 h-10 text-red-500 group-hover:text-red-400 transition-colors" />
                                 <div>
                                     <h3 className="!text-white !font-bold !text-sm !uppercase !tracking-wider !mb-1 font-orbitron">Frequency</h3>
                                     <p className="!text-gray-400 !text-sm font-orbitron">team.theuniques@sviet.ac.in</p>
                                 </div>
-                            </div>
-                            <a href="https://wa.me/919587308788" target="_blank" rel="noopener noreferrer" className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
+                            </Link>
+                            <Link href="https://wa.me/919587308788" target="_blank" rel="noopener noreferrer" className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
                                 <Phone className="w-10 h-10 text-red-500 group-hover:text-red-400 transition-colors" />
                                 <div>
                                     <h3 className="!text-white !font-bold !text-sm !uppercase !tracking-wider !mb-1 font-orbitron">WhatsApp</h3>
                                     <p className="!text-gray-400 !text-sm font-orbitron">+91 95873 08788</p>
                                 </div>
-                            </a>
-                            <div className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group">
+                            </Link>
+                            <Link href="https://www.google.com/maps/search/Swami+Vivekanand+Institute+of+Engineering+%26+Technology+Ramnagar+Banur+Patiala+Punjab" target="_blank" rel="noopener noreferrer" className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
                                 <MapPin className="w-10 h-10 text-red-500 group-hover:text-red-400 transition-colors" />
                                 <div>
                                     <h3 className="!text-white !font-bold !text-sm !uppercase !tracking-wider !mb-1">Base Spec</h3>
                                     <p className="!text-gray-400 !text-sm">SVIET, Punjab</p>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
 
                         {/* <div className="!flex !justify-center !gap-6 !mt-12">
