@@ -34,7 +34,7 @@ const Contact = () => {
                                     <p className="!text-gray-400 !text-sm font-orbitron">team.theuniques@sviet.ac.in</p>
                                 </div>
                             </div>
-                            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
+                            <a href="https://wa.me/919587308788" target="_blank" rel="noopener noreferrer" className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
                                 <Phone className="w-10 h-10 text-red-500 group-hover:text-red-400 transition-colors" />
                                 <div>
                                     <h3 className="!text-white !font-bold !text-sm !uppercase !tracking-wider !mb-1 font-orbitron">WhatsApp</h3>
