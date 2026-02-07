@@ -5,6 +5,7 @@ import Strange from '../../Images/Strange.jpg';
 import HeroSection from "@/Components/Hero";
 import CountDown from "@/Components/countDown";
 import About from "@/Components/About";
+import CardSection from "@/Components/CardSection"
 
 export default function HomePage() {
     return (
@@ -17,6 +18,7 @@ export default function HomePage() {
                 <HeroSection />
                 <CountDown />
                 <About />
+                <CardSection />
             </div>
         </React.Fragment>
     )

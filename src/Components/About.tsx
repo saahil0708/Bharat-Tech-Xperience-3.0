@@ -21,11 +21,11 @@ const About = () => {
 
                     {/* Text Content - No Background, Just Text */}
                     <div className="flex flex-col gap-6 text-left">
-                        <p className="font-tech text-red-100/90 text-lg md:text-xl leading-relaxed tracking-wide">
+                        <p className="font-avenir text-red-100/90 text-lg md:text-xl leading-relaxed tracking-wide">
                             <span className="text-red-500 font-bold">Bharat Tech Xperience 3.0</span> is the ultimate convergence of technology and innovation.
                             As a National Level Hackathon, we bring together the brightest minds to challenge the norms.
                         </p>
-                        <p className="font-tech text-red-100/80 text-lg md:text-xl leading-relaxed tracking-wide">
+                        <p className="font-avenir text-red-100/80 text-lg md:text-xl leading-relaxed tracking-wide">
                             Over <span className="text-red-400 font-bold">24 intense hours</span>, participants will dive deep into problem-solving, coding, and deploying solutions that matter.
                             This is your platform to showcase your skills and survive the code.
                         </p>
