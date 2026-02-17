@@ -56,7 +56,7 @@ const Prizes = () => {
                     </div>
 
                     {/* Grand Winner (Gold) */}
-                    <div className="!order-1 md:!order-2 !transform !scale-110 !z-10">
+                    <div className="!order-1 md:!order-2 !transform !scale-100 md:!scale-110 !z-10">
                         <CardContainer className="!py-0 !w-full" containerClassName="!py-0 !w-full !flex !items-center !justify-center">
                             <CardBody className="!bg-gradient-to-b !from-red-900/40 !to-black !border-2 !border-red-500 !relative !group/card !dark:hover:shadow-2xl !dark:hover:shadow-red-500/[0.1] !w-full !h-auto !rounded-2xl !p-10 !flex !flex-col !items-center !shadow-[0_0_50px_rgba(220,38,38,0.4)]">
                                 <CardItem translateZ="80" className="!absolute !-top-6 !bg-red-600 !text-white !px-8 !py-2 !rounded-full !font-bold !tracking-wider font-orbitron !shadow-[0_0_20px_rgba(220,38,38,0.6)]">
