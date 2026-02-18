@@ -222,6 +222,28 @@ export default function HeroSection() {
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-red-900/50 to-transparent"></div>
             </div>
 
+            {/* Floating particles - Upside Down Ash */}
+
+            {/* Custom animations */}
+            <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-20px) translateX(10px); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Custom spacing adjustments */
+        .tracking-tighter {
+          letter-spacing: -0.05em;
+        }
+        
+        /* Ensure proper alignment */
+        .align-top {
+          vertical-align: top;
+        }
+      `}</style>
         </section>
     );
 }
