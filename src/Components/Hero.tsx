@@ -223,20 +223,6 @@ export default function HeroSection() {
             </div>
 
             {/* Floating particles - Upside Down Ash */}
-            <div className="absolute inset-0 pointer-events-none z-10">
-                {isLoaded && [...Array(20)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-gray-400 rounded-full animate-float opacity-50"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`,
-                            animationDuration: `${Math.random() * 10 + 5}s`,
-                        }}
-                    />
-                ))}
-            </div>
 
             {/* Custom animations */}
             <style jsx>{`
