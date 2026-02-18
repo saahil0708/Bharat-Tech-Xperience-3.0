@@ -326,7 +326,7 @@ export default function RegisterPage() {
 
                             {/* Fee & Submit */}
                             <div className="pt-8 !border-t !border-gray-800 flex flex-col md:flex-row justify-between items-center gap-8">
-                                <div className="text-center md:text-left bg-black/50 !pt-4 md:min-w-[200px]">
+                                <div className="text-center md:text-left !pt-4 md:min-w-[200px]">
                                     <p className="!text-gray-500 text-xs mb-2 tracking-widest">TOTAL TEAM FEE</p>
                                     <p className="text-4xl !font-[family-name:var(--font-azonix)] !text-white flex justify-center md:justify-start items-start gap-1">
                                         <span className="text-lg mt-1 text-red-500">₹</span>
