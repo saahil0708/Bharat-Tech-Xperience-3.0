@@ -36,8 +36,8 @@ const Countdown = () => {
 
     return (
         <div className="flex flex-col items-center justify-center w-full z-50 !py-10 relative">
-            <h2 className="text-3xl md:text-5xl font-orbitron text-red-600 tracking-[0.2em] font-bold !mb-12 text-center drop-shadow-[0_0_15px_rgba(220,38,38,0.8)] uppercase">
-                THE HUNT STARTS IN
+            <h2 className="text-3xl md:text-5xl font-orbitron text-white tracking-[0.2em] font-bold !mb-12 text-center drop-shadow-[0_0_15px_rgba(220,38,38,0.8)] uppercase">
+                THE <span className="text-red-700 ">HUNT</span> STARTS IN
             </h2>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
