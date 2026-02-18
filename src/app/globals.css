@@ -13,6 +13,7 @@
   --font-tech: 'Share Tech Mono', monospace;
   --font-orbitron: 'Orbitron', sans-serif;
   --animate-flicker: flicker 3s linear infinite;
+  --animate-float: float 3s ease-in-out infinite;
 }
 
 @keyframes flicker {
@@ -48,6 +49,18 @@
   }
 }
 
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -64,6 +77,7 @@ html {
     @apply bg-black text-white antialiased;
     @apply bg-background text-foreground;
   }
+
   * {
     @apply border-border outline-ring/50;
   }

@@ -222,42 +222,6 @@ export default function HeroSection() {
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-red-900/50 to-transparent"></div>
             </div>
 
-            {/* Floating particles - Upside Down Ash */}
-            <div className="absolute inset-0 pointer-events-none z-10">
-                {isLoaded && [...Array(20)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-gray-400 rounded-full animate-float opacity-50"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`,
-                            animationDuration: `${Math.random() * 10 + 5}s`,
-                        }}
-                    />
-                ))}
-            </div>
-
-            {/* Custom animations */}
-            <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-20px) translateX(10px); }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        
-        /* Custom spacing adjustments */
-        .tracking-tighter {
-          letter-spacing: -0.05em;
-        }
-        
-        /* Ensure proper alignment */
-        .align-top {
-          vertical-align: top;
-        }
-      `}</style>
         </section>
     );
 }

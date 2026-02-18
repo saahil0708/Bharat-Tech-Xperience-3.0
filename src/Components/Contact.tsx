@@ -4,7 +4,21 @@ import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 
+import { Button } from "@/Components/ui/stateful-button";
+
 const Contact = () => {
+    const handleEmail = () => {
+        window.location.href = "mailto:team.theuniques@sviet.ac.in";
+    };
+
+    const handleWhatsApp = () => {
+        window.open("https://wa.me/919587308788", "_blank");
+    };
+
+    const handleLocation = () => {
+        window.open("https://www.google.com/maps/search/Swami+Vivekanand+Institute+of+Engineering+%26+Technology+Ramnagar+Banur+Patiala+Punjab", "_blank");
+    };
+
     return (
         <section id="contact" className="!min-h-[60vh] !w-full !relative !flex !items-center !justify-center !bg-transparent !overflow-hidden !py-24 !border-t !border-red-900/40">
             {/* Background Atmosphere - Simplified for transparency */}
@@ -28,41 +42,58 @@ const Contact = () => {
                         </p>
 
                         <div className="!grid !grid-cols-1 md:!grid-cols-3 !gap-6">
-                            <Link href="mailto:team.theuniques@sviet.ac.in" className="!flex !flex-col !items-center !gap-4 !p-6 !px-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
-                                <Mail className="w-10 h-10 text-red-500 group-hover:text-red-400 transition-colors" />
-                                <div>
-                                    <h3 className="!text-white !font-bold !text-sm !uppercase !tracking-wider !mb-1 font-orbitron">Frequency</h3>
-                                    <p className="!text-gray-400 !text-sm font-orbitron">team.theuniques@sviet.ac.in</p>
+                            {/* Frequency / Email Button */}
+                            <div className="group relative flex flex-col items-center justify-between overflow-hidden rounded-xl bg-zinc-950 border-2 border-red-900/50 !p-6 transition-all duration-300 hover:border-red-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+                                <div className="flex flex-col items-center gap-4 z-10 mb-6">
+                                    <div className="p-3 rounded-lg bg-red-950/30 group-hover:bg-red-600/20 transition-colors">
+                                        <Mail className="w-8 h-8 text-red-600 group-hover:text-red-400 transition-colors" />
+                                    </div>
+                                    <div className="text-center">
+                                        <h3 className="text-white font-bold text-lg uppercase tracking-wider font-orbitron mb-1">Frequency</h3>
+                                        <p className="text-gray-500 text-xs font-orbitron group-hover:text-gray-300 transition-colors">team.theuniques@sviet.ac.in</p>
+                                    </div>
                                 </div>
-                            </Link>
-                            <Link href="https://wa.me/919587308788" target="_blank" rel="noopener noreferrer" className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
-                                <Phone className="w-10 h-10 text-red-500 group-hover:text-red-400 transition-colors" />
-                                <div>
-                                    <h3 className="!text-white !font-bold !text-sm !uppercase !tracking-wider !mb-1 font-orbitron">WhatsApp</h3>
-                                    <p className="!text-gray-400 !text-sm font-orbitron">+91 95873 08788</p>
+                                <Button className="!bg-red-600 !hover:bg-red-500 hover:ring-red-500 !py-1 !tracking-wider !w-full relative z-10 !text-white" onClick={handleEmail}>
+                                    CONNECT
+                                </Button>
+                                <div className="absolute inset-0 bg-gradient-to-t from-red-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            </div>
+
+                            {/* WhatsApp Button */}
+                            <div className="group relative flex flex-col items-center justify-between overflow-hidden rounded-xl bg-zinc-950 border-2 border-red-900/50 !p-6 transition-all duration-300 hover:border-red-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+                                <div className="flex flex-col items-center gap-4 z-10 mb-6">
+                                    <div className="p-3 rounded-lg bg-red-950/30 group-hover:bg-red-600/20 transition-colors">
+                                        <Phone className="w-8 h-8 text-red-600 group-hover:text-red-400 transition-colors" />
+                                    </div>
+                                    <div className="text-center">
+                                        <h3 className="text-white font-bold text-lg uppercase tracking-wider font-orbitron mb-1">WhatsApp</h3>
+                                        <p className="text-gray-500 text-xs font-orbitron group-hover:text-gray-300 transition-colors">+91 95873 08788</p>
+                                    </div>
                                 </div>
-                            </Link>
-                            <Link href="https://www.google.com/maps/search/Swami+Vivekanand+Institute+of+Engineering+%26+Technology+Ramnagar+Banur+Patiala+Punjab" target="_blank" rel="noopener noreferrer" className="!flex !flex-col !items-center !gap-4 !p-6 !bg-black/40 !backdrop-blur-md !border !border-red-900/30 !rounded-lg hover:!border-red-600 transition-colors group cursor-pointer">
-                                <MapPin className="w-10 h-10 text-red-500 group-hover:text-red-400 transition-colors" />
-                                <div>
-                                    <h3 className="!text-white !font-bold !text-sm !uppercase !tracking-wider !mb-1">Base Spec</h3>
-                                    <p className="!text-gray-400 !text-sm">SVIET, Punjab</p>
+                                <Button className="!bg-red-600 !hover:bg-red-500 !py-1 hover:ring-red-500 !text-white !tracking-wider !w-full relative z-10" onClick={handleWhatsApp}>
+                                    CHAT
+                                </Button>
+                                <div className="absolute inset-0 bg-gradient-to-t from-red-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            </div>
+
+                            {/* Base Spec / Location Button */}
+                            <div className="group relative flex flex-col items-center justify-between overflow-hidden rounded-xl bg-zinc-950 border-2 border-red-900/50 !p-6 transition-all duration-300 hover:border-red-500 hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+                                <div className="flex flex-col items-center gap-4 z-10 !mb-6">
+                                    <div className="p-3 rounded-lg bg-red-950/30 group-hover:bg-red-600/20 transition-colors">
+                                        <MapPin className="w-8 h-8 text-red-600 group-hover:text-red-400 transition-colors" />
+                                    </div>
+                                    <div className="text-center">
+                                        <h3 className="text-white font-bold text-lg uppercase tracking-wider font-orbitron mb-1">Base Spec</h3>
+                                        <p className="text-gray-500 text-xs font-orbitron group-hover:text-gray-300 transition-colors">SVIET, Punjab</p>
+                                    </div>
                                 </div>
-                            </Link>
+                                <Button className="!bg-red-600 !hover:bg-red-500 !py-1 hover:ring-red-500 !text-white !tracking-wider !w-full relative z-10" onClick={handleLocation}>
+                                    LOCATE
+                                </Button>
+                                <div className="absolute inset-0 bg-gradient-to-t from-red-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            </div>
                         </div>
 
-                        {/* <div className="!flex !justify-center !gap-6 !mt-12">
-                            {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
-                                <a key={social} href="#" className="!text-gray-500 hover:!text-white !bg-black/40 !w-12 !h-12 !flex !items-center !justify-center !rounded-full !border !border-gray-800 hover:!border-red-600 transition-all">
-                                    <span className="!sr-only">{social}</span>
-                                    <span className="!text-lg">🔗</span>
-                                </a>
-                            ))}
-                        </div> */}
-
-                        {/* <div className="!mt-16 !pt-8 !border-t !border-red-900/20">
-                            <p className="!text-gray-600 !text-xs !font-mono">© 2026 BHARAT TECH XPERIENCE. ALL RIGHTS RESERVED.</p>
-                        </div> */}
                     </div>
                 </div>
             </div>
