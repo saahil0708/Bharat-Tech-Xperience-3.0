@@ -7,6 +7,12 @@ import Link from 'next/link';
 import { supabase } from '../../lib/supabaseClient';
 import StrangerThingsModal from '../../Components/StrangerThingsModal';
 
+declare global {
+    interface Window {
+        Razorpay: any;
+    }
+}
+
 type Member = {
     name: string;
     email: string;
@@ -20,9 +26,10 @@ export default function RegisterPage() {
     const [members, setMembers] = useState<Member[]>([{ name: '', email: '', phone: '' }]);
     const [projectDescription, setProjectDescription] = useState('');
     const [pptLink, setPptLink] = useState('');
+    const [requiresAccommodation, setRequiresAccommodation] = useState(false);
 
     const addMember = () => {
-        if (members.length + 1 < 4) {
+        if (members.length + 1 < 5) {
             setMembers([...members, { name: '', email: '', phone: '' }]);
         }
     };
@@ -44,8 +51,8 @@ export default function RegisterPage() {
     // Total participants = Leader (1) + members.length
     const totalParticipants = 1 + members.length;
 
-    // Fee calculation: Fixed 400 for the team
-    const totalFee = 400;
+    // Fee calculation: Base 250 + 50 for accommodation
+    const totalFee = requiresAccommodation ? 300 : 250;
 
     const [isLoading, setIsLoading] = useState(false);
     const [notification, setNotification] = useState<{ isOpen: boolean; type: 'success' | 'error'; title: string; message: string }>({
@@ -59,10 +66,17 @@ export default function RegisterPage() {
         setNotification(prev => ({ ...prev, isOpen: false }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
+    const loadRazorpayScript = () => {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            script.onload = () => resolve(true);
+            script.onerror = () => resolve(false);
+            document.body.appendChild(script);
+        });
+    };
 
+    const handleSupabaseInsert = async (paymentId: string) => {
         try {
             // 1. Insert into 'teams' table
             const { data: teamData, error: teamError } = await supabase
@@ -77,6 +91,7 @@ export default function RegisterPage() {
                         ppt_link: pptLink,
                         total_fee: totalFee,
                         total_participants: totalParticipants
+                        // Omitted accommodation and paymentId since columns may not exist yet in DB
                     },
                 ])
                 .select()
@@ -87,7 +102,6 @@ export default function RegisterPage() {
             const teamId = teamData.id;
 
             // 2. Insert into 'team_members' table
-            // Filter out empty members just in case, though form validation handles required fields
             const validMembers = members.filter(m => m.name && m.email && m.phone);
 
             if (validMembers.length > 0) {
@@ -109,10 +123,8 @@ export default function RegisterPage() {
                 isOpen: true,
                 type: 'success',
                 title: 'WELCOME TO THE PARTY',
-                message: 'Your squad has been registered. The gate is open. Prepare for the Xperience.'
+                message: 'Your payment was successful and squad has been registered. The gate is open.'
             });
-
-            // Optional: Reset form could go here
 
         } catch (error: any) {
             console.error('Error inserting data:', error);
@@ -120,9 +132,88 @@ export default function RegisterPage() {
                 isOpen: true,
                 type: 'error',
                 title: 'SOMETHING STRANGE',
-                message: 'Registration failed. The demogorgons might be interfering. Error: ' + (error.message || 'Unknown error')
+                message: 'Registration failed after payment. Please contact admins. Error: ' + (error.message || 'Unknown error')
             });
         } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+
+        try {
+            const res = await loadRazorpayScript();
+            if (!res) {
+                setNotification({
+                    isOpen: true,
+                    type: 'error',
+                    title: 'SYSTEM ERROR',
+                    message: 'Razorpay SDK failed to load. Are you online?'
+                });
+                setIsLoading(false);
+                return;
+            }
+
+            const orderOptions = {
+                method: "POST",
+                body: JSON.stringify({ amount: totalFee }),
+                headers: { "Content-Type": "application/json" }
+            };
+
+            const orderResp = await fetch("/api/razorpay/order", orderOptions);
+            const orderData = await orderResp.json();
+
+            if (!orderResp.ok) {
+                throw new Error("Could not create Razorpay order.");
+            }
+
+            const options = {
+                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+                amount: totalFee * 100,
+                currency: "INR",
+                name: "Bharat Tech Xperience",
+                description: "Registration Fee",
+                order_id: orderData.orderId,
+                handler: async function (response: any) {
+                    setIsLoading(true); // Keep loading state while saving to DB
+                    await handleSupabaseInsert(response.razorpay_payment_id);
+                },
+                prefill: {
+                    name: leader.name,
+                    email: leader.email,
+                    contact: leader.phone
+                },
+                theme: {
+                    color: "#dc2626"
+                },
+                modal: {
+                    ondismiss: function () {
+                        setIsLoading(false);
+                    }
+                }
+            };
+
+            const paymentObject = new window.Razorpay(options);
+            paymentObject.on('payment.failed', function (response: any) {
+                setNotification({
+                    isOpen: true,
+                    type: 'error',
+                    title: 'PAYMENT FAILED',
+                    message: 'The transaction was unsuccessful. Please try again.'
+                });
+            });
+            paymentObject.open();
+
+        } catch (error: any) {
+            console.error('Error initializing payment:', error);
+            setNotification({
+                isOpen: true,
+                type: 'error',
+                title: 'SYSTEM ERROR',
+                message: 'Could not initialize payment. ' + (error.message || 'Unknown error')
+            });
             setIsLoading(false);
         }
     };
@@ -321,6 +412,19 @@ export default function RegisterPage() {
                                         required
                                         className="w-full !bg-black/60 !border !border-gray-800 !text-white !mt-2 !px-3 !py-2 focus:outline-none focus:!border-red-600 transition-all placeholder:!text-gray-600"
                                     />
+
+                                    {/* Accommodation Toggle */}
+                                    <div className="flex items-center space-x-3 !mt-6 !p-4 !border !border-gray-800 !bg-black/40 hover:!border-red-900/50 transition-colors cursor-pointer group" onClick={() => setRequiresAccommodation(!requiresAccommodation)}>
+                                        <div className={`w-6 h-6 flex items-center justify-center border transition-all ${requiresAccommodation ? 'bg-red-600 border-red-600' : 'bg-transparent border-gray-600 group-hover:border-red-500'}`}>
+                                            {requiresAccommodation && (
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                            )}
+                                        </div>
+                                        <div className='!ml-2'>
+                                            <p className="text-white text-sm tracking-wider uppercase">Accommodation Required</p>
+                                            <p className="text-gray-500 text-xs">Adds base operative shelter cost (+₹50)</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -332,7 +436,7 @@ export default function RegisterPage() {
                                         <span className="text-lg mt-1 text-red-500">₹</span>
                                         {totalFee}
                                     </p>
-                                    <p className="text-xs text-gray-600 mt-1">FIXED SQUAD ENTRY</p>
+                                    <p className="text-xs text-gray-600 mt-1">SECURE PAYMENT PROTOCOL</p>
                                 </div>
 
                                 <button
@@ -340,7 +444,7 @@ export default function RegisterPage() {
                                     disabled={isLoading}
                                     className="!bg-red-600 !text-white cursor-pointer !px-3 !py-3 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    <span className="relative z-10">{isLoading ? 'TRANSMITTING...' : 'INITIATE PROTOCOL'}</span>
+                                    <span className="relative z-10">{isLoading ? 'PROCESSING...' : 'INITIATE PROTOCOL'}</span>
                                     {!isLoading && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
                                 </button>
                             </div>
@@ -395,6 +499,37 @@ export default function RegisterPage() {
                                 <p className="text-red-500/80 text-[10px] tracking-[0.3em] uppercase">
                                     /// Awaiting Squad Data ///
                                 </p>
+                            </div>
+
+                            {/* Event Coordinators */}
+                            <div className="!mt-8 relative !bg-black/80 backdrop-blur-xl !p-5 !border !border-gray-800 overflow-hidden group hover:border-red-600/30 transition-colors duration-500">
+                                <div className="absolute top-0 right-0 !w-20 !h-20 bg-gradient-to-bl from-red-600/10 to-transparent"></div>
+                                <h3 className="text-red-500 font-bold text-sm uppercase tracking-wider font-orbitron !mb-4 flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    SUPPORT CHANNELS
+                                </h3>
+                                <div className="!space-y-3 relative z-10">
+                                    <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
+                                        <span className="text-gray-400 text-xs font-orbitron uppercase">Saahil</span>
+                                        <Link href="tel:+919587308788" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 94741 56798</Link>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
+                                        <span className="text-gray-400 text-xs font-orbitron uppercase">Kshitij</span>
+                                        <Link href="tel:+919876543210" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 70610 67077</Link>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
+                                        <span className="text-gray-400 text-xs font-orbitron uppercase">Sujal</span>
+                                        <Link href="tel:+918765432109" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 81304 92327</Link>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
+                                        <span className="text-gray-400 text-xs font-orbitron uppercase">Taniya</span>
+                                        <Link href="tel:+917654321098" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 97174 53632</Link>
+                                    </div>
+                                    {/* <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
+                                        <span className="text-gray-400 text-xs font-orbitron uppercase">Rohan</span>
+                                        <Link href="tel:+916543210987" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 65432 10987</Link>
+                                    </div> */}
+                                </div>
                             </div>
                         </div>
                     </div>
