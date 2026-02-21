@@ -1,3 +1,4 @@
+// src/Layout/layout.tsx
 import React from "react";
 import HomePage from "@/app/home/page";
 import TimeLine from "@/Components/TImeLine";
@@ -6,6 +7,7 @@ import Prizes from "@/Components/Prizes";
 import Sponsors from "@/Components/Sponsors";
 import Contact from "@/Components/Contact";
 import Footer from "@/Components/Footer";
+import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
 
 export default function Layout() {
     return (
@@ -19,6 +21,7 @@ export default function Layout() {
                 <TimeLine />
                 <Prizes />
                 <Sponsors />
+                <OurTeam />
                 <Contact />
             </main>
 
