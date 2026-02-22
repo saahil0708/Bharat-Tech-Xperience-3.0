@@ -1,48 +1,142 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-interface TimelineItem {
-  number: string;
+interface ScheduleItem {
+  time: string;
+  ampm: string;
   title: string;
   description: string;
   subtitle?: string;
 }
 
-const timelineData: TimelineItem[] = [
+const scheduleData: ScheduleItem[] = [
+  // DAY 01
   {
-    number: "01",
-    title: "THE BEGINNING",
-    subtitle: "GENESIS",
-    description:
-      "Where it all started. The foundation of greatness built on vision and determination.",
+    time: '09:30',
+    ampm: 'AM',
+    title: 'REGISTRATION OPEN',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: 'Get your badges and welcome kits. The journey begins here. Connect with fellow innovators and prepare for the ultimate challenge.',
   },
   {
-    number: "02",
-    title: "THE RISE",
-    subtitle: "ASCENSION",
-    description:
-      "Breaking barriers and pushing boundaries. The journey to the top begins.",
+    time: '10:00',
+    ampm: 'AM',
+    title: 'WELCOME CEREMONY',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: 'Quick hello, introduction, wifi details, health & safety briefing, and a complete run-through of the event schedule.',
   },
   {
-    number: "03",
-    title: "THE PEAK",
-    subtitle: "PINNACLE",
-    description:
-      "Reaching unprecedented heights. Excellence becomes the new standard.",
+    time: '10:10',
+    ampm: 'AM',
+    title: 'CHALLENGE BRIEFING',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: '"The Reason Why We are All Here" – plus an overview of the challenge(s) by someone impressive in the field.',
   },
   {
-    number: "04",
-    title: "THE LEGACY",
-    subtitle: "ETERNAL",
-    description:
-      "Creating impact that lasts forever. The mark that changes everything.",
+    time: '10:20',
+    ampm: 'AM',
+    title: 'HACKING BEGINS!',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: 'The countdown stops and the coding starts. Teams dive into their projects as we refrain from further interruptions.',
+  },
+  {
+    time: '01:00',
+    ampm: 'PM',
+    title: 'LUNCH BREAK',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: 'Fuel up and network. High-energy food to keep the brain cells firing for the long coding session ahead.',
+  },
+  {
+    time: '03:00',
+    ampm: 'PM',
+    title: 'FEEDBACK SESSIONS',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: 'Audience and mentor feedback sessions – a dedicated service to test your prototypes with the target audience.',
+  },
+  {
+    time: '06:00',
+    ampm: 'PM',
+    title: 'PROGRESS REPORT',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: 'Quick "around the room" standup; each team shares a summary of their progress and any roadblocks they face.',
+  },
+  {
+    time: '09:00',
+    ampm: 'PM',
+    title: 'DINNER TIME',
+    subtitle: 'DAY 01 : THE CREATION',
+    description: 'Late night fuel. The innovation doesn\'t stop when the sun goes down. Keep building, keep pushing.',
+  },
+  // DAY 02
+  {
+    time: '08:00',
+    ampm: 'AM',
+    title: 'DAY 2 BREAKFAST',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'Rise and shine. Final day of the hackathon starts now. Grab some breakfast and head back to your battle stations.',
+  },
+  {
+    time: '10:00',
+    ampm: 'AM',
+    title: 'DEMO SLOT BOOKING',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'Participants register their final "hacks" and sign up for their official pitching slots with the judges.',
+  },
+  {
+    time: '11:00',
+    ampm: 'AM',
+    title: 'PITCH WORKSHOP',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'Optional session to polish your presentation and learn essential pitching techniques to influence the panel.',
+  },
+  {
+    time: '01:00',
+    ampm: 'PM',
+    title: 'FINAL LUNCH',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'One last meal before the high-stakes presentations begin. Steeling nerves for the pitch sessions.',
+  },
+  {
+    time: '01:45',
+    ampm: 'PM',
+    title: 'HACKING ENDS',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'Laptops down. Get everyone off their tables and into the seating area for the live demonstrations.',
+  },
+  {
+    time: '02:00',
+    ampm: 'PM',
+    title: 'PITCH SESSIONS',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'All teams will have 2-3 mins (plus Q&A) to present their innovative hacks to the judging panel and other teams.',
+  },
+  {
+    time: '04:00',
+    ampm: 'PM',
+    title: 'JUDGES DELIBERATION',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'The judges retire to calculate scores and decide the winners. Drinks and refreshments for all participants.',
+  },
+  {
+    time: '04:30',
+    ampm: 'PM',
+    title: 'PRIZEGIVING',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'The moment of truth. Celebrating the winners, handing out rewards, and a quick "Thank You" speech to all.',
+  },
+  {
+    time: '05:00',
+    ampm: 'PM',
+    title: 'GRAND CLOSING',
+    subtitle: 'DAY 02 : THE JUDGEMENT',
+    description: 'The curtain falls on Bharat Tech Xperience 3.0. Socializing, photos, and a final celebration of the community.',
   },
 ];
 
-export default function TimelineCountdown() {
+export default function Timeline() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,206 +146,135 @@ export default function TimelineCountdown() {
       const container = containerRef.current;
       const rect = container.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
-      // Calculate scroll progress through the container
-      const scrollStart = -rect.height + windowHeight;
-      const scrollEnd = windowHeight;
-      const scrollRange = scrollEnd - scrollStart;
+      
       const currentScroll = windowHeight - rect.top;
-
+      const scrollRange = container.offsetHeight + windowHeight;
+      
       const progress = Math.max(0, Math.min(1, currentScroll / scrollRange));
-      setScrollProgress(progress);
 
-      // Determine which section based on scroll progress
       const sectionIndex = Math.min(
-        timelineData.length - 1,
-        Math.floor(progress * timelineData.length),
+        scheduleData.length - 1,
+        Math.floor(progress * scheduleData.length)
       );
       setCurrentIndex(sectionIndex);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const currentItem = timelineData[currentIndex];
+  const currentItem = scheduleData[currentIndex];
+  const currentDay = currentItem.subtitle?.split(':')[0].trim() || 'DAY 01';
 
   return (
-    <div className="min-h-screen ">
-      <div ref={containerRef} className="min-h-[400vh] relative">
-        {/* Section Heading - Part of the timeline section */}
-        <div className="absolute top-8 left-0 right-0 z-30 text-center">
-          <div className="max-w-7xl mx-auto px-8">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-wider">
-              TIMELINE
-              <span className="text-red-600 ml-4 animate-pulse">|</span>
+    <div>
+      <div ref={containerRef} className="min-h-[1200vh] relative">
+        <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+          
+          {/* Subtle Background Day Watermark */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={currentDay}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 0.08, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.1 }}
+                transition={{ duration: 1 }}
+                className="text-[20rem] md:text-[30rem] lg:text-[40rem] font-black text-white"
+              >
+                {currentDay.replace('DAY ', '')}
+              </motion.h1>
+            </AnimatePresence>
+          </div>
+
+          {/* Section Header */}
+          <div className="absolute top-8 md:top-12 z-20 text-center w-full px-4">
+            <h1 
+              className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron"
+              style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+            >
+              EVENT <span className="text-[#E7000B]">SCHEDULE</span>
             </h1>
-            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent mt-4 mx-auto" />
-          </div>
-        </div>
-
-        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-red-950/20 to-black" />
-
-          {/* Animated background elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div
-              className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600 rounded-full blur-3xl"
-              style={{
-                transform: `scale(${1 + scrollProgress * 0.5})`,
-                opacity: 0.3 - scrollProgress * 0.2,
-              }}
-            />
-            <div
-              className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-800 rounded-full blur-3xl"
-              style={{
-                transform: `scale(${1 + scrollProgress * 0.3})`,
-                opacity: 0.2,
-              }}
-            />
+            <div className="h-1 w-20 md:w-24 bg-[#B30000] mx-auto shadow-[0_0_15px_#B30000]"></div>
           </div>
 
-          {/* Main content */}
-          <div className="relative z-10 max-w-7xl mx-auto px-8 w-full mt-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Left side - Number */}
-              <div className="flex flex-col items-start space-y-12">
-                {/* Decorative line */}
-                <div className="flex items-center gap-4 w-full">
-                  <div
-                    className="h-1 bg-gradient-to-r from-red-600 to-transparent transition-all duration-700"
-                    style={{
-                      width: `${(currentIndex + 1) * 25}%`,
-                    }}
-                  />
-                  <div className="flex items-center gap-2">
-                    <span className="text-red-500 text-sm tracking-widest font-light">
-                      {"》".repeat(currentIndex + 1)}
+          {/* Scrollytelling Content Container */}
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="flex flex-col lg:grid lg:grid-cols-12 gap-8 md:gap-12 items-center"
+              >
+                {/* Time Display */}
+                <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center">
+                  <div className="text-center lg:text-right">
+                    <motion.span 
+                      key={`day-${currentIndex}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-[#E7000B] text-xs md:text-sm tracking-[0.5em] font-bold font-orbitron block mb-2 md:mb-4"
+                    >
+                       {currentDay}
+                    </motion.span>
+                    <h2 className="text-6xl md:text-8xl lg:text-[9.5rem] font-black text-[#E7000B] leading-none tracking-tighter"
+                        style={{ textShadow: "0 0 40px rgba(179,0,0,0.3)" }}>
+                      {currentItem.time}
+                    </h2>
+                    <span className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-500 tracking-widest mt-1 md:mt-2 block">
+                      {currentItem.ampm}
                     </span>
                   </div>
                 </div>
 
-                {/* Countdown label */}
-                <div className="relative mb-4">
-                  <span className="text-gray-500 text-sm tracking-[0.3em] font-light uppercase">
-                    {"{"}EPISODE{"}"}
-                  </span>
-                  <div className="absolute -left-4 top-1/2 -translate-y-1/2 text-red-600 text-xl">
-                    》
-                  </div>
+                {/* Vertical Divider Line */}
+                <div className="hidden lg:flex lg:col-span-1 justify-center h-48">
+                  <div className="w-px h-full bg-gradient-to-b from-transparent via-[#E7000B]/50 to-transparent" />
                 </div>
 
-                {/* Large number with white color and red outline */}
-                <div className="relative">
-                  <h1
-                    className="text-[20rem] lg:text-[25rem] font-bold leading-none tracking-tighter"
-                    style={{
-                      color: "#ffffff",
-                      WebkitTextStroke: "2px #dc2626",
-                      textShadow: `
-                        0 0 20px rgba(220, 38, 38, 0.5),
-                        0 0 40px rgba(220, 38, 38, 0.3),
-                        0 0 60px rgba(220, 38, 38, 0.1),
-                        0 0 80px rgba(220, 38, 38, 0.05)
-                      `,
-                    }}
-                  >
-                    {currentItem.number}
-                  </h1>
-                  {/* Red glow effect */}
-                  <div
-                    className="absolute inset-0 text-[20rem] lg:text-[25rem] font-bold leading-none tracking-tighter opacity-20 blur-2xl"
-                    style={{
-                      color: "#dc2626",
-                    }}
-                  >
-                    {currentItem.number}
-                  </div>
-                  {/* Additional soft glow */}
-                  <div
-                    className="absolute inset-0 text-[20rem] lg:text-[25rem] font-bold leading-none tracking-tighter opacity-10 blur-xl"
-                    style={{
-                      color: "#ffffff",
-                    }}
-                  >
-                    {currentItem.number}
-                  </div>
+                {/* Event Details */}
+                <div className="lg:col-span-6 space-y-4 md:space-y-6 text-center lg:text-left">
+                  <h3 className="text-3xl md:text-5xl lg:text-7xl font-black text-white leading-tight uppercase">
+                    {currentItem.title}
+                  </h3>
+                  <p className="text-gray-400 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    {currentItem.description}
+                  </p>
                 </div>
-              </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-              {/* Right side - Content */}
-              <div className="space-y-12 lg:pl-16">
-                {/* Spacing added here */}
-                <div className="mb-8"></div>
-
-                {/* Subtitle */}
-                {currentItem.subtitle && (
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-px bg-red-600" />
-                    <span className="text-red-500 text-xs tracking-[0.4em] font-light uppercase">
-                      {currentItem.subtitle}
-                    </span>
-                  </div>
-                )}
-
-                {/* Spacing added here */}
-                <div className="mb-2"></div>
-
-                {/* Title */}
-                <h2 className="text-5xl lg:text-7xl font-bold text-white tracking-tight mb-8">
-                  {currentItem.title}
-                  <span className="text-red-600 ml-4">{"》》》"}</span>
-                </h2>
-
-                {/* Spacing added here */}
-                <div className="mb-6"></div>
-
-                {/* Description */}
-                <p className="text-gray-400 text-lg lg:text-xl leading-relaxed max-w-xl mb-12">
-                  {currentItem.description}
-                </p>
-
-                {/* Spacing added here */}
-                <div className="mb-4"></div>
-
-                {/* Progress indicator */}
-                <div className="pt-8 space-y-6">
-                  <div className="flex items-center justify-between text-xs text-gray-600 tracking-wider">
-                    <span>PROGRESS</span>
-                    <span>
-                      {String(currentIndex + 1).padStart(2, "0")} /{" "}
-                      {String(timelineData.length).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <div className="h-px bg-gray-800 relative overflow-hidden">
-                    <div
-                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-red-600 to-red-800 transition-all duration-300"
-                      style={{
-                        width: `${((currentIndex + 1) / timelineData.length) * 100}%`,
-                      }}
-                    />
-                    <div
-                      className="absolute inset-y-0 left-0 bg-red-500 blur-sm opacity-50 transition-all duration-300"
-                      style={{
-                        width: `${((currentIndex + 1) / timelineData.length) * 100}%`,
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
+          {/* Elegant Progress Indicator (Bottom) */}
+          <div className="absolute bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 w-full max-w-xs md:max-w-md px-8 z-20">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-[8px] md:text-[10px] text-gray-600 tracking-[0.3em] font-bold font-orbitron">START</span>
+              <span className="text-[8px] md:text-[10px] text-[#E7000B] tracking-[0.3em] font-bold font-orbitron">
+                {currentIndex + 1} / {scheduleData.length}
+              </span>
+              <span className="text-[8px] md:text-[10px] text-gray-600 tracking-[0.3em] font-bold font-orbitron">END</span>
+            </div>
+            <div className="h-[2px] w-full bg-gray-950 overflow-hidden relative rounded-full">
+              <motion.div 
+                className="absolute top-0 left-0 h-full bg-[#B30000] shadow-[0_0_10px_#B30000]"
+                animate={{ width: `${((currentIndex + 1) / scheduleData.length) * 100}%` }}
+                transition={{ duration: 0.4, ease: "circOut" }}
+              />
             </div>
           </div>
 
-          {/* Corner decorations */}
-          <div className="absolute top-8 left-8 text-red-600/20 text-6xl font-bold">
-            {"{"}
+          {/* Minimal Corner Info (Responsive Hidden on small) */}
+          <div className="hidden md:block absolute bottom-8 left-8 text-[9px] text-gray-800 tracking-widest font-mono uppercase opacity-30 select-none">
+            BTX 3.0 // SYSTEM CORE ACCESS
           </div>
-          <div className="absolute bottom-8 right-8 text-red-600/20 text-6xl font-bold">
-            {"}"}
+          <div className="hidden md:block absolute bottom-8 right-8 text-[9px] text-gray-800 tracking-widest font-mono uppercase opacity-30 select-none">
+            {currentDay} // SEQUENCE STAGE {currentIndex + 1}
           </div>
+
         </div>
       </div>
     </div>

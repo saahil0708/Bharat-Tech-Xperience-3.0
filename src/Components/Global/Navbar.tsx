@@ -7,22 +7,23 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navItems = [
-        { label: "HOME", href: "/" },
-        { label: "EVENTS", href: "/events" },
-        { label: "COMPETITIONS", href: "/competitions" },
-        { label: "ABOUT", href: "/about" },
-        { label: "CONTACT", href: "/contact" },
+        { label: "HOME", href: "#home" },
+        { label: "ABOUT", href: "#about" },
+        { label: "TIMELINE", href: "#timeline" },
+        { label: "PRIZES", href: "#prizes" },
+        { label: "SPONSORS", href: "#sponsors" },
+        { label: "CONTACT", href: "#contact" },
     ];
 
     return (
         <nav className="fixed top-0 left-0 flex justify-center items-center w-full z-50 bg-transparent">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="max-w-6xl mx-auto !px-6 !sm:px-6 lg:px-8 w-full">
                 <div className="flex w-full items-center justify-between h-20">
 
                     {/* Logo/Brand */}
                     <div className="flex-shrink-0 md:w-1/3 flex justify-start">
                         <Link
-                            href="/"
+                            href="#home"
                             className="text-xl font-bold text-white tracking-wider hover:text-red-500 transition-colors duration-300"
                         >
                             LOGO
@@ -51,14 +52,16 @@ export default function Navbar() {
                     </div>
 
                     {/* Register Button */}
-                    <div className="flex-shrink-0 md:w-1/3 flex justify-end">
-                        <button
-                            className="ml-4 !px-7 !py-2 bg-red-600 text-white font-mono text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group"
-                            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
-                        >
-                            <span className="relative z-10">Register</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-                        </button>
+                    <div className="flex-shrink-0 md:w-1/3 md:flex justify-end">
+                        <Link href="/register">
+                            <button
+                                className="ml-4 !px-7 !py-2 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group"
+                                style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
+                            >
+                                <span className="relative z-10">Register</span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                            </button>
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -98,32 +101,21 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden`}>
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-lg border-t border-red-900/30">
+            <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden absolute top-20 left-0 w-full z-40`}>
+                <div className="px-2 pt-2 pb-6 space-y-1 sm:px-3 bg-black/95 backdrop-blur-xl border-b border-red-900/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
                     {navItems.map((item) => (
                         <Link
                             key={item.label}
                             href={item.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="block px-3 py-4 text-base font-mono font-bold text-gray-300 hover:text-white hover:bg-red-900/20 rounded-lg transition-all duration-300 group relative overflow-hidden"
+                            className="block px-4 py-4 text-center text-lg font-orbitron font-bold text-gray-300 hover:text-white hover:bg-gradient-to-r from-transparent via-red-900/20 to-transparent transition-all duration-300 group relative overflow-hidden boarder-b border-white/5"
                         >
-                            <span className="relative z-10 flex items-center">
-                                <span className="w-2 h-2 bg-red-600 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span className="relative z-10 flex items-center justify-center">
                                 {item.label}
                             </span>
                             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                         </Link>
                     ))}
-
-                    {/* Mobile Register Button */}
-                    <div className="px-3 py-4">
-                        <button
-                            className="w-full px-6 py-3 bg-red-600 text-white font-mono text-base font-bold rounded-lg hover:bg-red-700 transition-all duration-300 active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)]"
-                            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
-                        >
-                            Register
-                        </button>
-                    </div>
                 </div>
             </div>
         </nav>

@@ -52,7 +52,7 @@ export default function HeroSection() {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
             {/* Red overlay grid background */}
             <div className="absolute inset-0 opacity-10">
                 <div
@@ -80,7 +80,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 pointer-events-none"></div>
 
             {/* Main content */}
-            <div className="relative z-10 container mx-auto px-4 text-center">
+            <div className="relative z-10 container mx-auto px-6 md:px-4 text-center">
                 {/* Main title with custom typography */}
                 <div className={`relative mb-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`}>
 
@@ -194,25 +194,25 @@ export default function HeroSection() {
             {/* Tech HUD Border Effect - Corners */}
             <div className="absolute inset-0 pointer-events-none z-20">
                 {/* Top Left */}
-                <svg className="absolute top-8 left-8 w-24 h-24 text-red-600 opacity-80" viewBox="0 0 100 100">
+                <svg className="absolute top-4 left-4 md:top-8 md:left-8 w-16 h-16 md:w-24 md:h-24 text-red-600 opacity-80" viewBox="0 0 100 100">
                     <path d="M0 0 L40 0 L50 10 L10 10 L10 50 L0 60 Z" fill="currentColor" />
                     <rect x="0" y="70" width="5" height="30" fill="currentColor" className="animate-pulse" />
                 </svg>
 
                 {/* Top Right */}
-                <svg className="absolute top-8 right-8 w-24 h-24 text-red-600 opacity-80 transform scale-x-[-1]" viewBox="0 0 100 100">
+                <svg className="absolute top-4 right-4 md:top-8 md:right-8 w-16 h-16 md:w-24 md:h-24 text-red-600 opacity-80 transform scale-x-[-1]" viewBox="0 0 100 100">
                     <path d="M0 0 L40 0 L50 10 L10 10 L10 50 L0 60 Z" fill="currentColor" />
                     <rect x="0" y="70" width="5" height="30" fill="currentColor" className="animate-pulse" />
                 </svg>
 
                 {/* Bottom Left */}
-                <svg className="absolute bottom-8 left-8 w-24 h-24 text-red-600 opacity-80 transform scale-y-[-1]" viewBox="0 0 100 100">
+                <svg className="absolute bottom-4 left-4 md:bottom-8 md:left-8 w-16 h-16 md:w-24 md:h-24 text-red-600 opacity-80 transform scale-y-[-1]" viewBox="0 0 100 100">
                     <path d="M0 0 L40 0 L50 10 L10 10 L10 50 L0 60 Z" fill="currentColor" />
                     <rect x="0" y="70" width="5" height="30" fill="currentColor" className="animate-pulse" />
                 </svg>
 
                 {/* Bottom Right */}
-                <svg className="absolute bottom-8 right-8 w-24 h-24 text-red-600 opacity-80 transform scale-x-[-1] scale-y-[-1]" viewBox="0 0 100 100">
+                <svg className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-16 h-16 md:w-24 md:h-24 text-red-600 opacity-80 transform scale-x-[-1] scale-y-[-1]" viewBox="0 0 100 100">
                     <path d="M0 0 L40 0 L50 10 L10 10 L10 50 L0 60 Z" fill="currentColor" />
                     <rect x="0" y="70" width="5" height="30" fill="currentColor" className="animate-pulse" />
                 </svg>
@@ -223,20 +223,6 @@ export default function HeroSection() {
             </div>
 
             {/* Floating particles - Upside Down Ash */}
-            <div className="absolute inset-0 pointer-events-none z-10">
-                {[...Array(20)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-gray-400 rounded-full animate-float opacity-50"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`,
-                            animationDuration: `${Math.random() * 10 + 5}s`,
-                        }}
-                    />
-                ))}
-            </div>
 
             {/* Custom animations */}
             <style jsx>{`
