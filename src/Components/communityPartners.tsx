@@ -192,14 +192,14 @@ function CommunityPatener() {
       </div>
 
       {/* Logo Grid */}
-      <div className="!mt-20 space-y-16">
+      <div className="!mt-10 space-y-16">
         {/* First Row */}
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
           {currentLogos.slice(0, 4).map((logo, index) => renderLogo(logo, index))}
         </div>
 
         {/* Second Row */}
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <div className="flex flex-wrap justify-center items-center !mt-10 gap-8 md:gap-16">
           {currentLogos.slice(4, 7).map((logo, index) => renderLogo(logo, index + 4))}
         </div>
       </div>
