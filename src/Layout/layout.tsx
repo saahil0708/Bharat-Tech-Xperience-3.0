@@ -5,7 +5,9 @@ import Navbar from "@/Components/Global/Navbar";
 import Prizes from "@/Components/Prizes";
 import Sponsors from "@/Components/Sponsors";
 import Contact from "@/Components/Contact";
+
 import Footer from "@/Components/Footer";
+
 
 export default function Layout() {
     return (
