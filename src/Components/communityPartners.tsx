@@ -29,7 +29,7 @@ function CommunityPatener() {
   const [currentLogos, setCurrentLogos] = useState(originalLogos)
   const [isFlipping, setIsFlipping] = useState(false)
   const [showNewLogos, setShowNewLogos] = useState(false)
-  const [hoveredIndex, setHoveredIndex] = useState(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,7 +57,7 @@ function CommunityPatener() {
     return () => clearInterval(interval)
   }, [showNewLogos])
 
-  const renderLogo = (logo, index) => (
+  const renderLogo = (logo: string, index: number) => (
     <div
       key={index}
       className={`relative w-36 h-36 md:w-48 md:h-48 flex items-center justify-center group cursor-pointer
