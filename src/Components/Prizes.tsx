@@ -1,29 +1,40 @@
 "use client";
+
 import React from "react";
+import Image from "next/image";
 import { Trophy, Medal, Award, Rocket } from "lucide-react";
 import { GlowingEffect } from "@/Components/ui/glowing-effect";
 import PrizePool from "@/Images/PrizePool.png";
 
-const PrizeCard = ({ rank, amount, icon, isWinner, textColor, scaleClass }) => (
+interface PrizeCardProps {
+  rank: string;
+  amount: string;
+  icon: React.ReactNode;
+  isWinner?: boolean;
+  textColor: string;
+  scaleClass: string;
+}
+
+const PrizeCard = ({ rank, amount, icon, isWinner, textColor, scaleClass }: PrizeCardProps) => (
   <div className={`!relative !flex !flex-col !items-center !justify-center !transition-all !duration-1000 !ease-out ${scaleClass}`}
-       style={{
-         transformStyle: "preserve-3d",
-         perspective: "1000px",
-       }}>
+    style={{
+      transformStyle: "preserve-3d",
+      perspective: "1000px",
+    }}>
     {/* Frame Container with smooth 3D transform */}
     <div className="!relative !w-full !max-w-[310px] !aspect-[3/4] !flex !items-center !justify-center !overflow-hidden !rounded-[2rem] !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)] hover:!rotate-y-12 hover:!shadow-2xl"
-         style={{
-           transformStyle: "preserve-3d",
-           transform: "rotateX(2deg) rotateY(-2deg)",
-           transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-         }}>
-      
+      style={{
+        transformStyle: "preserve-3d",
+        transform: "rotateX(2deg) rotateY(-2deg)",
+        transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+      }}>
+
       {/* 1. The Background Image - NO COLOR CHANGE */}
-      <img
+      <Image
         src={PrizePool.src || PrizePool}
         alt="Vine Portal Frame"
         className="!absolute !inset-0 !w-full !h-full !object-cover !object-center !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-        style={{ 
+        style={{
           clipPath: "inset(0 round 2rem)",
           transform: "translateZ(-10px) scale(1.02)",
           transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
@@ -32,113 +43,113 @@ const PrizeCard = ({ rank, amount, icon, isWinner, textColor, scaleClass }) => (
 
       {/* 2. Brightness Resolver - PRESERVED ORIGINAL */}
       <div className="!absolute !inset-0 !bg-black/40 !pointer-events-none !z-[1] !rounded-[2rem] !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{ 
-             transform: "translateZ(-5px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
-      
+        style={{
+          transform: "translateZ(-5px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
+
       {/* 3. Radial Vignette - PRESERVED ORIGINAL */}
       <div className="!absolute !inset-0 !bg-[radial-gradient(circle_at_center,transparent_20%,black_70%)] !opacity-60 !z-[2] !rounded-[2rem] !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{ 
-             transform: "translateZ(0px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
+        style={{
+          transform: "translateZ(0px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
 
       {/* 4. Original Border Effect - PRESERVED */}
       <div className="!absolute !inset-0 !pointer-events-none !z-[3] !rounded-[2rem] !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{
-             boxShadow: `
+        style={{
+          boxShadow: `
                inset 0 0 30px rgba(220, 38, 38, 0.1),
                0 0 20px rgba(220, 38, 38, 0.2),
                inset 0 0 15px rgba(220, 38, 38, 0.15)
              `,
-             border: "1px solid rgba(220, 38, 38, 0.15)",
-             filter: "blur(0.5px)",
-             transform: "translateZ(5px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}>
+          border: "1px solid rgba(220, 38, 38, 0.15)",
+          filter: "blur(0.5px)",
+          transform: "translateZ(5px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}>
       </div>
 
       {/* 5. Original Corner Effects - PRESERVED */}
       <div className="!absolute !top-0 !left-0 !w-8 !h-8 !bg-gradient-to-br !from-red-500/30 !to-transparent !rounded-tl-[2rem] !z-[4] !pointer-events-none !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{ 
-             filter: "blur(2px)", 
-             transform: "translateZ(8px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
+        style={{
+          filter: "blur(2px)",
+          transform: "translateZ(8px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
       <div className="!absolute !top-0 !right-0 !w-8 !h-8 !bg-gradient-to-bl !from-red-500/30 !to-transparent !rounded-tr-[2rem] !z-[4] !pointer-events-none !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{ 
-             filter: "blur(2px)", 
-             transform: "translateZ(8px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
+        style={{
+          filter: "blur(2px)",
+          transform: "translateZ(8px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
       <div className="!absolute !bottom-0 !left-0 !w-8 !h-8 !bg-gradient-to-tr !from-red-500/30 !to-transparent !rounded-bl-[2rem] !z-[4] !pointer-events-none !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{ 
-             filter: "blur(2px)", 
-             transform: "translateZ(8px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
+        style={{
+          filter: "blur(2px)",
+          transform: "translateZ(8px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
       <div className="!absolute !bottom-0 !right-0 !w-8 !h-8 !bg-gradient-to-tl !from-red-500/30 !to-transparent !rounded-br-[2rem] !z-[4] !pointer-events-none !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{ 
-             filter: "blur(2px)", 
-             transform: "translateZ(8px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
+        style={{
+          filter: "blur(2px)",
+          transform: "translateZ(8px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
 
       {/* 6. Original Edge Effect - PRESERVED */}
       <div className="!absolute !inset-0 !rounded-[2rem] !z-[3] !pointer-events-none !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{
-             background: "radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.3) 100%)",
-             mixBlendMode: "multiply",
-             transform: "translateZ(2px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
+        style={{
+          background: "radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.3) 100%)",
+          mixBlendMode: "multiply",
+          transform: "translateZ(2px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
 
       {/* 7. Original Glow - PRESERVED */}
       <div className="!absolute !inset-[-2px] !rounded-[2.1rem] !opacity-30 !animate-pulse !z-[1] !pointer-events-none !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{
-             background: "radial-gradient(circle at 50% 50%, rgba(220,38,38,0.2), transparent 70%)",
-             filter: "blur(8px)",
-             transform: "translateZ(-15px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}></div>
+        style={{
+          background: "radial-gradient(circle at 50% 50%, rgba(220,38,38,0.2), transparent 70%)",
+          filter: "blur(8px)",
+          transform: "translateZ(-15px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}></div>
 
       {/* Content Layer with smooth 3D depth */}
       <div className="!relative !z-10 !flex !flex-col !items-center !text-center !px-6 !translate-y-[-5%] !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-           style={{
-             transform: "translateZ(25px)",
-             transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-           }}>
+        style={{
+          transform: "translateZ(25px)",
+          transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}>
         <div className={`!mb-4 !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)] ${isWinner ? "!scale-125 !drop-shadow-[0_0_15px_rgba(234,179,8,0.6)]" : ""}`}
-             style={{
-               transform: "translateZ(15px)",
-               transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-             }}>
+          style={{
+            transform: "translateZ(15px)",
+            transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+          }}>
           {icon}
         </div>
-        
+
         <h4 className={`!text-base md:!text-lg !font-black !uppercase !tracking-[0.2em] font-orbitron ${textColor} !mb-2 !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]`}
-            style={{
-              transform: "translateZ(10px)",
-              transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-            }}>
+          style={{
+            transform: "translateZ(10px)",
+            transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+          }}>
           {rank}
         </h4>
-        
+
         <div className="!text-2xl md:!text-3xl !font-black !text-white !mt-1 font-orbitron !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-             style={{
-               transform: "translateZ(20px)",
-               transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-             }}>
+          style={{
+            transform: "translateZ(20px)",
+            transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+          }}>
           {amount}
         </div>
 
         {isWinner && (
           <div className="!absolute !bottom-[-35px] !px-3 !py-0.5 !bg-red-600/20 !border !border-red-500/40 !rounded-full !text-[8px] !text-red-400 !uppercase !tracking-[0.4em] !animate-pulse !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-               style={{
-                 transform: "translateZ(15px)",
-                 transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-               }}>
+            style={{
+              transform: "translateZ(15px)",
+              transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+            }}>
             Champion
           </div>
         )}
@@ -192,7 +203,7 @@ const Prizes = () => {
         {/* Header Section */}
         <div className="!mb-10">
           <h2 className="!text-4xl md:!text-6xl !font-black !text-white !tracking-widest !mb-3"
-              style={{ textShadow: "0 0 25px rgba(220, 38, 38, 0.6)" }}>
+            style={{ textShadow: "0 0 25px rgba(220, 38, 38, 0.6)" }}>
             PRIZES
           </h2>
           <div className="!h-1 !w-28 !bg-red-600 !mx-auto !shadow-[0_0_20px_rgba(220,38,38,1)]"></div>
@@ -204,7 +215,7 @@ const Prizes = () => {
         {/* Total Prize Pool Display */}
         <div className="!mb-14">
           <div className="!text-4xl md:!text-7xl !font-black !text-transparent !bg-clip-text !bg-gradient-to-b !from-white !to-red-600 font-orbitron"
-               style={{ filter: "drop-shadow(0 0 30px rgba(220, 38, 38, 0.5))" }}>
+            style={{ filter: "drop-shadow(0 0 30px rgba(220, 38, 38, 0.5))" }}>
             ₹5,00,000+
           </div>
           <p className="!mt-2 !text-red-500/80 !font-bold !tracking-widest !text-xs">TOTAL PRIZE POOL</p>
@@ -212,17 +223,17 @@ const Prizes = () => {
 
         {/* Podium with smooth 3D cards */}
         <div className="!grid !grid-cols-1 md:!grid-cols-3 !gap-8 md:!gap-4 !max-w-5xl !mx-auto !mb-20 !items-end"
-             style={{
-               transformStyle: "preserve-3d",
-               perspective: "2000px",
-             }}>
+          style={{
+            transformStyle: "preserve-3d",
+            perspective: "2000px",
+          }}>
           {podiumPrizes.map((prize, idx) => (
             <div key={idx}
-                 className="!transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
-                 style={{
-                   transform: `translateZ(${idx === 1 ? '30px' : '0px'})`,
-                   transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
-                 }}>
+              className="!transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
+              style={{
+                transform: `translateZ(${idx === 1 ? '30px' : '0px'})`,
+                transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+              }}>
               <PrizeCard {...prize} />
             </div>
           ))}
