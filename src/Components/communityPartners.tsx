@@ -29,7 +29,8 @@ function CommunityPatener() {
   const [currentLogos, setCurrentLogos] = useState(originalLogos)
   const [isFlipping, setIsFlipping] = useState(false)
   const [showNewLogos, setShowNewLogos] = useState(false)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [hoveredIndex, setHoveredIndex] = useState(null)
+  const [showOverlay, setShowOverlay] = useState(true)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,7 +58,7 @@ function CommunityPatener() {
     return () => clearInterval(interval)
   }, [showNewLogos])
 
-  const renderLogo = (logo: string, index: number) => (
+  const renderLogo = (logo, index) => (
     <div
       key={index}
       className={`relative w-36 h-36 md:w-48 md:h-48 flex items-center justify-center group cursor-pointer
@@ -170,10 +171,10 @@ function CommunityPatener() {
           style={{ textShadow: "0 0 20px rgba(220, 38, 38, 0.5)" }}
         >
           COMMUNITY PARTNERS
-          {/* <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></span> */}
+          <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></span>
         </h2>
 
-        {/* <div className="h-1 w-32 bg-gradient-to-r from-transparent via-red-600 to-transparent !mx-auto !shadow-[0_0_15px_rgba(220,38,38,1)]"></div> */}
+        <div className="h-1 w-32 bg-gradient-to-r from-transparent via-red-600 to-transparent !mx-auto !shadow-[0_0_15px_rgba(220,38,38,1)]"></div>
 
         <p className="mt-8 !text-gray-400 !text-sm !tracking-[0.3em] !uppercase font-orbitron">
           Collaborating for a Better Tomorrow
@@ -191,8 +192,41 @@ function CommunityPatener() {
         </h2>
       </div>
 
-      {/* Logo Grid */}
-      <div className="!mt-10 space-y-16">
+      {/* Logo Grid with Overlay */}
+      <div className="!mt-10 space-y-16 relative">
+        {/* Blur Overlay */}
+        {showOverlay && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center">
+            {/* Semi-transparent blur background */}
+            <div className="absolute inset-0 backdrop-blur-md bg-black/40"></div>
+            
+            {/* "Revealing Soon" text */}
+            <div className="relative z-30 text-center">
+              <div className="relative">
+                <h3 className="text-5xl md:text-7xl font-black text-white tracking-wider mb-4 animate-pulse"
+                    style={{ textShadow: '0 0 30px rgba(220,38,38,0.8), 0 0 60px rgba(220,38,38,0.4)' }}>
+                  REVEALING
+                </h3>
+                <h3 className="text-5xl md:text-7xl font-black text-white tracking-wider"
+                    style={{ textShadow: '0 0 30px rgba(220,38,38,0.8), 0 0 60px rgba(220,38,38,0.4)' }}>
+                  SOON...
+                </h3>
+                
+                {/* Decorative elements */}
+                <div className="absolute -top-10 -left-10 w-20 h-20 border-t-4 border-l-4 border-red-500/50 rounded-tl-3xl"></div>
+                <div className="absolute -bottom-10 -right-10 w-20 h-20 border-b-4 border-r-4 border-red-500/50 rounded-br-3xl"></div>
+              </div>
+              
+              {/* Animated dots */}
+              <div className="flex justify-center gap-2 mt-8">
+                <div className="w-3 h-3 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+                <div className="w-3 h-3 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-3 h-3 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* First Row */}
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
           {currentLogos.slice(0, 4).map((logo, index) => renderLogo(logo, index))}
