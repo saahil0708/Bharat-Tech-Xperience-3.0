@@ -60,7 +60,7 @@ const scheduleData: ScheduleItem[] = [
     ampm: 'PM',
     title: 'PROGRESS REPORT',
     subtitle: 'DAY 01 : THE CREATION',
-    description: 'Quick "around the room" standup; each team shares a summary of their progress and any roadblocks they face.',
+    description: 'Quick "around the room" standup. each team shares a summary of their progress and any roadblocks they face.',
   },
   {
     time: '09:00',
@@ -146,10 +146,10 @@ export default function Timeline() {
       const container = containerRef.current;
       const rect = container.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       const currentScroll = windowHeight - rect.top;
       const scrollRange = container.offsetHeight + windowHeight;
-      
+
       const progress = Math.max(0, Math.min(1, currentScroll / scrollRange));
 
       const sectionIndex = Math.min(
@@ -168,10 +168,10 @@ export default function Timeline() {
   const currentDay = currentItem.subtitle?.split(':')[0].trim() || 'DAY 01';
 
   return (
-    <div>
+    <div id="timeline">
       <div ref={containerRef} className="min-h-[1200vh] relative">
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-          
+
           {/* Subtle Background Day Watermark */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
             <AnimatePresence mode="wait">
@@ -190,7 +190,7 @@ export default function Timeline() {
 
           {/* Section Header */}
           <div className="absolute top-8 md:top-12 z-20 text-center w-full px-4">
-            <h1 
+            <h1
               className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron"
               style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
             >
@@ -213,16 +213,16 @@ export default function Timeline() {
                 {/* Time Display */}
                 <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center">
                   <div className="text-center lg:text-right">
-                    <motion.span 
+                    <motion.span
                       key={`day-${currentIndex}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       className="text-[#E7000B] text-xs md:text-sm tracking-[0.5em] font-bold font-orbitron block mb-2 md:mb-4"
                     >
-                       {currentDay}
+                      {currentDay}
                     </motion.span>
                     <h2 className="text-6xl md:text-8xl lg:text-[9.5rem] font-black text-[#E7000B] leading-none tracking-tighter"
-                        style={{ textShadow: "0 0 40px rgba(179,0,0,0.3)" }}>
+                      style={{ textShadow: "0 0 40px rgba(179,0,0,0.3)" }}>
                       {currentItem.time}
                     </h2>
                     <span className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-500 tracking-widest mt-1 md:mt-2 block">
@@ -259,7 +259,7 @@ export default function Timeline() {
               <span className="text-[8px] md:text-[10px] text-gray-600 tracking-[0.3em] font-bold font-orbitron">END</span>
             </div>
             <div className="h-[2px] w-full bg-gray-950 overflow-hidden relative rounded-full">
-              <motion.div 
+              <motion.div
                 className="absolute top-0 left-0 h-full bg-[#B30000] shadow-[0_0_10px_#B30000]"
                 animate={{ width: `${((currentIndex + 1) / scheduleData.length) * 100}%` }}
                 transition={{ duration: 0.4, ease: "circOut" }}

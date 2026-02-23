@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 
-function CommunityPatener() {
+function CommunityPartner() {
 
   // Original logos array
   const originalLogos = [
@@ -323,4 +323,4 @@ function CommunityPatener() {
   )
 }
 
-export default CommunityPatener;
+export default CommunityPartner;
