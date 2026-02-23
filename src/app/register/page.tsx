@@ -422,7 +422,7 @@ export default function RegisterPage() {
                                         </div>
                                         <div className='!ml-2'>
                                             <p className="text-white text-sm tracking-wider uppercase">Accommodation Required</p>
-                                            <p className="text-gray-500 text-xs">Adds base operative shelter cost (+₹50)</p>
+                                            <p className="text-gray-500 text-xs">Adds base operative shelter cost (+ ₹50)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -511,19 +511,19 @@ export default function RegisterPage() {
                                 <div className="!space-y-3 relative z-10">
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Saahil</span>
-                                        <Link href="tel:+919587308788" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 94741 56798</Link>
+                                        <Link href="tel:+91 94741 56798" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 94741 56798</Link>
                                     </div>
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Kshitij</span>
-                                        <Link href="tel:+919876543210" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 70610 67077</Link>
+                                        <Link href="tel:+91 70610 67077" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 70610 67077</Link>
                                     </div>
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Sujal</span>
-                                        <Link href="tel:+918765432109" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 81304 92327</Link>
+                                        <Link href="tel:+91 81304 92327" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 81304 92327</Link>
                                     </div>
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Taniya</span>
-                                        <Link href="tel:+917654321098" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 97174 53632</Link>
+                                        <Link href="tel:+91 97174 53632" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 97174 53632</Link>
                                     </div>
                                     {/* <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Rohan</span>

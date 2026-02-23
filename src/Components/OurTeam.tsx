@@ -5,35 +5,35 @@ import React, { useState } from 'react';
 const teamMembers = [
     {
         id: 1,
-        name: 'Alex Mercer',
+        name: 'Kshitij Raj',
         role: 'Frontend Architect',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80',
+        image: 'https://static.toiimg.com/photo/80482429.cms',
         bio: 'Building immersive user interfaces and interactions.'
     },
     {
         id: 2,
-        name: 'Sarah Chen',
+        name: 'Aditi Mishra',
         role: 'Backend Systems',
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=800&q=80',
+        image: 'https://img.freepik.com/premium-photo/shot-brunette-stylish-red-sweater-gold-earrings-adorable-girl-with-glasses-looking-camera-with-smile-white-background_197531-26492.jpg',
         bio: 'Optimizing databases and server architecture.'
     },
     {
         id: 3,
-        name: 'Rahul Patel',
+        name: 'Saahil',
         role: 'DevOps Engineer',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=800&q=80',
+        image: 'https://img.freepik.com/free-photo/portrait-handsome-confident-stylish-hipster-lambersexual-modelman-dressed-summer-clothes-fashion-male-isolated-studio-posing-near-blue-wall_158538-26352.jpg?semt=ais_user_personalization&w=740&q=80',
         bio: 'Ensuring zero downtime and seamless deployments.'
     },
     {
         id: 4,
-        name: 'Emily Davis',
+        name: 'Khushi Porwal',
         role: 'UI/UX Designer',
         image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fit=crop&w=800&q=80',
         bio: 'Crafting the cyber-aesthetic and user journeys.'
     },
     {
         id: 5,
-        name: 'Michael Chang',
+        name: 'Kapil Gupta',
         role: 'Security Lead',
         image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=800&q=80',
         bio: 'Protecting the infrastructure from cyber threats.'

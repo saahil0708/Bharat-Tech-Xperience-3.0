@@ -170,10 +170,10 @@ function CommunityPatener() {
           style={{ textShadow: "0 0 20px rgba(220, 38, 38, 0.5)" }}
         >
           COMMUNITY PARTNERS
-          <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></span>
+          {/* <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></span> */}
         </h2>
 
-        <div className="h-1 w-32 bg-gradient-to-r from-transparent via-red-600 to-transparent !mx-auto !shadow-[0_0_15px_rgba(220,38,38,1)]"></div>
+        {/* <div className="h-1 w-32 bg-gradient-to-r from-transparent via-red-600 to-transparent !mx-auto !shadow-[0_0_15px_rgba(220,38,38,1)]"></div> */}
 
         <p className="mt-8 !text-gray-400 !text-sm !tracking-[0.3em] !uppercase font-orbitron">
           Collaborating for a Better Tomorrow
