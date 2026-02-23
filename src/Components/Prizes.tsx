@@ -31,8 +31,9 @@ const PrizeCard = ({ rank, amount, icon, isWinner, textColor, scaleClass }: Priz
 
       {/* 1. The Background Image - NO COLOR CHANGE */}
       <Image
-        src={PrizePool.src || PrizePool}
+        src={PrizePool}
         alt="Vine Portal Frame"
+        fill
         className="!absolute !inset-0 !w-full !h-full !object-cover !object-center !transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
         style={{
           clipPath: "inset(0 round 2rem)",

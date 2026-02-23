@@ -1,3 +1,5 @@
+'use client'
+
 import Layout from "@/Layout/layout"
 import React from "react"
 

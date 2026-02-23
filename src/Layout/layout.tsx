@@ -1,3 +1,5 @@
+'use client'
+
 // src/Layout/layout.tsx
 import React from "react";
 import HomePage from "@/app/home/page";

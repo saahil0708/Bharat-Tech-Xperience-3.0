@@ -60,7 +60,7 @@ const scheduleData: ScheduleItem[] = [
     ampm: 'PM',
     title: 'PROGRESS REPORT',
     subtitle: 'DAY 01 : THE CREATION',
-    description: 'Quick "around the room" standup; each team shares a summary of their progress and any roadblocks they face.',
+    description: 'Quick "around the room" standup. each team shares a summary of their progress and any roadblocks they face.',
   },
   {
     time: '09:00',
