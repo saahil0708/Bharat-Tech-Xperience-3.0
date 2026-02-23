@@ -11,8 +11,9 @@ import Contact from "@/Components/Contact";
 
 import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
-import CommunityPatners from "@/Components/communityPartners";
+import CommunityPartner from "@/Components/communityPartners";
 
+import PastGlories from "@/Components/PastGlories";
 
 export default function Layout() {
     return (
@@ -25,9 +26,10 @@ export default function Layout() {
                 <HomePage />
                 <TimeLine />
                 <Prizes />
-                <CommunityPatners/>
+                <CommunityPartner />
                 <Sponsors />
                 <OurTeam />
+                <PastGlories />
                 <Contact />
             </main>
 
