@@ -9,6 +9,7 @@ import Contact from "@/Components/Contact";
 
 import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
+import CommunityPatners from "@/Components/communityPartners";
 
 
 export default function Layout() {
@@ -22,6 +23,7 @@ export default function Layout() {
                 <HomePage />
                 <TimeLine />
                 <Prizes />
+                <CommunityPatners/>
                 <Sponsors />
                 <OurTeam />
                 <Contact />
