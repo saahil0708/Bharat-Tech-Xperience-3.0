@@ -1,22 +1,23 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import ParticleBackground from "./ParticleBackground";
 import { MoveHorizontal } from "lucide-react";
+import TeamWork from '../Images/TeamWork.jpg';
 
 const PastGlories = () => {
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [selectedImg, setSelectedImg] = useState<StaticImageData | string | null>(null);
 
   const achievements = [
-    { rank: "WINNER", title: "HACKATHON 2023", loc: "HAWKINS LAB", achv: "1ST PLACE", img: "/Images/Strange.jpg" },
-    { rank: "FINALIST", title: "MIND FLARE UI", loc: "THE VOID", achv: "TOP 3", img: "/Images/MindFlare.png" },
-    { rank: "RUNNER UP", title: "UPSIDE DOWN DEV", loc: "STARCOURT", achv: "SILVER", img: "/Images/stranger things.jpg.jpeg" },
-    { rank: "WINNER", title: "CODE FEST", loc: "HAWKINS HIGH", achv: "GOLD", img: "/Images/Upsidedown.png" },
-    { rank: "FINALIST", title: "PRIZE POOL", loc: "LABORATORY", achv: "TOP 5", img: "/Images/PrizePool.png" },
-    { rank: "RUNNER UP", title: "NIGHTMARE JS", loc: "THE UPSIDE DOWN", achv: "BRONZE", img: "/Images/upsideDown.jpeg" },
-    { rank: "WINNER", title: "CYBER DEMOGORGON", loc: "ST.ARC", achv: "1ST PLACE", img: "/Images/Strange.jpg" },
-    { rank: "FINALIST", title: "TELEKINESIS UI", loc: "011 WARD", achv: "TOP 10", img: "/Images/MindFlare.png" },
+    { rank: "WINNER", title: "HACKATHON 2023", loc: "HAWKINS LAB", achv: "1ST PLACE", img: TeamWork },
+    { rank: "FINALIST", title: "MIND FLARE UI", loc: "THE VOID", achv: "TOP 3", img: TeamWork },
+    { rank: "RUNNER UP", title: "UPSIDE DOWN DEV", loc: "STARCOURT", achv: "SILVER", img: TeamWork },
+    { rank: "WINNER", title: "CODE FEST", loc: "HAWKINS HIGH", achv: "GOLD", img: TeamWork },
+    { rank: "FINALIST", title: "PRIZE POOL", loc: "LABORATORY", achv: "TOP 5", img: TeamWork },
+    { rank: "RUNNER UP", title: "NIGHTMARE JS", loc: "THE UPSIDE DOWN", achv: "BRONZE", img: TeamWork },
+    { rank: "WINNER", title: "CYBER DEMOGORGON", loc: "ST.ARC", achv: "1ST PLACE", img: TeamWork },
+    { rank: "FINALIST", title: "TELEKINESIS UI", loc: "011 WARD", achv: "TOP 10", img: TeamWork },
   ];
 
   const x = useMotionValue(0);
@@ -158,7 +159,7 @@ const PastGlories = () => {
                         <div className="!absolute !inset-0 !bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] !bg-[length:100%_4px] pointer-events-none"></div>
                       </div>
                       <div className="!mt-3 md:!mt-4 !text-left !border-l-2 !border-red-600 !pl-2 md:!pl-3">
-                        <h4 className="!text-white !font-black !text-md md:!text-xl !tracking-tighter !uppercase !truncate">{item.title}</h4>
+                        <h4 className="!text-white !font-black !text-md md:!text-xl !tracking-loose !uppercase !truncate">{item.title}</h4>
                         <p className="!text-red-700 !text-[8px] md:!text-[10px] !font-mono !font-bold !tracking-[0.1em] md:!tracking-[0.2em] !mt-1 !truncate">
                           {item.loc} <span className="!text-zinc-500 !mx-1">/</span> {item.achv}
                         </p>
