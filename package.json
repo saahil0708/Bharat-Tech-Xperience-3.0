@@ -11,6 +11,7 @@
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.15",
     "@supabase/supabase-js": "^2.94.0",
+    "@tabler/icons-react": "^3.37.1",
     "@tsparticles/preset-fire": "^3.2.0",
     "@tsparticles/react": "^3.0.0",
     "class-variance-authority": "^0.7.1",
