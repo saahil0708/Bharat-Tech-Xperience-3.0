@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from '../../Images/Logo.png';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,7 +28,7 @@ export default function Navbar() {
                             href="#home"
                             className="text-xl font-bold text-white tracking-wider hover:text-red-500 transition-colors duration-300"
                         >
-                            LOGO
+                            <Image src={Logo} alt="Logo" width={100} height={100} />
                         </Link>
                     </div>
 
