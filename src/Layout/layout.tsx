@@ -15,6 +15,7 @@ import CommunityPartner from "@/Components/communityPartners";
 import Judges from '@/Components/Judges';
 
 import PastGlories from "@/Components/PastGlories";
+import Mentors from "@/Components/Mentors";
 
 export default function Layout() {
     return (
@@ -29,6 +30,7 @@ export default function Layout() {
                 <Prizes />
                 <CommunityPartner />
                 <Judges/>
+                <Mentors />
                 <Sponsors />
                 <OurTeam />
                 <PastGlories />
