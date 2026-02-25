@@ -13,7 +13,7 @@ import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
 import CommunityPartner from "@/Components/communityPartners";
 // import Judges from '@/Components/Judges';
-import Scroll from '@/Components/Scroll' 
+import Judges from '@/Components/Judges' 
 
 import PastGlories from "@/Components/PastGlories";
 
@@ -21,23 +21,18 @@ export default function Layout() {
     return (
         <React.Fragment>
             <Navbar />
-
-            {/* Main Content Wrapper - Higher Z-Index to cover Footer */}
             {/* Main Content Wrapper */}
             <main className="relative bg-black z-10">
                 <HomePage />
                 <TimeLine />
                 <Prizes />
                 <CommunityPartner />
-                {/* <Judges/> */}
-                <Scroll/>
+                <Judges/>
                 <Sponsors />
                 <OurTeam />
                 <PastGlories />
                 <Contact />
             </main>
-
-            {/* Fixed Footer - Z-0 ensures it sits behind main content but above body */}
             <Footer />
         </React.Fragment>
     )
