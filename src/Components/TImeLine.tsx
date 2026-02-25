@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 
 interface ScheduleItem {
   time: string;
@@ -69,7 +69,6 @@ const scheduleData: ScheduleItem[] = [
     subtitle: 'DAY 01 : THE CREATION',
     description: 'Late night fuel. The innovation doesn\'t stop when the sun goes down. Keep building, keep pushing.',
   },
-  // DAY 02
   {
     time: '08:00',
     ampm: 'AM',
@@ -139,37 +138,32 @@ export default function Timeline() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-      const container = containerRef.current;
-      const rect = container.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      const currentScroll = windowHeight - rect.top;
-      const scrollRange = container.offsetHeight + windowHeight;
-
-      const progress = Math.max(0, Math.min(1, currentScroll / scrollRange));
-
-      const sectionIndex = Math.min(
-        scheduleData.length - 1,
-        Math.floor(progress * scheduleData.length)
-      );
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // 15% dwell zone at the bottom
+    const bufferZoneFactor = 0.85; 
+    const adjustedProgress = Math.min(1, latest / bufferZoneFactor);
+    
+    const sectionIndex = Math.min(
+      scheduleData.length - 1,
+      Math.floor(adjustedProgress * scheduleData.length)
+    );
+    
+    if (sectionIndex !== currentIndex) {
       setCurrentIndex(sectionIndex);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    }
+  });
 
   const currentItem = scheduleData[currentIndex];
   const currentDay = currentItem.subtitle?.split(':')[0].trim() || 'DAY 01';
 
   return (
     <div id="timeline">
-      <div ref={containerRef} className="min-h-[1200vh] relative">
+      <div ref={containerRef} className="min-h-[1400vh] relative">
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
 
           {/* Subtle Background Day Watermark */}
