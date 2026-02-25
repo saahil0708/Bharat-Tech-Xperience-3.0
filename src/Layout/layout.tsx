@@ -13,6 +13,7 @@ import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
 import CommunityPartner from "@/Components/communityPartners";
 import Judges from '@/Components/Judges';
+import Mentors from '@/Components/Mentors';
 
 import PastGlories from "@/Components/PastGlories";
 
@@ -29,6 +30,7 @@ export default function Layout() {
                 <Prizes />
                 <CommunityPartner />
                 <Judges/>
+                <Mentors/>  
                 <Sponsors />
                 <OurTeam />
                 <PastGlories />
