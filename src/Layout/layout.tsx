@@ -12,7 +12,8 @@ import Contact from "@/Components/Contact";
 import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
 import CommunityPartner from "@/Components/communityPartners";
-import Judges from '@/Components/Judges';
+// import Judges from '@/Components/Judges';
+import Scroll from '@/Components/Scroll' 
 
 import PastGlories from "@/Components/PastGlories";
 
@@ -28,7 +29,8 @@ export default function Layout() {
                 <TimeLine />
                 <Prizes />
                 <CommunityPartner />
-                <Judges/>
+                {/* <Judges/> */}
+                <Scroll/>
                 <Sponsors />
                 <OurTeam />
                 <PastGlories />
