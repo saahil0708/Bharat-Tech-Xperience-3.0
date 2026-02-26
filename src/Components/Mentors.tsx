@@ -308,7 +308,7 @@ export default function Mentors() {
         {/* Carousel */}
         <div
           ref={containerRef}
-          className="!flex !gap-10 !overflow-x-auto !pb-8 !snap-x !snap-mandatory"
+          className="!flex !gap-10 !overflow-x-auto !pt-10 !pb-8 !snap-x !snap-mandatory"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {mentorsData.map((mentor, index) => (

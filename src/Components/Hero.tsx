@@ -179,7 +179,6 @@ export default function HeroSection() {
                         <div className="h-0.5 !mr-5 !flex-grow bg-white/80 shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
                         <h2 className="mx-6 text-xl md:text-3xl font-bold text-white tracking-[0.2em] !text-center uppercase"
                             style={{ 
-                                fontFamily: "'DM Serif Display', serif",
                                 textShadow: '0 0 15px rgba(255,255,255,0.6)' 
                             }}>
                             National Level <br className="md:hidden" /> Hackathon
