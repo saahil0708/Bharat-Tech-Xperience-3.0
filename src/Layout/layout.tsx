@@ -12,7 +12,7 @@ import Contact from "@/Components/Contact";
 import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
 import CommunityPartner from "@/Components/communityPartners";
-import Judges from '@/Components/Judges';
+// import Judges from '@/Components/Judges';
 
 import PastGlories from "@/Components/PastGlories";
 import Mentors from "@/Components/Mentors";
@@ -29,7 +29,7 @@ export default function Layout() {
                 <TimeLine />
                 <Prizes />
                 <CommunityPartner />
-                <Judges/>
+                {/* <Judges/> */}
                 <Mentors />
                 <Sponsors />
                 <OurTeam />
