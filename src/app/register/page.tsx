@@ -27,6 +27,8 @@ export default function RegisterPage() {
     const [projectDescription, setProjectDescription] = useState('');
     const [pptLink, setPptLink] = useState('');
     const [requiresAccommodation, setRequiresAccommodation] = useState(false);
+    const [referralType, setReferralType] = useState<'individual' | 'community' | null>(null);
+    const [referralValue, setReferralValue] = useState('');
 
     const addMember = () => {
         if (members.length + 1 < 5) {
@@ -90,7 +92,9 @@ export default function RegisterPage() {
                         project_description: projectDescription,
                         ppt_link: pptLink,
                         total_fee: totalFee,
-                        total_participants: totalParticipants
+                        total_participants: totalParticipants,
+                        referral_type: referralType,
+                        referral_code: referralValue
                         // Omitted accommodation and paymentId since columns may not exist yet in DB
                     },
                 ])
@@ -425,6 +429,45 @@ export default function RegisterPage() {
                                             <p className="text-gray-500 text-xs">Adds base operative shelter cost (+ ₹50)</p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            {/* Referral Details */}
+                            <div className="space-y-6">
+                                <h2 className="text-2xl !font-[family-name:var(--font-azonix)] !text-red-500 tracking-wider flex items-center gap-4 !pb-4">
+                                    <span className="text-3xl opacity-50">05</span>
+                                    REFERRAL
+                                </h2>
+                                <div className="space-y-5 pt-2">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <button
+                                            type="button"
+                                            onClick={() => setReferralType('individual')}
+                                            className={`!py-3 !px-4 !border !text-xs !tracking-widest !uppercase !font-bold transition-all ${referralType === 'individual' ? '!bg-red-600 !border-red-600 !text-white' : '!bg-black/40 !border-gray-800 !text-gray-500 hover:!border-red-500/50'}`}
+                                        >
+                                            Individual Referral
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setReferralType('community')}
+                                            className={`!py-3 !px-4 !border !text-xs !tracking-widest !uppercase !font-bold transition-all ${referralType === 'community' ? '!bg-red-600 !border-red-600 !text-white' : '!bg-black/40 !border-gray-800 !text-gray-500 hover:!border-red-500/50'}`}
+                                        >
+                                            Community Referral
+                                        </button>
+                                    </div>
+                                    
+                                    {referralType && (
+                                        <div className="relative group animate-in fade-in slide-in-from-top-2 duration-300">
+                                            <input
+                                                type="text"
+                                                value={referralValue}
+                                                onChange={(e) => setReferralValue(e.target.value)}
+                                                required
+                                                placeholder={referralType === 'individual' ? "ENTER REFEREE NAME" : "ENTER COMMUNITY NAME"}
+                                                className="w-full !bg-black/60 !border !border-gray-800 !text-white !px-3 !py-2 focus:outline-none focus:!border-red-600 focus:ring-1 focus:!ring-red-600 transition-all placeholder:!text-gray-600 group-hover:!border-red-900/50 text-lg"
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
