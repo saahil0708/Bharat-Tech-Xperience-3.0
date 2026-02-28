@@ -236,6 +236,20 @@ function CommunityPartner() {
         <div className="flex flex-wrap justify-center items-center !mt-10 gap-8 md:gap-16">
           {currentLogos.slice(4, 7).map((logo, index) => renderLogo(logo, index + 4))}
         </div>
+
+        {/* Join Button */}
+        <div className="!mt-16 !relative !z-30">
+          <a 
+            href="https://docs.google.com/forms/d/e/1FAIpQLScEzeIMqOtszL0ms9FC2uqlPyhf6vIoxvPREaT4VC5FHq_VKw/viewform?usp=sharing&ouid=116434170257346254696"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block !px-10 !py-3 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group"
+            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
+          >
+            <span className="relative z-10">Join as Community Partner</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+          </a>
+        </div>
       </div>
 
       {/* Decorative bottom border */}

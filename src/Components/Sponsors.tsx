@@ -32,6 +32,20 @@ const Sponsors = () => {
                     <p className="!mt-6 !text-lg !text-red-500 !font-mono !tracking-widest !uppercase">
                         /// ALLIANCE FORMATION IN PROGRESS ///
                     </p>
+                    
+                    {/* Join Button */}
+                    <div className="!mt-10 !relative !z-30">
+                        <a
+                            href="https://forms.gle/MWypPzM7zyKJWVkQ7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block !px-10 !py-3 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group"
+                            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
+                        >
+                            <span className="relative z-10 uppercase tracking-widest">Become a Sponsor</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
