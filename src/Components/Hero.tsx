@@ -22,7 +22,7 @@ export default function HeroSection() {
         setIsLoaded(true);
     }, []);
 
-    // Function to render custom-sized letters (Stranger Things style)
+    // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
     const renderCustomText = (text: string, isFirstLine: boolean) => {
         return text.split('').map((letter, index) => {
             let fontSize = '1em'; // Default size
@@ -41,9 +41,32 @@ export default function HeroSection() {
             if (isEdge) fontSize = bigSize;
             if (letter === ' ') return <span key={index} className="mx-2"> </span>;
 
+            // Alternate letter logic: pairs like (0,2), (1,3), (4,6), (5,7)...
+            const quad = Math.floor(index / 4);
+            const isOdd = index % 2 !== 0;
+            const delayStep = (quad * 2) + (isOdd ? 1 : 0);
+            const baseDelay = isFirstLine ? 0.3 : 1.2;
+
             return (
-                <span
+                <motion.span
                     key={index}
+                    initial={{ 
+                        scale: 4, 
+                        opacity: 0, 
+                        filter: 'blur(10px)',
+                        y: 0
+                    }}
+                    animate={{ 
+                        scale: 1, 
+                        opacity: 1, 
+                        filter: 'blur(0px)',
+                        y: 0
+                    }}
+                    transition={{ 
+                        duration: 1.5, 
+                        delay: baseDelay + (delayStep * 0.3),
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
                     className="inline-block"
                     style={{
                         fontFamily: "'DM Serif Display', serif",
@@ -52,11 +75,12 @@ export default function HeroSection() {
                         verticalAlign: 'top',
                         marginTop: isEdge ? '0' : '0.15em',
                         marginLeft: '0.02em',
-                        marginRight: '0.02em'
+                        marginRight: '0.02em',
+                        display: 'inline-block'
                     }}
                 >
                     {letter}
-                </span>
+                </motion.span>
             );
         });
     };
