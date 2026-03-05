@@ -308,7 +308,11 @@ export default function Mentors() {
         {/* Carousel */}
         <div
           ref={containerRef}
+<<<<<<< HEAD
           className="!flex !gap-10 !overflow-x-auto !pt-10 !pb-8 !snap-x !snap-mandatory"
+=======
+          className="!flex !gap-10 !overflow-x-auto !pb-8 !snap-x !snap-mandatory"
+>>>>>>> 6b7af5f9041cb52393d556f44017e5733518663e
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {mentorsData.map((mentor, index) => (
@@ -325,6 +329,7 @@ export default function Mentors() {
             </motion.div>
           ))}
         </div>
+<<<<<<< HEAD
 
         {/* Join Button */}
         <div className="!mt-12 !text-center !relative !z-30">
@@ -339,6 +344,8 @@ export default function Mentors() {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
           </a>
         </div>
+=======
+>>>>>>> 6b7af5f9041cb52393d556f44017e5733518663e
       </div>
     </section>
   );

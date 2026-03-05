@@ -12,7 +12,12 @@ import Contact from "@/Components/Contact";
 import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
 import CommunityPartner from "@/Components/communityPartners";
+<<<<<<< HEAD
 // import Judges from '@/Components/Judges';
+=======
+import Judges from '@/Components/Judges';
+import Mentors from '@/Components/Mentors';
+>>>>>>> 6b7af5f9041cb52393d556f44017e5733518663e
 
 import PastGlories from "@/Components/PastGlories";
 import Mentors from "@/Components/Mentors";
@@ -29,8 +34,13 @@ export default function Layout() {
                 <TimeLine />
                 <Prizes />
                 <CommunityPartner />
+<<<<<<< HEAD
                 {/* <Judges/> */}
                 <Mentors />
+=======
+                <Judges/>
+                <Mentors/>  
+>>>>>>> 6b7af5f9041cb52393d556f44017e5733518663e
                 <Sponsors />
                 <OurTeam />
                 <PastGlories />
