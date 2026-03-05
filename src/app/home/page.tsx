@@ -5,6 +5,7 @@ import Strange from '../../Images/Strange.jpg';
 import HeroSection from "@/Components/Hero";
 import CountDown from "@/Components/countDown";
 import About from "@/Components/About";
+import CardSection from "@/Components/CardSection"
 
 import { FollowerPointerCard } from "@/Components/ui/following-pointer";
 
@@ -19,6 +20,7 @@ export default function HomePage() {
                 <HeroSection />
                 <CountDown />
                 <About />
+                <CardSection />
             </div>
         </React.Fragment>
     )

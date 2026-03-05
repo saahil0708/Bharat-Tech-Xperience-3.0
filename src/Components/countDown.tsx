@@ -11,7 +11,8 @@ const Countdown = () => {
     });
 
     useEffect(() => {
-        const targetDate = new Date("2026-03-27T00:00:00");
+        // Set the date we're counting down to (7 days from now for demo)
+        const countDownDate = new Date().getTime() + 28 * 24 * 60 * 60 * 1000;
 
         const calculateTimeLeft = () => {
             const now = new Date();
@@ -36,70 +37,47 @@ const Countdown = () => {
 
     return (
         <div className="flex flex-col items-center justify-center w-full z-50 !py-10 relative">
-            <h2 className="text-3xl md:text-5xl font-orbitron text-white tracking-[0.2em] font-bold !mb-12 text-center drop-shadow-[0_0_15px_rgba(220,38,38,0.8)] uppercase">
-                THE <span className="text-red-700 ">HUNT</span> STARTS IN
+            {/* Title with Stranger Things vibe */}
+            <h2 className="text-4xl md:text-6xl font-creepster text-red-600 tracking-widest !mb-6 text-glow-red text-center drop-shadow-[0_0_10px_rgba(220,38,38,0.8)]">
+                THE HUNT STARTS IN
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
-                <CountdownUnit value={timeLeft.days} label="DAYS" />
-                <CountdownUnit value={timeLeft.hours} label="HOURS" />
-                <CountdownUnit value={timeLeft.minutes} label="MINUTES" />
-                <CountdownUnit value={timeLeft.seconds} label="SECONDS" />
-            </div>
-        </div>
-    );
-};
+            {/* Countdown Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 w-full max-w-4xl px-4">
+                {timeBlocks.map((block, index) => (
+                    <div
+                        key={index}
+                        className="flex flex-col items-center p-4 bg-black/40 border border-red-900/50 rounded-lg backdrop-blur-sm shadow-[0_0_15px_rgba(220,38,38,0.2)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] transition-all duration-300 group"
+                    >
+                        {/* Number */}
+                        <div className="relative">
+                            <span className="font-tech text-6xl md:text-8xl text-red-500 font-bold tracking-tighter drop-shadow-[0_0_8px_rgba(239,68,68,0.6)] group-hover:text-red-400 transition-colors">
+                                {block.value.toString().padStart(2, "0")}
+                            </span>
+                            {/* Scanline effect overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-900/10 to-transparent pointer-events-none bg-[length:100%_4px]" />
+                        </div>
 
-const CountdownUnit = ({ value, label }: { value: number; label: string }) => {
-    // Split value into two digits for separate flipping if needed, 
-    // but for simplicity and better visual flow, we'll flip the whole number or use a pad.
-    // Actually, handling single digit flip is better. Let's do 2 digits.
-    const tens = Math.floor(value / 10);
-    const ones = value % 10;
+                        {/* Label */}
+                        <span className="mt-2 font-tech text-red-400/80 text-sm md:text-lg tracking-[0.2em] border-t border-red-900/50 pt-2 w-full text-center">
+                            {block.label}
+                        </span>
 
-    return (
-        <div className="flex flex-col items-center gap-4">
-            <div className="flex gap-1">
-                <FlipCard digit={tens} />
-                <FlipCard digit={ones} />
-            </div>
-            <span className="text-xs md:text-sm font-orbitron text-red-400/80 tracking-[0.2em] uppercase">
-                {label}
-            </span>
-        </div>
-    );
-};
-
-const FlipCard = ({ digit }: { digit: number }) => {
-    return (
-        <div className="relative w-12 h-20 md:w-20 md:h-32 rounded-lg !border !border-red-900/50 shadow-[0_0_15px_rgba(220,38,38,0.2)] overflow-hidden">
-            {/* Background Static Number */}
-            <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-4xl md:text-7xl font-orbitron font-bold text-red-600">
-                    {digit}
-                </span>
+                        {/* Techy corner markers */}
+                        <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-red-600/60" />
+                        <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-red-600/60" />
+                        <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-red-600/60" />
+                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-red-600/60" />
+                    </div>
+                ))}
             </div>
 
-            {/* Flip Animation Overlay */}
-            <AnimatePresence mode="popLayout">
-                <motion.div
-                    key={digit}
-                    initial={{ rotateX: -90, opacity: 0 }}
-                    animate={{ rotateX: 0, opacity: 1 }}
-                    exit={{ rotateX: 90, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute inset-0 flex items-center justify-center border-t border-red-900/30 origin-bottom"
-                    style={{ backfaceVisibility: "hidden" }}
-                >
-                    <span className="text-4xl md:text-7xl font-orbitron font-bold text-red-500">
-                        {digit}
-                    </span>
-                </motion.div>
-            </AnimatePresence>
-
-            {/* Shine/Gloss effect */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
-            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-black/40 shadow-[0_1px_0_rgba(255,255,255,0.1)]"></div>
+            {/* Atmospheric bottom text */}
+            {/* <div className="mt-12 text-center">
+                <p className="font-tech text-red-400/60 text-sm md:text-base tracking-[0.3em] uppercase animate-pulse">
+                    System Synchronization: <span className="text-red-500">Active</span>
+                </p>
+            </div> */}
         </div>
     );
 };
