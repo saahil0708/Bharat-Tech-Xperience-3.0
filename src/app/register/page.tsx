@@ -1,11 +1,12 @@
 'use client';
 
 import MindFlare from '../../Images/MindFlare.png';
-import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import React, { useState } from 'react';
 import { supabase } from '../../lib/supabaseClient';
 import StrangerThingsModal from '../../Components/StrangerThingsModal';
+import axios from 'axios';
 
 declare global {
     interface Window {
@@ -20,6 +21,7 @@ type Member = {
 };
 
 export default function RegisterPage() {
+    // const router = useRouter();
     const [teamName, setTeamName] = useState('');
     const [leader, setLeader] = useState<Member>({ name: '', email: '', phone: '' });
     // Initialize with 1 empty member since min is 2 (Leader + 1 member)
@@ -53,10 +55,8 @@ export default function RegisterPage() {
     // Total participants = Leader (1) + members.length
     const totalParticipants = 1 + members.length;
 
-    // Fee calculation: Base 250 + 50 for accommodation
-    const totalFee = requiresAccommodation ? 300 : 250;
-
     const [isLoading, setIsLoading] = useState(false);
+
     const [notification, setNotification] = useState<{ isOpen: boolean; type: 'success' | 'error'; title: string; message: string }>({
         isOpen: false,
         type: 'success',
@@ -81,7 +81,7 @@ export default function RegisterPage() {
                         leader_phone: leader.phone,
                         project_description: projectDescription,
                         ppt_link: pptLink,
-                        total_fee: totalFee,
+                        total_fee: 250,
                         total_participants: totalParticipants,
                         reference_source: referralType ? `${referralType} - ${referralValue}` : null
                     },
@@ -111,11 +111,23 @@ export default function RegisterPage() {
                 if (membersError) throw membersError;
             }
 
+            // 3. Send Email Notification via Nodemailer
+            try {
+                const emailResponse = await axios.post('/api/send-email', {
+                    email: leader.email,
+                    teamName: teamName,
+                    leaderName: leader.name,
+                    totalParticipants: totalParticipants
+                });
+            } catch (emailErr) {
+                console.error("Error triggering email notification:", emailErr);
+            }
+
             setNotification({
                 isOpen: true,
                 type: 'success',
-                title: 'WELCOME TO THE PARTY',
-                message: 'Your squad has been registered for Round 1. Stay frosty, we will contact you soon.'
+                title: 'CLASSIFIED PROTOCOL ACCEPTED',
+                message: 'Your squad has successfully breached the perimeter and registered for Round 1. Stay frosty.'
             });
 
         } catch (error: any) {
@@ -341,7 +353,6 @@ export default function RegisterPage() {
                                         </div>
                                         <div className='!ml-2'>
                                             <p className="text-white text-sm tracking-wider uppercase">Accommodation Required</p>
-                                            <p className="text-gray-500 text-xs">Adds base operative shelter cost (+₹50)</p>
                                         </div>
                                     </div> */}
                                 </div>

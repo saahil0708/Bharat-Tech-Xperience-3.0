@@ -29,10 +29,10 @@ const StrangerThingsModal: React.FC<StrangerThingsModalProps> = ({ isOpen, onClo
             </div>
 
             {/* Modal Container */}
-            <div className={`relative w-full max-w-lg p-1 mx-4 bg-gray-900 border-2 ${type === 'success' ? 'border-red-600' : 'border-red-800'} shadow-[0_0_50px_rgba(220,38,38,0.5)] transform transition-all duration-300 ${isOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-10'}`}>
+            <div className={`relative !w-full !max-w-lg !p-1 !mx-4 bg-gray-900 border-2 ${type === 'success' ? 'border-red-600' : 'border-red-800'} shadow-[0_0_50px_rgba(220,38,38,0.5)] transform transition-all duration-300 ${isOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-10'}`}>
 
                 {/* Glowing Border Box */}
-                <div className="relative p-8 bg-black border border-gray-800 overflow-hidden min-h-[300px] flex flex-col items-center justify-center text-center">
+                <div className="relative !p-5 !bg-black !border !border-gray-800 !overflow-hidden !min-h-[300px] !flex !flex-col !items-center !justify-center !text-center">
 
                     {/* Background Vines/Veins Effect */}
                     <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -44,22 +44,22 @@ const StrangerThingsModal: React.FC<StrangerThingsModalProps> = ({ isOpen, onClo
                     </div>
 
                     {/* Title with Stranger Things Vibe */}
-                    <h2 className={`text-4xl md:text-5xl font-extrabold mb-6 tracking-widest uppercase font-serif ${type === 'success' ? 'text-red-500' : 'text-gray-400'} drop-shadow-[0_0_10px_rgba(220,38,38,0.8)]`} style={{ fontFamily: "'ITC Benguiat', serif" }}>
+                    <h2 className={`text-4xl md:text-5xl font-extrabold !mb-2 tracking-widest uppercase font-serif ${type === 'success' ? 'text-red-500' : 'text-gray-400'} drop-shadow-[0_0_10px_rgba(220,38,38,0.8)]`} style={{ fontFamily: "'ITC Benguiat', serif" }}>
                         {title}
                     </h2>
 
                     {/* Upside Down Divider */}
-                    <div className="w-32 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent mb-8 shadow-[0_0_15px_red]"></div>
+                    <div className="!w-48 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent !mb-8 !shadow-[0_0_15px_red]"></div>
 
                     {/* Message */}
-                    <p className="text-lg text-gray-300 mb-10 tracking-wide font-light leading-relaxed">
+                    <p className="text-lg text-gray-300 !mb-5 tracking-wide font-light leading-relaxed">
                         {message}
                     </p>
 
                     {/* Button */}
                     <button
                         onClick={onClose}
-                        className="relative px-8 py-3 bg-transparent border border-red-600 text-red-500 hover:bg-red-600 hover:text-black transition-all duration-300 uppercase tracking-[0.2em] font-bold text-sm shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_40px_rgba(220,38,38,0.6)] group"
+                        className="relative !px-8 !py-2 cursor-pointer bg-transparent border border-red-600 text-red-500 hover:bg-red-600 hover:text-black transition-all duration-300 uppercase tracking-[0.2em] font-bold text-sm shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_40px_rgba(220,38,38,0.6)] group"
                     >
                         <span className="relative z-10">{type === 'success' ? 'ENTER THE GATE' : 'TRY AGAIN'}</span>
                     </button>
