@@ -20,7 +20,7 @@ export default function HomePage() {
                 <HeroSection />
                 <CountDown />
                 <About />
-                <CardSection />
+                {/* <CardSection /> */}
             </div>
         </React.Fragment>
     )

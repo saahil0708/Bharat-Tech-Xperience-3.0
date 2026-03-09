@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 const Sponsors = () => {
     return (
@@ -32,10 +33,10 @@ const Sponsors = () => {
                     <p className="!mt-6 !text-lg !text-red-500 !font-mono !tracking-widest !uppercase">
                         /// ALLIANCE FORMATION IN PROGRESS ///
                     </p>
-                    
+
                     {/* Join Button */}
                     <div className="!mt-10 !relative !z-30">
-                        <a
+                        <Link
                             href="https://forms.gle/MWypPzM7zyKJWVkQ7"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -44,7 +45,7 @@ const Sponsors = () => {
                         >
                             <span className="relative z-10 uppercase tracking-widest">Become a Sponsor</span>
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

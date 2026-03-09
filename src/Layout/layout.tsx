@@ -8,9 +8,10 @@ import Navbar from "@/Components/Global/Navbar";
 import Prizes from "@/Components/Prizes";
 import Sponsors from "@/Components/Sponsors";
 import Contact from "@/Components/Contact";
+import Organisers from "@/Components/Organisers"; // IMPORT NEW COMPONENT
 
 import Footer from "@/Components/Footer";
-import OurTeam from "@/Components/OurTeam"; // IMPORT NEW COMPONENT
+import OurTeam from "@/Components/OurTeam";
 import CommunityPartner from "@/Components/communityPartners";
 // import Judges from '@/Components/Judges';
 
@@ -32,6 +33,7 @@ export default function Layout() {
                 {/* <Judges/> */}
                 <Mentors />
                 <Sponsors />
+                <Organisers />
                 <OurTeam />
                 <PastGlories />
                 <Contact />

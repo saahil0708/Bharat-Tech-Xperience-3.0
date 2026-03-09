@@ -22,15 +22,16 @@ const About = () => {
                         <div className="!w-24 !h-2 !bg-red-600 !shadow-[0_0_20px_red]"></div>
                     </div>
 
-                    {/* Text Content - No Background, Just Text */}
-                    <div className="flex flex-col gap-6 text-left">
-                        <p className="font-tech text-red-100/90 text-lg md:text-xl leading-relaxed tracking-wide">
-                            <span className="text-red-500 font-bold">Bharat Tech Xperience 3.0</span> is the ultimate convergence of technology and innovation.
-                            As a National Level Hackathon, we bring together the brightest minds to challenge the norms.
+                    {/* Text Content */}
+                    <div className="!flex !flex-col !gap-6 !text-left !relative">
+                        {/* Side decorative line */}
+                        <div className="!absolute !-left-8 !top-0 !bottom-0 !w-[1px] !bg-gradient-to-b !from-red-600 !to-transparent !hidden md:!block"></div>
+
+                        <p className="!font-lato !text-gray-300 !text-lg md:!text-[16px] !leading-relaxed !tracking-wide">
+                            <span className="!text-red-500 !font-bold font-azonix text-xl">Bharat Tech Xperience 3.0</span> represents the apex of collegiate innovation. We are not just a hackathon; we are a crucible where code meets creativity.
                         </p>
-                        <p className="font-tech text-red-100/80 text-lg md:text-xl leading-relaxed tracking-wide">
-                            Over <span className="text-red-400 font-bold">24 intense hours</span>, participants will dive deep into problem-solving, coding, and deploying solutions that matter.
-                            This is your platform to showcase your skills and survive the code.
+                        <p className="font-orbitron !text-gray-400 !text-lg md:!text-[16px] !leading-relaxed !tracking-wide">
+                            In this <span className="!text-white !border-b !border-red-600 font-azonix text-xl">36-hour saga</span>, you will face challenges that test your limits. Navigate through the unknown, deploy solutions from the void, and emerge as the architect of the future.
                         </p>
 
                         {/* Stats with Icons */}

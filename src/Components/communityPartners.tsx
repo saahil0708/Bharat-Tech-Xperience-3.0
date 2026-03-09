@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 function CommunityPartner() {
 
@@ -239,7 +240,7 @@ function CommunityPartner() {
 
         {/* Join Button */}
         <div className="!mt-16 !relative !z-30">
-          <a 
+          <Link
             href="https://docs.google.com/forms/d/e/1FAIpQLScEzeIMqOtszL0ms9FC2uqlPyhf6vIoxvPREaT4VC5FHq_VKw/viewform?usp=sharing&ouid=116434170257346254696"
             target="_blank"
             rel="noopener noreferrer"
@@ -248,7 +249,7 @@ function CommunityPartner() {
           >
             <span className="relative z-10">Join as Community Partner</span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-          </a>
+          </Link>
         </div>
       </div>
 

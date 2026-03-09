@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from 'next/link';
 
 const Footer = () => {
     return (
@@ -31,10 +32,10 @@ const Footer = () => {
 
                 {/* Links */}
                 <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-sm font-bold tracking-widest text-gray-400 mt-4 font-orbitron">
-                    <a href="#about" className="hover:text-red-500 transition-colors">ABOUT</a>
-                    <a href="#timeline" className="hover:text-red-500 transition-colors">TIMELINE</a>
-                    <a href="#sponsors" className="hover:text-red-500 transition-colors">SPONSORS</a>
-                    <a href="#contact" className="hover:text-red-500 transition-colors">CONTACT</a>
+                    <Link href="#about" className="hover:text-red-500 transition-colors">ABOUT</Link>
+                    <Link href="#timeline" className="hover:text-red-500 transition-colors">TIMELINE</Link>
+                    <Link href="#sponsors" className="hover:text-red-500 transition-colors">SPONSORS</Link>
+                    <Link href="#contact" className="hover:text-red-500 transition-colors">CONTACT</Link>
                 </div>
 
                 {/* Copyright */}
