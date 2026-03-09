@@ -27,6 +27,8 @@ export default function RegisterPage() {
     const [projectDescription, setProjectDescription] = useState('');
     const [pptLink, setPptLink] = useState('');
     const [requiresAccommodation, setRequiresAccommodation] = useState(false);
+    const [referralType, setReferralType] = useState<'individual' | 'community' | 'other' | null>(null);
+    const [referralValue, setReferralValue] = useState('');
 
     const addMember = () => {
         if (members.length + 1 < 5) {
@@ -66,17 +68,7 @@ export default function RegisterPage() {
         setNotification(prev => ({ ...prev, isOpen: false }));
     };
 
-    const loadRazorpayScript = () => {
-        return new Promise((resolve) => {
-            const script = document.createElement("script");
-            script.src = "https://checkout.razorpay.com/v1/checkout.js";
-            script.onload = () => resolve(true);
-            script.onerror = () => resolve(false);
-            document.body.appendChild(script);
-        });
-    };
-
-    const handleSupabaseInsert = async (paymentId: string) => {
+    const handleSupabaseInsert = async () => {
         try {
             // 1. Insert into 'teams' table
             const { data: teamData, error: teamError } = await supabase
@@ -90,8 +82,9 @@ export default function RegisterPage() {
                         project_description: projectDescription,
                         ppt_link: pptLink,
                         total_fee: totalFee,
-                        total_participants: totalParticipants
-                        // Omitted accommodation and paymentId since columns may not exist yet in DB
+                        total_participants: totalParticipants,
+                        referral_type: referralType,
+                        referral_code: referralValue
                     },
                 ])
                 .select()
@@ -123,7 +116,7 @@ export default function RegisterPage() {
                 isOpen: true,
                 type: 'success',
                 title: 'WELCOME TO THE PARTY',
-                message: 'Your payment was successful and squad has been registered. The gate is open.'
+                message: 'Your squad has been registered for Round 1. Stay frosty, we will contact you if selected.'
             });
 
         } catch (error: any) {
@@ -132,7 +125,7 @@ export default function RegisterPage() {
                 isOpen: true,
                 type: 'error',
                 title: 'SOMETHING STRANGE',
-                message: 'Registration failed after payment. Please contact admins. Error: ' + (error.message || 'Unknown error')
+                message: 'Registration failed. Please contact admins. Error: ' + (error.message || 'Unknown error')
             });
         } finally {
             setIsLoading(false);
@@ -142,80 +135,7 @@ export default function RegisterPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-
-        try {
-            const res = await loadRazorpayScript();
-            if (!res) {
-                setNotification({
-                    isOpen: true,
-                    type: 'error',
-                    title: 'SYSTEM ERROR',
-                    message: 'Razorpay SDK failed to load. Are you online?'
-                });
-                setIsLoading(false);
-                return;
-            }
-
-            const orderOptions = {
-                method: "POST",
-                body: JSON.stringify({ amount: totalFee }),
-                headers: { "Content-Type": "application/json" }
-            };
-
-            const orderResp = await fetch("/api/razorpay/order", orderOptions);
-            const orderData = await orderResp.json();
-
-            if (!orderResp.ok) {
-                throw new Error("Could not create Razorpay order.");
-            }
-
-            const options = {
-                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-                amount: totalFee * 100,
-                currency: "INR",
-                name: "Bharat Tech Xperience",
-                description: "Registration Fee",
-                order_id: orderData.orderId,
-                handler: async function (response: any) {
-                    setIsLoading(true); // Keep loading state while saving to DB
-                    await handleSupabaseInsert(response.razorpay_payment_id);
-                },
-                prefill: {
-                    name: leader.name,
-                    email: leader.email,
-                    contact: leader.phone
-                },
-                theme: {
-                    color: "#dc2626"
-                },
-                modal: {
-                    ondismiss: function () {
-                        setIsLoading(false);
-                    }
-                }
-            };
-
-            const paymentObject = new window.Razorpay(options);
-            paymentObject.on('payment.failed', function (response: any) {
-                setNotification({
-                    isOpen: true,
-                    type: 'error',
-                    title: 'PAYMENT FAILED',
-                    message: 'The transaction was unsuccessful. Please try again.'
-                });
-            });
-            paymentObject.open();
-
-        } catch (error: any) {
-            console.error('Error initializing payment:', error);
-            setNotification({
-                isOpen: true,
-                type: 'error',
-                title: 'SYSTEM ERROR',
-                message: 'Could not initialize payment. ' + (error.message || 'Unknown error')
-            });
-            setIsLoading(false);
-        }
+        await handleSupabaseInsert();
     };
 
     return (
@@ -414,7 +334,7 @@ export default function RegisterPage() {
                                     />
 
                                     {/* Accommodation Toggle */}
-                                    <div className="flex items-center space-x-3 !mt-6 !p-4 !border !border-gray-800 !bg-black/40 hover:!border-red-900/50 transition-colors cursor-pointer group" onClick={() => setRequiresAccommodation(!requiresAccommodation)}>
+                                    {/* <div className="flex items-center space-x-3 !mt-6 !p-4 !border !border-gray-800 !bg-black/40 hover:!border-red-900/50 transition-colors cursor-pointer group" onClick={() => setRequiresAccommodation(!requiresAccommodation)}>
                                         <div className={`w-6 h-6 flex items-center justify-center border transition-all ${requiresAccommodation ? 'bg-red-600 border-red-600' : 'bg-transparent border-gray-600 group-hover:border-red-500'}`}>
                                             {requiresAccommodation && (
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -424,27 +344,64 @@ export default function RegisterPage() {
                                             <p className="text-white text-sm tracking-wider uppercase">Accommodation Required</p>
                                             <p className="text-gray-500 text-xs">Adds base operative shelter cost (+₹50)</p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 
-                            {/* Fee & Submit */}
-                            <div className="pt-8 !border-t !border-gray-800 flex flex-col md:flex-row justify-between items-center gap-8">
-                                <div className="text-center md:text-left !pt-4 md:min-w-[200px]">
-                                    <p className="!text-gray-500 text-xs mb-2 tracking-widest">TOTAL TEAM FEE</p>
-                                    <p className="text-4xl !font-[family-name:var(--font-azonix)] !text-white flex justify-center md:justify-start items-start gap-1">
-                                        <span className="text-lg mt-1 text-red-500">₹</span>
-                                        {totalFee}
-                                    </p>
-                                    <p className="text-xs text-gray-600 mt-1">SECURE PAYMENT PROTOCOL</p>
-                                </div>
+                            {/* Referral Details */}
+                            <div className="space-y-6">
+                                <h2 className="text-2xl !font-[family-name:var(--font-azonix)] !text-red-500 tracking-wider flex items-center gap-4 !pb-4">
+                                    <span className="text-3xl opacity-50">05</span>
+                                    REFERRAL
+                                </h2>
+                                <div className="space-y-5 pt-2">
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <button
+                                            type="button"
+                                            onClick={() => setReferralType('individual')}
+                                            className={`!py-3 !px-4 !border !text-xs !tracking-widest !uppercase !font-bold transition-all ${referralType === 'individual' ? '!bg-red-600 !border-red-600 !text-white' : '!bg-black/40 !border-gray-800 !text-gray-500 hover:!border-red-500/50'}`}
+                                        >
+                                            Individual
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setReferralType('community')}
+                                            className={`!py-3 !px-4 !border !text-xs !tracking-widest !uppercase !font-bold transition-all ${referralType === 'community' ? '!bg-red-600 !border-red-600 !text-white' : '!bg-black/40 !border-gray-800 !text-gray-500 hover:!border-red-500/50'}`}
+                                        >
+                                            Community
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setReferralType('other')}
+                                            className={`!py-3 !px-4 !border !text-xs !tracking-widest !uppercase !font-bold transition-all ${referralType === 'other' ? '!bg-red-600 !border-red-600 !text-white' : '!bg-black/40 !border-gray-800 !text-gray-500 hover:!border-red-500/50'}`}
+                                        >
+                                            Other
+                                        </button>
+                                    </div>
 
+                                    {referralType && (
+                                        <div className="relative group animate-in fade-in slide-in-from-top-2 duration-300">
+                                            <input
+                                                type="text"
+                                                value={referralValue}
+                                                onChange={(e) => setReferralValue(e.target.value)}
+                                                required
+                                                placeholder={referralType === 'individual' ? "ENTER REFEREE NAME" : referralType === 'community' ? "ENTER COMMUNITY NAME" : "PLEASE SPECIFY"}
+                                                className="w-full !mt-4 !bg-black/60 !border !border-gray-800 !text-white !px-3 !py-2 focus:outline-none focus:!border-red-600 focus:ring-1 focus:!ring-red-600 transition-all placeholder:!text-gray-600 group-hover:!border-red-900/50 text-lg"
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Submit */}
+                            <div className="!pt-5 !border-t !border-gray-800 flex justify-end items-center gap-8">
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="!bg-red-600 !text-white cursor-pointer !px-3 !py-3 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="!bg-red-600 !text-white cursor-pointer !px-5 !py-3 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden rounded-md disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
                                 >
-                                    <span className="relative z-10">{isLoading ? 'PROCESSING...' : 'INITIATE PROTOCOL'}</span>
+                                    <span className="relative z-10">{isLoading ? 'PROCESSING...' : 'SUBMIT REGISTRATION'}</span>
                                     {!isLoading && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
                                 </button>
                             </div>
