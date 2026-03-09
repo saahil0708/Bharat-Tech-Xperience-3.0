@@ -83,8 +83,7 @@ export default function RegisterPage() {
                         ppt_link: pptLink,
                         total_fee: totalFee,
                         total_participants: totalParticipants,
-                        referral_type: referralType,
-                        referral_code: referralValue
+                        reference_source: referralType ? `${referralType} - ${referralValue}` : null
                     },
                 ])
                 .select()
