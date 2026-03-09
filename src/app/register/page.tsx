@@ -27,8 +27,6 @@ export default function RegisterPage() {
     const [projectDescription, setProjectDescription] = useState('');
     const [pptLink, setPptLink] = useState('');
     const [requiresAccommodation, setRequiresAccommodation] = useState(false);
-    const [referralType, setReferralType] = useState<'individual' | 'community' | null>(null);
-    const [referralValue, setReferralValue] = useState('');
 
     const addMember = () => {
         if (members.length + 1 < 5) {
@@ -92,9 +90,7 @@ export default function RegisterPage() {
                         project_description: projectDescription,
                         ppt_link: pptLink,
                         total_fee: totalFee,
-                        total_participants: totalParticipants,
-                        referral_type: referralType,
-                        referral_code: referralValue
+                        total_participants: totalParticipants
                         // Omitted accommodation and paymentId since columns may not exist yet in DB
                     },
                 ])
@@ -426,48 +422,9 @@ export default function RegisterPage() {
                                         </div>
                                         <div className='!ml-2'>
                                             <p className="text-white text-sm tracking-wider uppercase">Accommodation Required</p>
-                                            <p className="text-gray-500 text-xs">Adds base operative shelter cost (+ ₹50)</p>
+                                            <p className="text-gray-500 text-xs">Adds base operative shelter cost (+₹50)</p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            {/* Referral Details */}
-                            <div className="space-y-6">
-                                <h2 className="text-2xl !font-[family-name:var(--font-azonix)] !text-red-500 tracking-wider flex items-center gap-4 !pb-4">
-                                    <span className="text-3xl opacity-50">05</span>
-                                    REFERRAL
-                                </h2>
-                                <div className="space-y-5 pt-2">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <button
-                                            type="button"
-                                            onClick={() => setReferralType('individual')}
-                                            className={`!py-3 !px-4 !border !text-xs !tracking-widest !uppercase !font-bold transition-all ${referralType === 'individual' ? '!bg-red-600 !border-red-600 !text-white' : '!bg-black/40 !border-gray-800 !text-gray-500 hover:!border-red-500/50'}`}
-                                        >
-                                            Individual Referral
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => setReferralType('community')}
-                                            className={`!py-3 !px-4 !border !text-xs !tracking-widest !uppercase !font-bold transition-all ${referralType === 'community' ? '!bg-red-600 !border-red-600 !text-white' : '!bg-black/40 !border-gray-800 !text-gray-500 hover:!border-red-500/50'}`}
-                                        >
-                                            Community Referral
-                                        </button>
-                                    </div>
-                                    
-                                    {referralType && (
-                                        <div className="relative group animate-in fade-in slide-in-from-top-2 duration-300">
-                                            <input
-                                                type="text"
-                                                value={referralValue}
-                                                onChange={(e) => setReferralValue(e.target.value)}
-                                                required
-                                                placeholder={referralType === 'individual' ? "ENTER REFEREE NAME" : "ENTER COMMUNITY NAME"}
-                                                className="w-full !bg-black/60 !border !border-gray-800 !text-white !px-3 !py-2 focus:outline-none focus:!border-red-600 focus:ring-1 focus:!ring-red-600 transition-all placeholder:!text-gray-600 group-hover:!border-red-900/50 text-lg"
-                                            />
-                                        </div>
-                                    )}
                                 </div>
                             </div>
 
@@ -554,19 +511,19 @@ export default function RegisterPage() {
                                 <div className="!space-y-3 relative z-10">
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Saahil</span>
-                                        <Link href="tel:+91 94741 56798" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 94741 56798</Link>
+                                        <Link href="tel:+919587308788" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 94741 56798</Link>
                                     </div>
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Kshitij</span>
-                                        <Link href="tel:+91 70610 67077" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 70610 67077</Link>
+                                        <Link href="tel:+919876543210" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 70610 67077</Link>
                                     </div>
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Sujal</span>
-                                        <Link href="tel:+91 81304 92327" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 81304 92327</Link>
+                                        <Link href="tel:+918765432109" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 81304 92327</Link>
                                     </div>
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Taniya</span>
-                                        <Link href="tel:+91 97174 53632" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 97174 53632</Link>
+                                        <Link href="tel:+917654321098" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 97174 53632</Link>
                                     </div>
                                     {/* <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Rohan</span>
