@@ -115,7 +115,7 @@ export default function RegisterPage() {
                 isOpen: true,
                 type: 'success',
                 title: 'WELCOME TO THE PARTY',
-                message: 'Your squad has been registered for Round 1. Stay frosty, we will contact you if selected.'
+                message: 'Your squad has been registered for Round 1. Stay frosty, we will contact you soon.'
             });
 
         } catch (error: any) {
