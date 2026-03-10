@@ -7,7 +7,7 @@ const teamMembers = [
         id: 1,
         name: 'Kshitij Raj',
         role: 'Frontend Architect',
-        image: 'https://static.toiimg.com/photo/80482429.cms',
+        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0Z9LBzvQfY1RqmA3p8WGIMzt67TVrnHelv4uLU',
         bio: 'Building immersive user interfaces and interactions.'
     },
     {
@@ -21,7 +21,7 @@ const teamMembers = [
         id: 3,
         name: 'Saahil',
         role: 'DevOps Engineer',
-        image: 'https://img.freepik.com/free-photo/portrait-handsome-confident-stylish-hipster-lambersexual-modelman-dressed-summer-clothes-fashion-male-isolated-studio-posing-near-blue-wall_158538-26352.jpg?semt=ais_user_personalization&w=740&q=80',
+        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZQo7S75Z4xjF2BuVXWsw7eDcnPpIrSfE1OZhM',
         bio: 'Ensuring zero downtime and seamless deployments.'
     },
     {
@@ -35,7 +35,7 @@ const teamMembers = [
         id: 5,
         name: 'Kapil Gupta',
         role: 'Security Lead',
-        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=800&q=80',
+        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0Zqd8d8TMyxolqEDK6YiNATV4XnHudZpU273ca',
         bio: 'Protecting the infrastructure from cyber threats.'
     }
 ];
@@ -122,9 +122,9 @@ export default function OurTeam() {
                                     {member.name.toUpperCase()}
                                 </h3>
 
-                                <h4 className="text-base md:text-xl text-red-400 font-bold !mb-2 md:!mb-4 tracking-wide uppercase">
+                                {/* <h4 className="text-base md:text-xl text-red-400 font-bold !mb-2 md:!mb-4 tracking-wide uppercase">
                                     {member.role}
-                                </h4>
+                                </h4> */}
 
                                 <p className="text-neutral-300 text-xs md:text-base max-w-sm border-l-2 border-red-500 !pl-3 md:!pl-4 !py-0.5 md:!py-1 italic">
                                     "{member.bio}"
