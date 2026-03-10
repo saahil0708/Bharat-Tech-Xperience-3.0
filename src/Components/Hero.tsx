@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 export default function HeroSection() {
-    const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLElement>(null);
 
     const { scrollYProgress } = useScroll({
@@ -18,16 +17,12 @@ export default function HeroSection() {
     const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
     const bg3Opacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0]);
 
-    useEffect(() => {
-        setIsLoaded(true);
-    }, []);
-
     // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
     const renderCustomText = (text: string, isFirstLine: boolean) => {
         return text.split('').map((letter, index) => {
             let fontSize = '1em'; // Default size
             const bigSize = '1.4em';
-            
+
             // Determine if it's an edge letter (Stranger Things style)
             let isEdge = false;
             if (isFirstLine) {
@@ -50,20 +45,20 @@ export default function HeroSection() {
             return (
                 <motion.span
                     key={index}
-                    initial={{ 
-                        scale: 4, 
-                        opacity: 0, 
+                    initial={{
+                        scale: 4,
+                        opacity: 0,
                         filter: 'blur(10px)',
                         y: 0
                     }}
-                    animate={{ 
-                        scale: 1, 
-                        opacity: 1, 
+                    animate={{
+                        scale: 1,
+                        opacity: 1,
                         filter: 'blur(0px)',
                         y: 0
                     }}
-                    transition={{ 
-                        duration: 1.5, 
+                    transition={{
+                        duration: 1.5,
                         delay: baseDelay + (delayStep * 0.3),
                         ease: [0.16, 1, 0.3, 1]
                     }}
@@ -86,8 +81,8 @@ export default function HeroSection() {
     };
 
     return (
-        <section 
-            id="home" 
+        <section
+            id="home"
             ref={containerRef}
             className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent"
         >
@@ -119,19 +114,19 @@ export default function HeroSection() {
 
             {/* Main content */}
             <div className="relative z-10 !mt-16 container mx-auto px-6 md:px-4 text-center">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
                     style={{ opacity, y: textY }}
                     className="relative"
                 >
-                    
+
                     {/* Visual Composition */}
                     <div className="relative inline-block mb-12 select-none">
-                        
+
                         {/* BIG "3" BACKGROUND */}
-                        <motion.div 
+                        <motion.div
                             style={{ scale, opacity: bg3Opacity }}
                             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"
                         >
@@ -150,60 +145,60 @@ export default function HeroSection() {
                             </span>
                         </motion.div>
 
-                    {/* HOLLOW TEXT HEADINGS */}
-                    <motion.div 
-                        initial="hidden"
-                        animate="visible"
-                        className="relative z-10 flex flex-col items-center"
-                    >
-                        {/* BHARAT TECH */}
-                        <motion.h1 
-                            variants={{
-                                hidden: { opacity: 0, scale: 1.3, y: -50 },
-                                visible: { 
-                                    opacity: 1, 
-                                    scale: 1, 
-                                    y: 0,
-                                    transition: { duration: 2, ease: [0.16, 1, 0.3, 1], delay: 0.3 } 
-                                }
-                            }}
-                            className="text-4xl md:text-7xl lg:text-9xl font-normal text-transparent mb-4"
-                            style={{
-                                fontFamily: "'DM Serif Display', serif",
-                                WebkitTextStroke: '3px #dc2626',
-                                letterSpacing: '0.05em'
-                            }}>
-                            {renderCustomText("BHARAT TECH", true)}
-                        </motion.h1>
+                        {/* HOLLOW TEXT HEADINGS */}
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            className="relative z-10 flex flex-col items-center"
+                        >
+                            {/* BHARAT TECH */}
+                            <motion.h1
+                                variants={{
+                                    hidden: { opacity: 0, scale: 1.3, y: -50 },
+                                    visible: {
+                                        opacity: 1,
+                                        scale: 1,
+                                        y: 0,
+                                        transition: { duration: 2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }
+                                    }
+                                }}
+                                className="text-4xl md:text-7xl lg:text-9xl font-normal text-transparent mb-4"
+                                style={{
+                                    fontFamily: "'DM Serif Display', serif",
+                                    WebkitTextStroke: '3px #dc2626',
+                                    letterSpacing: '0.05em'
+                                }}>
+                                {renderCustomText("BHARAT TECH", true)}
+                            </motion.h1>
 
-                        {/* XPERIENCE */}
-                        <motion.h2 
-                            variants={{
-                                hidden: { opacity: 0, scale: 1.3, y: -50 },
-                                visible: { 
-                                    opacity: 1, 
-                                    scale: 1, 
-                                    y: 0,
-                                    transition: { duration: 2, ease: [0.16, 1, 0.3, 1], delay: 1 } 
-                                }
-                            }}
-                            className="text-3xl md:text-6xl lg:text-8xl font-normal text-transparent"
-                            style={{
-                                fontFamily: "'DM Serif Display', serif",
-                                WebkitTextStroke: '3px #dc2626',
-                                letterSpacing: '0.1em'
-                            }}>
-                            {renderCustomText("XPERIENCE", false)}
-                        </motion.h2>
-                    </motion.div>
+                            {/* XPERIENCE */}
+                            <motion.h2
+                                variants={{
+                                    hidden: { opacity: 0, scale: 1.3, y: -50 },
+                                    visible: {
+                                        opacity: 1,
+                                        scale: 1,
+                                        y: 0,
+                                        transition: { duration: 2, ease: [0.16, 1, 0.3, 1], delay: 1 }
+                                    }
+                                }}
+                                className="text-3xl md:text-6xl lg:text-8xl font-normal text-transparent"
+                                style={{
+                                    fontFamily: "'DM Serif Display', serif",
+                                    WebkitTextStroke: '3px #dc2626',
+                                    letterSpacing: '0.1em'
+                                }}>
+                                {renderCustomText("XPERIENCE", false)}
+                            </motion.h2>
+                        </motion.div>
                     </div>
 
                     {/* Decorative Divider with Text */}
                     <div className="!flex !items-center !justify-center w-full max-w-5xl !mx-auto !mt-12 !mb-6 !px-4">
                         <div className="h-0.5 !mr-5 !flex-grow bg-white/80 shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
                         <h2 className="mx-6 text-xl md:text-3xl font-bold text-white tracking-[0.2em] !text-center uppercase"
-                            style={{ 
-                                textShadow: '0 0 15px rgba(255,255,255,0.6)' 
+                            style={{
+                                textShadow: '0 0 15px rgba(255,255,255,0.6)'
                             }}>
                             National Level <br className="md:hidden" /> Hackathon
                         </h2>
@@ -213,7 +208,7 @@ export default function HeroSection() {
                     {/* Tagline */}
                     <div className="relative w-full max-w-5xl !mx-auto !text-center">
                         <p className="text-gray-100 text-xs md:text-sm lg:text-base font-light tracking-wide leading-relaxed uppercase !text-center"
-                           style={{ fontFamily: "'DM Serif Display', serif" }}>
+                            style={{ fontFamily: "'DM Serif Display', serif" }}>
                             <span className="text-red-500 font-bold">EMPOWER YOUR TECH DREAMS:</span> REGISTER FOR BHARAT TECH XPERIENCE AND TURN YOUR IDEAS INTO REALITY. JOIN US ON A PATH OF LIMITLESS INNOVATION!
                         </p>
                     </div>

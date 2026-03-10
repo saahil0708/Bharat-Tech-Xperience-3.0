@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const teamMembers = [
     {
@@ -72,9 +73,12 @@ export default function OurTeam() {
                         {/* Inner Wrapper for Grayscale specific to closed cards */}
                         <div className={`absolute inset-0 transition-all duration-700 ${active === null ? 'grayscale group-hover:grayscale-0' : ''}`}>
                             {/* Image Background */}
-                            <div
-                                className="absolute inset-0 bg-cover bg-center !transition-transform !duration-1000 group-hover:scale-110"
-                                style={{ backgroundImage: `url(${member.image})` }}
+                            <Image
+                                src={member.image}
+                                alt={member.name}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="!object-cover !object-center !transition-transform !duration-1000 group-hover:scale-110"
                             />
 
                             {/* Dark/Red Gradient Overlay */}

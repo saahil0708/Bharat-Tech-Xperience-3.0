@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 
 const About = () => {
@@ -152,10 +153,12 @@ const About = () => {
                             >
                                 {/* Community Image */}
                                 <div className="!relative !w-full !h-full !overflow-hidden !border-2 !border-gray-800 hover:!border-red-600 !transition-colors !duration-500 !shadow-[0_0_30px_rgba(220,38,38,0.15)]">
-                                    <img
+                                    <Image
                                         src="https://14wgjdss3w.ufs.sh/f/ImvjWigzci0Zya2CBWJFnSIJycEK9T8vGaN6OqDf471Xi2ko"
                                         alt="Bharat Tech Community"
-                                        className="!w-full !h-full !object-cover !opacity-80 hover:!opacity-100 !transition-all !duration-700 hover:!scale-105"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="!object-cover !opacity-80 hover:!opacity-100 !transition-all !duration-700 hover:!scale-105"
                                     />
 
                                     {/* Tech Overlay lines */}

@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Detailed data for 27 organisers
 const organisersData = [
@@ -96,7 +97,7 @@ export default function Organisers() {
             <div className="relative w-full max-w-7xl mx-auto !px-4 !md:px-12 group z-10">
 
                 {/* Scroll Indicators / Tech decorative elements */}
-                    {/* <div className="absolute -top-8 right-12 flex items-center gap-4 text-red-500/50 font-mono text-xs hidden md:flex">
+                {/* <div className="absolute -top-8 right-12 flex items-center gap-4 text-red-500/50 font-mono text-xs hidden md:flex">
                         <span className="tracking-widest uppercase">[{organisersData.length} Records Found]</span>
                         <div className="flex gap-1">
                             <div className={`w-2 h-2 rounded-full ${canScrollLeft ? 'bg-red-500 shadow-[0_0_10px_rgba(220,38,38,0.8)]' : 'bg-red-900/50'}`}></div>
@@ -174,11 +175,12 @@ export default function Organisers() {
 
                             {/* Image Wrapper */}
                             <div className="relative !w-full !aspect-[4/5] !bg-black !overflow-hidden z-0">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <Image
                                     src={org.image}
                                     alt={org.name}
-                                    className="w-full h-full object-cover contrast-125 transition-all duration-700 group-hover/card:grayscale-0 group-hover/card:scale-110"
+                                    fill
+                                    sizes="(max-width: 640px) 85vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                    className="object-cover contrast-125 transition-all duration-700 group-hover/card:grayscale-0 group-hover/card:scale-110"
                                 />
 
                                 {/* Overlay gradient */}
