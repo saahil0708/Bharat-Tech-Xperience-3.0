@@ -81,7 +81,6 @@ export default function RegisterPage() {
                         leader_phone: leader.phone,
                         project_description: projectDescription,
                         ppt_link: pptLink,
-                        total_fee: 250,
                         total_participants: totalParticipants,
                         reference_source: referralType ? `${referralType} - ${referralValue}` : null
                     },

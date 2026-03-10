@@ -18,6 +18,11 @@ export default function PaymentPage() {
     const [step, setStep] = useState<1 | 2>(1);
     const [teamData, setTeamData] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [requiresAccommodation, setRequiresAccommodation] = useState(false);
+    const baseFee = 250;
+    const accommodationFee = 50;
+    const totalFeeToPay = baseFee + (requiresAccommodation ? accommodationFee : 0);
+
     const [notification, setNotification] = useState<{ isOpen: boolean; type: 'success' | 'error'; title: string; message: string }>({
         isOpen: false,
         type: 'success',
@@ -118,7 +123,7 @@ export default function PaymentPage() {
 
             const orderOptions = {
                 method: "POST",
-                body: JSON.stringify({ amount: teamData.total_fee }),
+                body: JSON.stringify({ amount: totalFeeToPay }),
                 headers: { "Content-Type": "application/json" }
             };
 
@@ -131,7 +136,7 @@ export default function PaymentPage() {
 
             const options = {
                 key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-                amount: teamData.total_fee * 100,
+                amount: totalFeeToPay * 100,
                 currency: "INR",
                 name: "Bharat Tech Xperience",
                 description: "Round 2 Registration Fee",
@@ -144,7 +149,8 @@ export default function PaymentPage() {
                             .from('teams')
                             .update({
                                 payment_status: 'paid',
-                                razorpay_payment_id: response.razorpay_payment_id
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                total_fee: totalFeeToPay
                             })
                             .eq('id', teamData.id);
 
@@ -306,24 +312,38 @@ export default function PaymentPage() {
                                 </div>
                             </div>
 
-                            <div className="pt-4 !border-t !border-gray-800 flex flex-col md:flex-row justify-between items-center gap-8">
-                                <div className="text-center md:text-left">
-                                    <p className="!text-gray-500 text-xs mb-2 tracking-widest">REQUIRED TEAM FEE</p>
-                                    <p className="text-4xl !font-[family-name:var(--font-azonix)] !text-white flex justify-center md:justify-start items-start gap-1">
-                                        <span className="text-lg mt-1 text-red-500">₹</span>
-                                        {teamData.total_fee}
-                                    </p>
-                                    <p className="text-xs text-gray-600 mt-1">BASE REGISTRATION + ACCOMMODATION (IF APPLICABLE)</p>
+                            <div className="pt-4 !border-t !border-gray-800 flex flex-col items-center gap-8">
+                                {/* Accommodation Logic */}
+                                <div className="w-full flex items-center space-x-3 !p-4 !border !border-gray-800 !bg-black/40 hover:!border-red-900/50 transition-colors cursor-pointer group" onClick={() => setRequiresAccommodation(!requiresAccommodation)}>
+                                    <div className={`w-6 h-6 flex items-center justify-center border transition-all ${requiresAccommodation ? 'bg-red-600 border-red-600' : 'bg-transparent border-gray-600 group-hover:border-red-500'}`}>
+                                        {requiresAccommodation && (
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        )}
+                                    </div>
+                                    <div className='!ml-2'>
+                                        <p className="text-white text-sm tracking-wider uppercase">Accommodation Required (+₹{accommodationFee})</p>
+                                    </div>
                                 </div>
+                                <div className="w-full flex flex-col md:flex-row justify-between items-center gap-8">
+                                    <div className="text-center md:text-left shadow-[0_0_10px_rgba(220,38,38,0.2)] !p-4 border border-red-900/30 w-full md:w-auto">
+                                        <p className="!text-gray-500 text-xs !mb-2 tracking-widest">REQUIRED TEAM FEE</p>
+                                        <p className="text-4xl !font-[family-name:var(--font-azonix)] !text-white flex justify-center md:justify-start items-start gap-1">
+                                            <span className="text-lg mt-1 text-red-500">₹</span>
+                                            {totalFeeToPay}
+                                        </p>
+                                        <p className="text-xs text-gray-600 !mt-1 uppercase">BASE REGISTRATION: ₹{baseFee}</p>
+                                        {requiresAccommodation && <p className="text-xs text-red-500 !mt-1 uppercase">ACCOMMODATION ADDED: ₹{accommodationFee}</p>}
+                                    </div>
 
-                                <button
-                                    onClick={handlePayment}
-                                    disabled={isLoading}
-                                    className="!bg-red-600 !text-white cursor-pointer !px-8 !py-4 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
-                                >
-                                    <span className="relative z-10">{isLoading ? 'PROCESSING...' : 'INITIATE PAYMENT'}</span>
-                                    {!isLoading && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
-                                </button>
+                                    <button
+                                        onClick={handlePayment}
+                                        disabled={isLoading}
+                                        className="!bg-red-600 !text-white cursor-pointer !px-8 !py-4 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
+                                    >
+                                        <span className="relative z-10">{isLoading ? 'PROCESSING...' : 'INITIATE PAYMENT'}</span>
+                                        {!isLoading && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     )}
