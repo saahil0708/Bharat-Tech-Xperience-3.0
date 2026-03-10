@@ -14,30 +14,30 @@ const teamMembers = [
         id: 2,
         name: 'Aditi Mishra',
         role: 'Backend Systems',
-        image: 'https://img.freepik.com/premium-photo/shot-brunette-stylish-red-sweater-gold-earrings-adorable-girl-with-glasses-looking-camera-with-smile-white-background_197531-26492.jpg',
+        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZmkcpyVEUI4gpETM5C8G2wN3JzSsiouPcnXDf',
         bio: 'Optimizing databases and server architecture.'
     },
     {
         id: 3,
-        name: 'Saahil',
-        role: 'DevOps Engineer',
-        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZQo7S75Z4xjF2BuVXWsw7eDcnPpIrSfE1OZhM',
-        bio: 'Ensuring zero downtime and seamless deployments.'
+        name: 'Kapil Gupta',
+        role: 'Security Lead',
+        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0Zqd8d8TMyxolqEDK6YiNATV4XnHudZpU273ca',
+        bio: 'Protecting the infrastructure from cyber threats.'
     },
     {
         id: 4,
         name: 'Khushi Porwal',
         role: 'UI/UX Designer',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fit=crop&w=800&q=80',
+        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZkgCamKLATPOB8Ibq9Ra6sFUl2zmZkSifNLgj',
         bio: 'Crafting the cyber-aesthetic and user journeys.'
     },
     {
         id: 5,
-        name: 'Kapil Gupta',
-        role: 'Security Lead',
-        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0Zqd8d8TMyxolqEDK6YiNATV4XnHudZpU273ca',
-        bio: 'Protecting the infrastructure from cyber threats.'
-    }
+        name: 'Saahil',
+        role: 'DevOps Engineer',
+        image: 'https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZQo7S75Z4xjF2BuVXWsw7eDcnPpIrSfE1OZhM',
+        bio: 'Ensuring zero downtime and seamless deployments.'
+    },
 ];
 
 export default function OurTeam() {
