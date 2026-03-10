@@ -434,10 +434,10 @@ export default function RegisterPage() {
 
                                 <div className="!space-y-5 relative z-10">
                                     {[
-                                        { title: "MANDATORY ID", desc: "All operatives must carry valid identification at all times." },
-                                        { title: "NON-REFUNDABLE", desc: "Credits transferred are locked. No abort refunds." },
-                                        { title: "T-MINUS 30", desc: "Report to briefing zone 30 minutes prior to operation." },
-                                        { title: "DISQUALIFICATION", desc: "Malpractice or unsanctioned tech use results in immediate ban." },
+                                        { title: "MISSION ALIGNMENT", desc: "BY REGISTERING, YOU AGREE TO THE CODE OF CONDUCT." },
+                                        { title: "DIGITAL ENROLLMENT", desc: "EVERY OPERATIVE MUST COMPLETE THE UPLINK FORM WITH VALID DATA." },
+                                        { title: "ONE-WAY ENTRY", desc: "STRICTLY ONE REGISTRATION PER OPERATIVE." },
+                                        { title: "DATA INTEGRITY", desc: "ENTRIES CANNOT BE MODIFIED ONCE THE UPLINK IS COMPLETE." },
                                         { title: "CHAIN OF COMMAND", desc: "Squad Leader acts as the sole comms relay." },
                                     ].map((rule, idx) => (
                                         <div key={idx} className="flex gap-4 group/item">
@@ -483,10 +483,10 @@ export default function RegisterPage() {
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Kshitij</span>
                                         <Link href="tel:+919876543210" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 70610 67077</Link>
                                     </div>
-                                    <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
+                                    {/* <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Sujal</span>
                                         <Link href="tel:+918765432109" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 81304 92327</Link>
-                                    </div>
+                                    </div> */}
                                     <div className="flex justify-between items-center bg-gray-900/40 !p-2 border border-gray-800/50 hover:border-red-500/30 transition-colors">
                                         <span className="text-gray-400 text-xs font-orbitron uppercase">Taniya</span>
                                         <Link href="tel:+917654321098" className="text-white hover:text-red-500 transition-colors text-xs tracking-wider">+91 97174 53632</Link>
