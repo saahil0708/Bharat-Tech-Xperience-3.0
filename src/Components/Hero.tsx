@@ -113,7 +113,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 pointer-events-none"></div>
 
             {/* Main content */}
-            <div className="relative z-10 !mt-16 container mx-auto px-6 md:px-4 text-center">
+            <div className="relative z-10 container mx-auto px-6 md:px-4 text-center">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -122,8 +122,22 @@ export default function HeroSection() {
                     className="relative"
                 >
 
-                    {/* Visual Composition */}
-                    <div className="relative inline-block mb-12 select-none">
+                    {/* Logo Image */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="mb-10 flex justify-center"
+                    >
+                        <img
+                            src="https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5rPp4Q4f8BWI64UPVzZcp0EidljyDOusNoxLG"
+                            alt="Bharat Tech Xperience Logo"
+                            className="max-w-[220px] md:max-w-[320px] lg:max-w-[900px] w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+                        />
+                    </motion.div>
+
+                    {/* Visual Composition — shifted down with mt-8 md:mt-10 */}
+                    <div className="relative inline-block mb-12 mt-8 md:mt-10 select-none">
 
                         {/* BIG "3" BACKGROUND */}
                         <motion.div
@@ -217,8 +231,6 @@ export default function HeroSection() {
 
             {/* Tech HUD Border Effect - Corners */}
             <div className="absolute inset-0 pointer-events-none z-20">
-                {/* HUD Corners... */}
-                {/* (Kept SVG HUD structure for visual consistency) */}
                 <svg className="absolute top-4 left-4 md:top-8 md:left-8 w-16 h-16 md:w-24 md:h-24 text-red-600 opacity-80" viewBox="0 0 100 100">
                     <path d="M0 0 L40 0 L50 10 L10 10 L10 50 L0 60 Z" fill="currentColor" />
                     <rect x="0" y="70" width="5" height="30" fill="currentColor" className="animate-pulse" />
