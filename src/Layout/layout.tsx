@@ -13,10 +13,9 @@ import Organisers from "@/Components/Organisers"; // IMPORT NEW COMPONENT
 import Footer from "@/Components/Footer";
 import OurTeam from "@/Components/OurTeam";
 import CommunityPartner from "@/Components/communityPartners";
-// import Judges from '@/Components/Judges';
-
+import Judges from '@/Components/Judges';
+import Mentors from '@/Components/Mentors';
 import PastGlories from "@/Components/PastGlories";
-import Mentors from "@/Components/Mentors";
 
 export default function Layout() {
     return (
@@ -30,8 +29,8 @@ export default function Layout() {
                 <TimeLine />
                 <Prizes />
                 <CommunityPartner />
-                {/* <Judges/> */}
-                <Mentors />
+                <Judges/>
+                <Mentors/>  
                 <Sponsors />
                 <Organisers />
                 <OurTeam />

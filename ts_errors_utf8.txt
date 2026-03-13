@@ -1,0 +1,4 @@
+﻿src/app/api/chat/route.ts(2,22): error TS2724: '"ai"' has no exported member named 'Message'. Did you mean 'UIMessage'?
+src/app/api/chat/route.ts(57,17): error TS2551: Property 'toDataStreamResponse' does not exist on type 'StreamTextResult<ToolSet, Output<string, string, never>>'. Did you mean 'toTextStreamResponse'?
+src/Components/Chatbot.tsx(3,25): error TS2307: Cannot find module 'ai/react' or its corresponding type declarations.
+src/Components/Chatbot.tsx(53,30): error TS7006: Parameter 'm' implicitly has an 'any' type.
