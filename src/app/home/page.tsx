@@ -17,7 +17,7 @@ export default function HomePage() {
                 <Image src={Admin} alt="Background" fill className="object-cover" priority />
                 <div className="!fixed !top-0 !left-0 !w-full !h-full bg-black/75"></div>
             </div>
-            <div className="relative z-10 w-full min-h-screen pb-20">0
+            <div className="relative z-10 w-full min-h-screen pb-20">
                 <HeroSection />
                 <CountDown />
                 <About />
