@@ -234,7 +234,7 @@ export default function Organisers() {
                                     {org.role}
                                 </p>
 
-                                {/* Bottom Tech Line */}
+                                {/* Bottom Tech Line */}    
                                 <div className="w-full h-px bg-neutral-800 relative mt-auto">
                                     <div className="absolute top-0 left-0 h-full bg-red-600 w-0 group-hover/card:w-full transition-all duration-700 ease-out"></div>
                                 </div>

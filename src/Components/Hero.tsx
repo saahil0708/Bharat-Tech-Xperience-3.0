@@ -85,6 +85,7 @@ export default function HeroSection() {
             id="home"
             ref={containerRef}
             className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent" style={{ paddingTop: "4vh" }}
+            className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent" style={{ paddingTop: "6vh" }}
         >
             {/* Red overlay grid background */}
             <div className="absolute inset-0 opacity-10">
@@ -136,6 +137,8 @@ export default function HeroSection() {
                         />
                     </motion.div>
 
+                    {/* Visual Composition */}
+                    <div className="relative inline-block mb-12 mt-8 md:mt-8 select-none">
                     {/* Visual Composition */}
                     <div className="relative inline-block mb-12 mt-8 md:mt-8 select-none">
 
