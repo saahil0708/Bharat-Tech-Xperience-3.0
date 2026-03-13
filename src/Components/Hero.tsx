@@ -84,7 +84,7 @@ export default function HeroSection() {
         <section
             id="home"
             ref={containerRef}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent"
+            className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent" style={{ paddingTop: "6vh" }}
         >
             {/* Red overlay grid background */}
             <div className="absolute inset-0 opacity-10">
@@ -136,8 +136,8 @@ export default function HeroSection() {
                         />
                     </motion.div>
 
-                    {/* Visual Composition — shifted down with mt-8 md:mt-10 */}
-                    <div className="relative inline-block mb-12 mt-8 md:mt-10 select-none">
+                    {/* Visual Composition */}
+                    <div className="relative inline-block mb-12 mt-8 md:mt-8 select-none">
 
                         {/* BIG "3" BACKGROUND */}
                         <motion.div
