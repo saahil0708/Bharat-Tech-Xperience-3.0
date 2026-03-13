@@ -9,16 +9,21 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.36",
+    "@ai-sdk/react": "^3.0.110",
+    "@ai-sdk/ui-utils": "^1.2.11",
     "@radix-ui/react-hover-card": "^1.1.15",
     "@supabase/supabase-js": "^2.94.0",
     "@tabler/icons-react": "^3.37.1",
     "@tsparticles/preset-fire": "^3.2.0",
     "@tsparticles/react": "^3.0.0",
     "axios": "^1.13.6",
+    "ai": "^6.0.108",
+    "@types/three": "^0.183.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.563.0",
-    "motion": "^12.34.3",
+    "motion": "^12.34.4",
     "next": "16.1.6",
     "nodemailer": "^8.0.1",
     "qss": "^3.0.0",
@@ -28,7 +33,8 @@
     "react-dom": "19.2.3",
     "react-icons": "^5.6.0",
     "tailwind-merge": "^3.5.0",
-    "tsparticles": "^3.9.1"
+    "tsparticles": "^3.9.1",
+    "three": "^0.183.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
