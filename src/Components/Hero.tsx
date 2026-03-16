@@ -84,8 +84,9 @@ export default function HeroSection() {
         <section
             id="home"
             ref={containerRef}
-            className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent" style={{ paddingTop: "6vh" }}
+            className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent" 
         >
+            
             {/* Red overlay grid background */}
             <div className="absolute inset-0 opacity-10">
                 <div
@@ -114,6 +115,7 @@ export default function HeroSection() {
 
             {/* Main content */}
             <div className="relative z-10 container mx-auto px-6 md:px-4 text-center">
+                <div className="h-14 max-lg:h-40"></div>
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
