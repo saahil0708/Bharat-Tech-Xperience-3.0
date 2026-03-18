@@ -1,17 +1,20 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import DevfolioLogo from "@/Images/Devfolio.png";
+
 
 const Sponsors = () => {
     const sponsors = [
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5lt05bpSaUVX5mB4TDjnvbPJgZIzWOY17FsAp",
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5LcPP8LV4dQjwtUe75ApxbP68hlkFNKnGZIqT",
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5hDD2z1Ndx4bWp0UlI1ZKuzEFvVsLw7JfMokX",
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5BeAwRBKzPWfylH5GYExmgnb83j4RheVQD0JN",
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5UNr23LL1ow0iF26LZCWSKfchnXvyTAIzdqmP",
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5tVLYGpIEyKp7vbuh4aZnGcCs8ARDxHFO2LY0",
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5cgty3j0u6HcFB7k2VRJ8AqU5Zp3NvPCXnStY",
-        "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5gh8CwAcLOBCxgv7HbYAsdorPphtX2Fejq9kE"
+        { src: DevfolioLogo.src, alt: "DEVFOLIO LOGO" },
+        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5lt05bpSaUVX5mB4TDjnvbPJgZIzWOY17FsAp", alt: "Sponsor 2" },
+        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5LcPP8LV4dQjwtUe75ApxbP68hlkFNKnGZIqT", alt: "Sponsor 3" },
+        // { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5hDD2z1Ndx4bWp0UlI1ZKuzEFvVsLw7JfMokX", alt: "Sponsor 4" },
+        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5BeAwRBKzPWfylH5GYExmgnb83j4RheVQD0JN", alt: "Sponsor 4" },
+        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5UNr23LL1ow0iF26LZCWSKfchnXvyTAIzdqmP", alt: "Sponsor 5" },
+        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5tVLYGpIEyKp7vbuh4aZnGcCs8ARDxHFO2LY0", alt: "Sponsor 6" },
+        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5cgty3j0u6HcFB7k2VRJ8AqU5Zp3NvPCXnStY", alt: "Sponsor 7" },
+        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5gh8CwAcLOBCxgv7HbYAsdorPphtX2Fejq9kE", alt: "Sponsor 8" }
     ];
 
     return (
@@ -42,9 +45,8 @@ const Sponsors = () => {
                     </p>
                 </div>
 
-                {/* Compact Sponsors Grid */}
                 <div className="!grid !grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-4 md:!gap-6 !mb-20">
-                    {sponsors.map((logo, index) => (
+                    {sponsors.map((sponsor, index) => (
                         <div
                             key={index}
                             className="!group !relative !aspect-square !flex !items-center !justify-center !bg-zinc-900/20 !backdrop-blur-xl !border !border-white/5 !rounded-xl !p-4 md:!p-6 !transition-all !duration-500 hover:!border-red-500/40 hover:!scale-[1.02] hover:!shadow-[0_0_40px_rgba(220,38,38,0.15)] !cursor-pointer"
@@ -62,8 +64,8 @@ const Sponsors = () => {
                             {/* Logo with Glow */}
                             <div className="!relative !z-10 !w-full !h-full !flex !items-center !justify-center">
                                 <img
-                                    src={logo}
-                                    alt={`Sponsor ${index + 1}`}
+                                    src={sponsor.src}
+                                    alt={sponsor.alt}
                                     className="!max-w-[80%] !max-h-[80%] !object-contain !transition-all !duration-700 group-hover:!scale-110 !drop-shadow-[0_0_10px_rgba(255,255,255,0.05)] group-hover:!drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]"
                                 />
                             </div>

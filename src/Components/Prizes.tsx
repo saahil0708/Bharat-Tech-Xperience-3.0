@@ -241,7 +241,7 @@ const Prizes = () => {
         </div>
 
         {/* Finalists & Tracks - PRESERVED */}
-        <div className="!grid !grid-cols-1 md:!grid-cols-2 !gap-7 !max-w-4xl !mx-auto">
+        {/* <div className="!grid !grid-cols-1 md:!grid-cols-2 !gap-7 !max-w-4xl !mx-auto">
           <div className="!relative !group">
             <div className="!relative !h-full !rounded-[2rem] !border !border-white/5 !bg-zinc-950/60 !backdrop-blur-xl !p-7 !overflow-hidden !transition-all !duration-700 !ease-out hover:!scale-[1.02]">
               <GlowingEffect spread={50} glow={true} proximity={64} className="!opacity-30" />
@@ -285,7 +285,7 @@ const Prizes = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

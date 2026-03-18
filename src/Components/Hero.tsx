@@ -3,15 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
-
-// Extend Window interface for Devfolio SDK
-declare global {
-  interface Window {
-    devfolio?: {
-      init?: () => void;
-    };
-  }
-}
+import Script from "next/script";
 
 
 export default function HeroSection() {
@@ -34,11 +26,8 @@ export default function HeroSection() {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (mounted && window.devfolio && window.devfolio.init) {
-      window.devfolio.init();
-    }
-  }, [mounted]);
+
+
 
 
 
@@ -116,6 +105,11 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent"
     >
+      <Script
+        src="https://apply.devfolio.co/v2/sdk.js"
+        strategy="afterInteractive"
+      />
+
       {/* Red overlay grid background */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -278,38 +272,16 @@ export default function HeroSection() {
             </p>
           </div>
         </motion.div>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+        <div className="flex flex-col md:flex-row items-center justify-center !gap-6 !mt-8">
           <Link target="blank" href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" className="!px-4 !py-3 text-white bg-red-600 rounded-sm" download="Bharat-Tech-Guidelines.pdf">
             <button type="button" className="font-bold">Download Guidelines</button>
           </Link>
-          {mounted && (
-            <div className="relative group">
-              {/* Custom Always-Visible Devfolio Button Workaround */}
-              <a
-                href="https://devfolio.co/external-apply/bharat-tech-xperience-3"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 bg-white text-[#24292e] font-semibold rounded-[4px] px-6 h-[44px] min-w-[312px] transition-all duration-200 border border-gray-200 shadow-sm hover:bg-gray-50 active:scale-[0.98] cursor-pointer"
-              >
-                {/* Official Devfolio "D" Logo */}
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="shrink-0 text-[#3770FF]"
-                >
-                  <path d="M12 2L2 7L12 12L22 7L12 2Z" />
-                  <path d="M2 17L12 22L22 17" />
-                  <path d="M2 12L12 17L22 12" />
-                </svg>
-                <span className="text-[18px]">Apply with Devfolio</span>
-              </a>
-              {/* Optional: Keep the official class on a hidden element for potential SDK tracking if needed */}
-              <div className="hidden apply-button" data-hackathon-slug="bharat-tech-xperience-3"></div>
-            </div>
-          )}
+            <div 
+              className="apply-button" 
+              data-hackathon-slug="bharat-tech-xperience-3" 
+              data-button-theme="light"
+              style={{ height: "44px", width: "312px" }}
+            ></div>
 
         </div>
       </div>
