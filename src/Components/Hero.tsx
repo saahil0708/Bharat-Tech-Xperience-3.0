@@ -4,6 +4,16 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
 
+// Extend Window interface for Devfolio SDK
+declare global {
+  interface Window {
+    devfolio?: {
+      init?: () => void;
+    };
+  }
+}
+
+
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -18,16 +28,19 @@ export default function HeroSection() {
   const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const bg3Opacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0]);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://apply.devfolio.co/v2/sdk.js";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
+    setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (mounted && window.devfolio && window.devfolio.init) {
+      window.devfolio.init();
+    }
+  }, [mounted]);
+
+
 
   // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
   const renderCustomText = (text: string, isFirstLine: boolean) => {
@@ -269,12 +282,15 @@ export default function HeroSection() {
           <Link target="blank" href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" className="!px-4 !py-3 text-white bg-red-600 rounded-sm" download="Bharat-Tech-Guidelines.pdf">
             <button type="button" className="font-bold">Download Guidelines</button>
           </Link>
-          <div
-            className="apply-button"
-            data-hackathon-slug="bharat-tech-xperience-3"
-            data-button-theme="dark-inverted"
-            style={{ height: "44px", width: "312px" }}
-          ></div>
+          {mounted && (
+            <div
+              className="apply-button"
+              data-hackathon-slug="bharat-tech-xperience-3"
+              data-button-theme="dark-inverted"
+              style={{ height: "44px", width: "312px" }}
+            ></div>
+          )}
+
         </div>
       </div>
 
