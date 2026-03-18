@@ -283,12 +283,32 @@ export default function HeroSection() {
             <button type="button" className="font-bold">Download Guidelines</button>
           </Link>
           {mounted && (
-            <div
-              className="apply-button"
-              data-hackathon-slug="bharat-tech-xperience-3"
-              data-button-theme="dark-inverted"
-              style={{ height: "44px", width: "312px" }}
-            ></div>
+            <div className="relative group">
+              {/* Custom Always-Visible Devfolio Button Workaround */}
+              <a
+                href="https://devfolio.co/external-apply/bharat-tech-xperience-3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 bg-white text-[#24292e] font-semibold rounded-[4px] px-6 h-[44px] min-w-[312px] transition-all duration-200 border border-gray-200 shadow-sm hover:bg-gray-50 active:scale-[0.98] cursor-pointer"
+              >
+                {/* Official Devfolio "D" Logo */}
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="shrink-0 text-[#3770FF]"
+                >
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                  <path d="M2 17L12 22L22 17" />
+                  <path d="M2 12L12 17L22 12" />
+                </svg>
+                <span className="text-[18px]">Apply with Devfolio</span>
+              </a>
+              {/* Optional: Keep the official class on a hidden element for potential SDK tracking if needed */}
+              <div className="hidden apply-button" data-hackathon-slug="bharat-tech-xperience-3"></div>
+            </div>
           )}
 
         </div>
