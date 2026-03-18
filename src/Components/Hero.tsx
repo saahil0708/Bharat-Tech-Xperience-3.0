@@ -26,6 +26,18 @@ export default function HeroSection() {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://apply.devfolio.co/v2/sdk.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
   const renderCustomText = (text: string, isFirstLine: boolean) => {
     return text.split("").map((letter, index) => {
@@ -100,10 +112,6 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent"
     >
-      <Script
-        src="https://apply.devfolio.co/v2/sdk.js"
-        strategy="afterInteractive"
-      />
 
       {/* Red overlay grid background */}
       <div className="absolute inset-0 opacity-10">
@@ -154,13 +162,13 @@ export default function HeroSection() {
               className="max-w-[220px] md:max-w-[320px] lg:max-w-[800px] w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]"
             />
             
-            <Link href="https://devfolio.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+            <a href="https://devfolio.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
               <img 
                 src="/Devfolio.png" 
                 alt="Devfolio Logo" 
                 className="h-8 md:h-10 lg:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
               />
-            </Link>
+            </a>
           </motion.div>
 
           {/* Visual Composition */}
