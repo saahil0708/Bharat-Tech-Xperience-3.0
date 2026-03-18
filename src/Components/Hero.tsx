@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
 import Script from "next/script";
+import DevfolioLogo from "@/Images/Devfolio.png";
 
 
 export default function HeroSection() {
@@ -158,6 +159,14 @@ export default function HeroSection() {
               alt="Bharat Tech Xperience Logo"
               className="max-w-[220px] md:max-w-[320px] lg:max-w-[900px] w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]"
             />
+            {/* Devfolio Logo in Hero */}
+            <div className="flex items-center justify-center -mt-4 md:-mt-8 lg:-mt-12">
+               <img 
+                 src={DevfolioLogo.src} 
+                 alt="Devfolio Logo" 
+                 className="h-10 md:h-12 lg:h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+               />
+            </div>
           </motion.div>
 
           {/* Visual Composition */}
