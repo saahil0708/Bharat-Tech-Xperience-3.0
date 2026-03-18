@@ -161,11 +161,12 @@ export default function HeroSection() {
             />
             {/* Devfolio Logo in Hero */}
             <div className="flex items-center justify-center -mt-4 md:-mt-8 lg:-mt-12">
+                <Link href="https://devfolio.co/" target="_blank" rel="noopener noreferrer">
                <img 
                  src={DevfolioLogo.src} 
                  alt="Devfolio Logo" 
                  className="h-10 md:h-12 lg:h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-               />
+               /></Link>
             </div>
           </motion.div>
 
