@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
 import Script from "next/script";
-import DevfolioLogo from "@/Images/Devfolio.png";
 
 
 export default function HeroSection() {
@@ -26,11 +25,6 @@ export default function HeroSection() {
   useEffect(() => {
     setMounted(true);
   }, []);
-
-
-
-
-
 
   // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
   const renderCustomText = (text: string, isFirstLine: boolean) => {
@@ -152,22 +146,21 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-10 flex justify-center"
+            className="mb-10 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10"
           >
             <img
               src="https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5rPp4Q4f8BWI64UPVzZcp0EidljyDOusNoxLG"
               alt="Bharat Tech Xperience Logo"
-              className="max-w-[220px] md:max-w-[320px] lg:max-w-[900px] w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+              className="max-w-[220px] md:max-w-[320px] lg:max-w-[800px] w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]"
             />
-            {/* Devfolio Logo in Hero */}
-            <div className="flex items-center justify-center -mt-4 md:-mt-8 lg:-mt-12">
-                <Link href="https://devfolio.co/" target="_blank" rel="noopener noreferrer">
-               <img 
-                 src={DevfolioLogo.src} 
-                 alt="Devfolio Logo" 
-                 className="h-10 md:h-12 lg:h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-               /></Link>
-            </div>
+            
+            <Link href="https://devfolio.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+              <img 
+                src="/Devfolio.png" 
+                alt="Devfolio Logo" 
+                className="h-8 md:h-10 lg:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+              />
+            </Link>
           </motion.div>
 
           {/* Visual Composition */}

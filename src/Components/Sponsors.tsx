@@ -6,7 +6,7 @@ import DevfolioLogo from "@/Images/Devfolio.png";
 
 const Sponsors = () => {
     const sponsors = [
-        { src: DevfolioLogo.src, alt: "DEVFOLIO LOGO" },
+        { src: "/Devfolio.png", alt: "DEVFOLIO LOGO" },
         { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5lt05bpSaUVX5mB4TDjnvbPJgZIzWOY17FsAp", alt: "Sponsor 2" },
         { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5LcPP8LV4dQjwtUe75ApxbP68hlkFNKnGZIqT", alt: "Sponsor 3" },
         // { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5hDD2z1Ndx4bWp0UlI1ZKuzEFvVsLw7JfMokX", alt: "Sponsor 4" },
