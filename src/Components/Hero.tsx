@@ -18,6 +18,17 @@ export default function HeroSection() {
   const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const bg3Opacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0]);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://apply.devfolio.co/v2/sdk.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
   const renderCustomText = (text: string, isFirstLine: boolean) => {
     return text.split("").map((letter, index) => {
@@ -48,7 +59,6 @@ export default function HeroSection() {
       const isOdd = index % 2 !== 0;
       const delayStep = quad * 2 + (isOdd ? 1 : 0);
       const baseDelay = isFirstLine ? 0.3 : 1.2;
-
       return (
         <motion.span
           key={index}
@@ -255,9 +265,17 @@ export default function HeroSection() {
             </p>
           </div>
         </motion.div>
-        <Link  target="blank"  href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" className="!px-4  !py-3 text-white bg-red-600" download="custom-filename">
-            <button className="!mt-7" type="button">Download GUidelines</button>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+          <Link target="blank" href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" className="!px-4 !py-3 text-white bg-red-600 rounded-sm" download="Bharat-Tech-Guidelines.pdf">
+            <button type="button" className="font-bold">Download Guidelines</button>
           </Link>
+          <div
+            className="apply-button"
+            data-hackathon-slug="bharat-tech-xperience-3"
+            data-button-theme="dark-inverted"
+            style={{ height: "44px", width: "312px" }}
+          ></div>
+        </div>
       </div>
 
       {/* Tech HUD Border Effect - Corners */}
