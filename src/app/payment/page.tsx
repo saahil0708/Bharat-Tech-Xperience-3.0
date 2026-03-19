@@ -19,8 +19,8 @@ export default function PaymentPage() {
     const [teamData, setTeamData] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [requiresAccommodation, setRequiresAccommodation] = useState(false);
-    const baseFee = 250;
-    const accommodationFee = 50;
+    const baseFee = 0;
+    const accommodationFee = 300;
     const totalFeeToPay = baseFee + (requiresAccommodation ? accommodationFee : 0);
 
     const [notification, setNotification] = useState<{ isOpen: boolean; type: 'success' | 'error'; title: string; message: string }>({
@@ -216,6 +216,44 @@ export default function PaymentPage() {
         }
     };
 
+
+    const handleConfirmParticipationOnly = async () => {
+        setIsLoading(true);
+        try {
+            const { error } = await supabase
+                .from('teams')
+                .update({
+                    payment_status: 'paid', // Mark as paid for Round 2 access
+                    total_fee: 0
+                })
+                .eq('id', teamData.id);
+
+            if (error) throw error;
+
+            setNotification({
+                isOpen: true,
+                type: 'success',
+                title: 'PROTOCOL COMPLETE',
+                message: 'Your participation is confirmed. No payment required. Protocol Round 2 initialized.'
+            });
+
+            setStep(1);
+            setEmail('');
+            setRequiresAccommodation(false);
+
+        } catch (dbError: any) {
+            console.error('Error confirming participation:', dbError);
+            setNotification({
+                isOpen: true,
+                type: 'error',
+                title: 'DATABASE ERROR',
+                message: 'Failed to confirm participation. Please contact command.'
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <main className="!min-h-screen !bg-black !text-white !pt-10 !pb-12 !px-4 selection:!bg-red-900 selection:!text-white relative overflow-hidden flex flex-col justify-center">
             <StrangerThingsModal
@@ -291,7 +329,6 @@ export default function PaymentPage() {
                             </div>
                         </form>
                     )}
-
                     {step === 2 && teamData && (
                         <div className="flex flex-col gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="text-center">
@@ -324,25 +361,38 @@ export default function PaymentPage() {
                                         <p className="text-white text-sm tracking-wider uppercase">Accommodation Required (+₹{accommodationFee})</p>
                                     </div>
                                 </div>
+
                                 <div className="w-full flex flex-col md:flex-row justify-between items-center gap-8">
                                     <div className="text-center md:text-left shadow-[0_0_10px_rgba(220,38,38,0.2)] !p-4 border border-red-900/30 w-full md:w-auto">
-                                        <p className="!text-gray-500 text-xs !mb-2 tracking-widest">REQUIRED TEAM FEE</p>
+                                        <p className="!text-gray-500 text-xs !mb-2 tracking-widest">REGISTRATION PROTOCOL</p>
                                         <p className="text-4xl !font-[family-name:var(--font-azonix)] !text-white flex justify-center md:justify-start items-start gap-1">
                                             <span className="text-lg mt-1 text-red-500">₹</span>
-                                            {totalFeeToPay}
+                                            {requiresAccommodation ? accommodationFee : 0}
                                         </p>
-                                        <p className="text-xs text-gray-600 !mt-1 uppercase">BASE REGISTRATION: ₹{baseFee}</p>
-                                        {requiresAccommodation && <p className="text-xs text-red-500 !mt-1 uppercase">ACCOMMODATION ADDED: ₹{accommodationFee}</p>}
+                                        <p className="text-xs text-gray-500 !mt-1 uppercase !tracking-widest">
+                                            {requiresAccommodation ? 'ACCOMMODATION + ROUND 2' : 'ROUND 2 ONLY (FREE)'}
+                                        </p>
                                     </div>
 
-                                    <button
-                                        onClick={handlePayment}
-                                        disabled={isLoading}
-                                        className="!bg-red-600 !text-white cursor-pointer !px-8 !py-4 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
-                                    >
-                                        <span className="relative z-10">{isLoading ? 'PROCESSING...' : 'INITIATE PAYMENT'}</span>
-                                        {!isLoading && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
-                                    </button>
+                                    {requiresAccommodation ? (
+                                        <button
+                                            onClick={handlePayment}
+                                            disabled={isLoading}
+                                            className="!bg-red-600 !text-white cursor-pointer !px-8 !py-4 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-red-700 active:scale-95 transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] relative group overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
+                                        >
+                                            <span className="relative z-10">{isLoading ? 'PROCESSING...' : 'PAY & CONFIRM'}</span>
+                                            {!isLoading && <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={handleConfirmParticipationOnly}
+                                            disabled={isLoading}
+                                            className="!bg-white !text-black cursor-pointer !px-8 !py-4 !font-[family-name:var(--font-azonix)] text-sm tracking-widest hover:!bg-gray-200 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] relative group overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
+                                        >
+                                            <span className="relative z-10">{isLoading ? 'CONFIRMING...' : 'CONFIRM PARTICIPATION'}</span>
+                                            {!isLoading && <div className="absolute inset-0 bg-black/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>}
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
