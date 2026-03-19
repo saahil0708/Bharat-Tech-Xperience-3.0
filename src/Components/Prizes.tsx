@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 import { Trophy, Medal, Award, Rocket } from "lucide-react";
 import { GlowingEffect } from "@/Components/ui/glowing-effect";
 import PrizePool from "@/Images/PrizePool.png";
@@ -223,22 +224,47 @@ const Prizes = () => {
         </div>
 
         {/* Podium with smooth 3D cards */}
-        <div className="!grid !grid-cols-1 md:!grid-cols-3 !gap-8 md:!gap-4 !max-w-5xl !mx-auto !mb-20 !items-end"
+        <motion.div 
+          className="!grid !grid-cols-1 md:!grid-cols-3 !gap-8 md:!gap-4 !max-w-5xl !mx-auto !mb-20 !items-end"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.3
+              }
+            }
+          }}
           style={{
             transformStyle: "preserve-3d",
             perspective: "2000px",
-          }}>
+          }}
+        >
           {podiumPrizes.map((prize, idx) => (
-            <div key={idx}
+            <motion.div 
+              key={idx}
+              variants={{
+                hidden: { opacity: 0, y: 50, scale: 0.9 },
+                show: { 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1,
+                  transition: { duration: 0.8, ease: "easeOut" }
+                }
+              }}
               className="!transition-all !duration-1000 !ease-[cubic-bezier(0.4,0,0.2,1)]"
               style={{
                 transform: `translateZ(${idx === 1 ? '30px' : '0px'})`,
                 transition: "all 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
               }}>
               <PrizeCard {...prize} />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Finalists & Tracks - PRESERVED */}
         {/* <div className="!grid !grid-cols-1 md:!grid-cols-2 !gap-7 !max-w-4xl !mx-auto">

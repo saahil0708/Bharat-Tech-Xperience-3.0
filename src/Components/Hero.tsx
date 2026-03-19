@@ -26,18 +26,6 @@ export default function HeroSection() {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://apply.devfolio.co/v2/sdk.js";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
   const renderCustomText = (text: string, isFirstLine: boolean) => {
     return text.split("").map((letter, index) => {
@@ -154,21 +142,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-10 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10"
+            className="mb-10 flex justify-center"
           >
             <img
               src="https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5rPp4Q4f8BWI64UPVzZcp0EidljyDOusNoxLG"
               alt="Bharat Tech Xperience Logo"
-              className="max-w-[220px] md:max-w-[320px] lg:max-w-[800px] w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+              className="max-w-[220px] md:max-w-[320px] lg:max-w-[900px] w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]"
             />
-            
-            <a href="https://devfolio.co/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-              <img 
-                src="/Devfolio.png" 
-                alt="Devfolio Logo" 
-                className="h-8 md:h-10 lg:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-              />
-            </a>
           </motion.div>
 
           {/* Visual Composition */}
@@ -287,12 +267,7 @@ export default function HeroSection() {
           <Link target="blank" href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" className="!px-4 !py-3 text-white bg-red-600 rounded-sm" download="Bharat-Tech-Guidelines.pdf">
             <button type="button" className="font-bold">Download Guidelines</button>
           </Link>
-            <div 
-              className="apply-button" 
-              data-hackathon-slug="bharat-tech-xperience-3" 
-              data-button-theme="light"
-              style={{ height: "44px", width: "312px" }}
-            ></div>
+
 
         </div>
       </div>

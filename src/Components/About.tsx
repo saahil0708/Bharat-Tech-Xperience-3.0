@@ -1,20 +1,56 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useInView } from "motion/react";
+
+const StatCounter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
+    const [count, setCount] = useState(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    useEffect(() => {
+        if (isInView) {
+            let startTime: number;
+            const animate = (time: number) => {
+                if (!startTime) startTime = time;
+                const progress = Math.min((time - startTime) / (duration * 1000), 1);
+                setCount(Math.floor(progress * end));
+                if (progress < 1) requestAnimationFrame(animate);
+            };
+            requestAnimationFrame(animate);
+        }
+    }, [isInView, end, duration]);
+
+    return <span ref={ref}>{count}</span>;
+}
 
 const About = () => {
     const [activeTab, setActiveTab] = useState<'event' | 'community'>('event');
 
     return (
         <section id="about" className="!relative !w-full !py-24 !flex !items-center !justify-center !overflow-hidden !z-20 !min-h-screen">
-            {/* Dynamic Background */}
-            <div className="!absolute !inset-0 !bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] !from-red-900/10 !via-transparent !to-transparent !pointer-events-none"></div>
+            {/* Background Video */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="!absolute !inset-0 !w-full !h-full !object-cover !opacity-30 !z-0"
+            >
+                <source src="https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZDXssMor6eLOCVu3qXz5kBA2UdjWyK8vogR0I" type="video/mp4" />
+            </video>
+
+            {/* Video Overlay - Adjusted for better visibility of the video while keeping text readable */}
+            <div className="!absolute !inset-0 !bg-black/50 !z-[5]"></div>
+            <div className="!absolute !inset-0 !bg-gradient-to-t !from-black !via-transparent !to-black/60 !z-[6]"></div>
+
+            {/* Dynamic Background Flare */}
+            <div className="!absolute !inset-0 !bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] !from-red-900/10 !via-transparent !to-transparent !pointer-events-none !z-[7]"></div>
 
             {/* Tech Grid Overlay */}
-            <div className="!absolute !inset-0 !bg-[length:50px_50px] !bg-[linear-gradient(rgba(220,38,38,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(220,38,38,0.05)_1px,transparent_1px)] !opacity-20"></div>
+            <div className="!absolute !inset-0 !bg-[length:50px_50px] !bg-[linear-gradient(rgba(220,38,38,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(220,38,38,0.05)_1px,transparent_1px)] !opacity-10 !z-[8]"></div>
 
-            <div className="!w-full !max-w-7xl !mx-auto !px-6 md:!px-16 !flex !flex-col md:!flex-row !items-center !justify-between !gap-16">
+            <div className="!w-full !max-w-7xl !mx-auto !px-6 md:!px-16 !flex !flex-col md:!flex-row !items-center !justify-between !gap-16 !relative !z-10">
 
                 {/* LEFT COLUMN: Content */}
                 <div className="!w-full md:!w-1/2 !relative !z-10">
@@ -66,17 +102,23 @@ const About = () => {
                                     {/* Stats with Icons */}
                                     <div className="!flex !flex-wrap !gap-12 !mt-10">
                                         <div className="!group">
-                                            <span className="!block !text-4xl !font-black !text-white group-hover:!text-red-500 transition-colors">36H</span>
+                                            <span className="!block !text-4xl !font-black !text-white group-hover:!text-red-500 transition-colors">
+                                                <StatCounter end={36} />H
+                                            </span>
                                             <span className="!text-red-600 !text-xs !font-bold !uppercase !tracking-widest">Code Sprint</span>
                                         </div>
                                         <div className="!w-[1px] !h-12 !bg-gray-800"></div>
                                         <div className="!group">
-                                            <span className="!block !text-4xl !font-black !text-white group-hover:!text-red-500 transition-colors">500+</span>
+                                            <span className="!block !text-4xl !font-black !text-white group-hover:!text-red-500 transition-colors">
+                                                <StatCounter end={500} />+
+                                            </span>
                                             <span className="!text-red-600 !text-xs !font-bold !uppercase !tracking-widest">Elite Teams</span>
                                         </div>
                                         <div className="!w-[1px] !h-12 !bg-gray-800"></div>
                                         <div className="!group">
-                                            <span className="!block !text-4xl !font-black !text-white group-hover:!text-red-500 transition-colors">5L+</span>
+                                            <span className="!block !text-4xl !font-black !text-white group-hover:!text-red-500 transition-colors">
+                                                <StatCounter end={5} />L+
+                                            </span>
                                             <span className="!text-red-600 !text-xs !font-bold !uppercase !tracking-widest">Total Bounty</span>
                                         </div>
                                     </div>
@@ -120,27 +162,12 @@ const About = () => {
                         {activeTab === 'event' ? (
                             <motion.div
                                 key="visual-event"
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.4 }}
-                                className="!flex !items-center !justify-center !w-full !h-full"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="!w-full !h-full"
                             >
-                                {/* Floating Cards / Glitch Effect */}
-                                <div className="!relative !w-80 !h-80 !bg-black/40 !backdrop-blur-md !border !border-red-600 !rotate-3 hover:!rotate-0 transition-all duration-700 !z-10 !flex !items-center !justify-center !shadow-[0_0_50px_rgba(220,38,38,0.2)]">
-                                    <div className="!absolute !inset-0 !bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] !opacity-20"></div>
-                                    <h3 className="!text-9xl !font-black !text-red-600/20 !absolute !-top-12 !-right-12 select-none">3.0</h3>
-
-                                    <div className="!text-center !relative !z-20">
-                                        <div className="!text-6xl !mb-4">🚀</div>
-                                        <div className="!text-2xl !font-bold !text-white !tracking-widest">LEVEL UP</div>
-                                        <div className="!text-red-500 !text-sm !font-mono">/// SYSTEM READY</div>
-                                    </div>
-                                </div>
-
-                                {/* Background Glitch Elements */}
-                                <div className="!absolute !top-10 !right-10 !w-64 !h-64 !border-2 !border-gray-800 !-z-10 !rotate-12"></div>
-                                <div className="!absolute !-bottom-5 !-left-5 !w-full !h-full !bg-red-600/5 !-z-20 !blur-3xl"></div>
+                                {/* Left empty as per user's manual edits to clean up the view */}
                             </motion.div>
                         ) : (
                             <motion.div
