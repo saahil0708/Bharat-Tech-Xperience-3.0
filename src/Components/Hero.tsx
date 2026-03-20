@@ -3,15 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
-
-// Extend Window interface for Devfolio SDK
-declare global {
-  interface Window {
-    devfolio?: {
-      init?: () => void;
-    };
-  }
-}
+import Script from "next/script";
 
 
 export default function HeroSection() {
@@ -33,14 +25,6 @@ export default function HeroSection() {
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  useEffect(() => {
-    if (mounted && window.devfolio && window.devfolio.init) {
-      window.devfolio.init();
-    }
-  }, [mounted]);
-
-
 
   // Function to render custom-sized letters (Stranger Things style) with zoom-out animation
   const renderCustomText = (text: string, isFirstLine: boolean) => {
@@ -116,6 +100,7 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative min-h-screen flex items-start justify-center overflow-hidden bg-transparent"
     >
+
       {/* Red overlay grid background */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -278,18 +263,11 @@ export default function HeroSection() {
             </p>
           </div>
         </motion.div>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+        <div className="flex flex-col md:flex-row items-center justify-center !gap-6 !mt-8">
           <Link target="blank" href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" className="!px-4 !py-3 text-white bg-red-600 rounded-sm" download="Bharat-Tech-Guidelines.pdf">
             <button type="button" className="font-bold">Download Guidelines</button>
           </Link>
-          {mounted && (
-            <div
-              className="apply-button"
-              data-hackathon-slug="bharat-tech-xperience-3"
-              data-button-theme="dark-inverted"
-              style={{ height: "44px", width: "312px" }}
-            ></div>
-          )}
+
 
         </div>
       </div>
