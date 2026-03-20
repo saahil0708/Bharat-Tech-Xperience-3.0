@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         hostname: 'izvkii57x4.ufs.sh',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'syogjecvuh.ufs.sh',
+        pathname: '/**',
+      },
     ],
   },
 };

@@ -10,14 +10,15 @@ const PastGlories = () => {
   const [selectedImg, setSelectedImg] = useState<StaticImageData | string | null>(null);
 
   const achievements = [
-    { rank: "WINNER", title: "HACKATHON 2023", loc: "HAWKINS LAB", achv: "1ST PLACE", img: TeamWork },
-    { rank: "FINALIST", title: "MIND FLARE UI", loc: "THE VOID", achv: "TOP 3", img: TeamWork },
-    { rank: "RUNNER UP", title: "UPSIDE DOWN DEV", loc: "STARCOURT", achv: "SILVER", img: TeamWork },
-    { rank: "WINNER", title: "CODE FEST", loc: "HAWKINS HIGH", achv: "GOLD", img: TeamWork },
-    { rank: "FINALIST", title: "PRIZE POOL", loc: "LABORATORY", achv: "TOP 5", img: TeamWork },
-    { rank: "RUNNER UP", title: "NIGHTMARE JS", loc: "THE UPSIDE DOWN", achv: "BRONZE", img: TeamWork },
-    { rank: "WINNER", title: "CYBER DEMOGORGON", loc: "ST.ARC", achv: "1ST PLACE", img: TeamWork },
-    { rank: "FINALIST", title: "TELEKINESIS UI", loc: "011 WARD", achv: "TOP 10", img: TeamWork },
+    { rank: "WINNER", title: "HACKATHON 2023", loc: "HAWKINS LAB", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwa0Izfw4TzMs9YjkuK2Ll4V50POAiUJDGtbIC" },
+    { rank: "FINALIST", title: "MIND FLARE UI", loc: "THE VOID", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6fZzFq81KwuCfiQ05yDXgBbSLRa9HoVYPcjO" },
+    { rank: "RUNNER UP", title: "UPSIDE DOWN DEV", loc: "STARCOURT", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw8wqfMPNP54HUlTxSYFwonIQL97RJiCdOgBrX" },
+    { rank: "WINNER", title: "CODE FEST", loc: "HAWKINS HIGH", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwhWlEfTRrzwxlpCMGVZTSqXOW6J9tLvg4Yny3" },
+    { rank: "FINALIST", title: "PRIZE POOL", loc: "LABORATORY", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwNuLE72KsZz4xSQRU3mCBHlitA1PfuWvEFd0I" },
+    { rank: "RUNNER UP", title: "NIGHTMARE JS", loc: "THE UPSIDE DOWN", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwfLXJsGxILIezEXGvqYdC40DZiyB9aJuP1NRo" },
+    { rank: "WINNER", title: "CYBER DEMOGORGON", loc: "ST.ARC", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwTv3EvSAp42W7h8KBFY3GzX9edEQyLfS1nATk" },
+    { rank: "FINALIST", title: "TELEKINESIS UI", loc: "011 WARD", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwoPygWRqZeKCsIgtOy5bkW72uzPHZp0RdDjqc" },
+    { rank: "FINALIST", title: "TELEKINESIS UI", loc: "011 WARD",  img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwCCezVlyVsQx5cK3pBhO1ZlvzDUbWCGmHfRa9" },
   ];
 
   const x = useMotionValue(0);
@@ -152,20 +153,10 @@ const PastGlories = () => {
                           src={item.img}
                           alt={item.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, 300px"
-                          className="!object-cover !brightness-90 hover:!brightness-110 !transition-all !duration-500 pointer-events-none"
+                          unoptimized={true}
+                          className="!object-cover !transition-all !duration-500 pointer-events-none"
+                          style={{ transform: "translateZ(0)" }}
                         />
-                        {/* Internal Scanline overlay */}
-                        <div className="!absolute !inset-0 !bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] !bg-[length:100%_4px] pointer-events-none"></div>
-                      </div>
-                      <div className="!mt-3 md:!mt-4 !text-left !border-l-2 !border-red-600 !pl-2 md:!pl-3">
-                        <h4 className="!text-white !font-black !text-md md:!text-xl !tracking-loose !uppercase !truncate">{item.title}</h4>
-                        <p className="!text-red-700 !text-[8px] md:!text-[10px] !font-mono !font-bold !tracking-[0.1em] md:!tracking-[0.2em] !mt-1 !truncate">
-                          {item.loc} <span className="!text-zinc-500 !mx-1">/</span> {item.achv}
-                        </p>
-                        <span className="!block !mt-1 md:!mt-2 !text-zinc-600 !font-bold !text-[8px] md:!text-[9px] !tracking-[0.3em] !uppercase">
-                          {item.rank}
-                        </span>
                       </div>
                     </div>
                   </div>
@@ -182,7 +173,7 @@ const PastGlories = () => {
             onClick={() => setSelectedImg(null)}
           >
             <div className="!relative !w-full !max-w-5xl !h-full !max-h-[80vh]">
-              <Image src={selectedImg} alt="Preview" fill className="!object-contain pointer-events-none" />
+              <Image src={selectedImg} alt="Preview" fill unoptimized={true} className="!object-contain pointer-events-none" />
               <button
                 className="!absolute !top-[-40px] !right-0 !text-white !text-xl !font-mono hover:!text-red-500 transition-colors"
                 onClick={() => setSelectedImg(null)}
