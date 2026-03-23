@@ -190,7 +190,6 @@ export default function Timeline() {
             >
               EVENT <span className="text-[#E7000B]">SCHEDULE</span>
             </h1>
-            <div className="h-1 w-20 md:w-24 bg-[#B30000] mx-auto shadow-[0_0_15px_#B30000]"></div>
           </div>
 
           {/* Scrollytelling Content Container */}

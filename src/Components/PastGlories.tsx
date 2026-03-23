@@ -100,11 +100,13 @@ const PastGlories = () => {
 
         <div className="!w-full !max-w-[1200px] !mx-auto !px-4 !relative !z-20 !text-center !flex !flex-col !items-center">
 
-          <div className="!mb-8 md:!mb-12 !relative">
-            <h2 className="!text-5xl md:!text-7xl !font-black !text-white !tracking-widest !mb-4 !relative !z-10" style={{ textShadow: "0 0 15px rgba(220, 38, 38, 0.6)" }}>
-              PAST GLORIES
+          <div className="!mb-8 md:!mb-12 !relative !text-center !w-full !px-4">
+            <h2
+              className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase !relative !z-10"
+              style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+            >
+              PAST <span className="text-[#E7000B]">GLORIES</span>
             </h2>
-            <div className="!h-1 !w-24 !bg-red-600 !mx-auto !shadow-[0_0_15px_rgba(220, 38, 38, 0.9)] !relative !z-10"></div>
           </div>
 
           {/* Rotate Indicator */}
