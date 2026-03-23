@@ -10,15 +10,15 @@ const PastGlories = () => {
   const [selectedImg, setSelectedImg] = useState<StaticImageData | string | null>(null);
 
   const achievements = [
-    { rank: "WINNER", title: "HACKATHON 2023", loc: "HAWKINS LAB", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwa0Izfw4TzMs9YjkuK2Ll4V50POAiUJDGtbIC" },
-    { rank: "FINALIST", title: "MIND FLARE UI", loc: "THE VOID", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6fZzFq81KwuCfiQ05yDXgBbSLRa9HoVYPcjO" },
-    { rank: "RUNNER UP", title: "UPSIDE DOWN DEV", loc: "STARCOURT", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw8wqfMPNP54HUlTxSYFwonIQL97RJiCdOgBrX" },
-    { rank: "WINNER", title: "CODE FEST", loc: "HAWKINS HIGH", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwhWlEfTRrzwxlpCMGVZTSqXOW6J9tLvg4Yny3" },
-    { rank: "FINALIST", title: "PRIZE POOL", loc: "LABORATORY", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwNuLE72KsZz4xSQRU3mCBHlitA1PfuWvEFd0I" },
-    { rank: "RUNNER UP", title: "NIGHTMARE JS", loc: "THE UPSIDE DOWN", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwfLXJsGxILIezEXGvqYdC40DZiyB9aJuP1NRo" },
-    { rank: "WINNER", title: "CYBER DEMOGORGON", loc: "ST.ARC", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwTv3EvSAp42W7h8KBFY3GzX9edEQyLfS1nATk" },
-    { rank: "FINALIST", title: "TELEKINESIS UI", loc: "011 WARD", img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwoPygWRqZeKCsIgtOy5bkW72uzPHZp0RdDjqc" },
-    { rank: "FINALIST", title: "TELEKINESIS UI", loc: "011 WARD",  img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwCCezVlyVsQx5cK3pBhO1ZlvzDUbWCGmHfRa9" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwa0Izfw4TzMs9YjkuK2Ll4V50POAiUJDGtbIC" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6fZzFq81KwuCfiQ05yDXgBbSLRa9HoVYPcjO" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwNuwb5n3sZz4xSQRU3mCBHlitA1PfuWvEFd0I" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwhWlEfTRrzwxlpCMGVZTSqXOW6J9tLvg4Yny3" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwNuLE72KsZz4xSQRU3mCBHlitA1PfuWvEFd0I" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwfLXJsGxILIezEXGvqYdC40DZiyB9aJuP1NRo" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwTv3EvSAp42W7h8KBFY3GzX9edEQyLfS1nATk" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwoPygWRqZeKCsIgtOy5bkW72uzPHZp0RdDjqc" },
+    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwCCezVlyVsQx5cK3pBhO1ZlvzDUbWCGmHfRa9" },
   ];
 
   const x = useMotionValue(0);
@@ -100,11 +100,13 @@ const PastGlories = () => {
 
         <div className="!w-full !max-w-[1200px] !mx-auto !px-4 !relative !z-20 !text-center !flex !flex-col !items-center">
 
-          <div className="!mb-8 md:!mb-12 !relative">
-            <h2 className="!text-5xl md:!text-7xl !font-black !text-white !tracking-widest !mb-4 !relative !z-10" style={{ textShadow: "0 0 15px rgba(220, 38, 38, 0.6)" }}>
-              PAST GLORIES
+          <div className="!mb-8 md:!mb-12 !relative !text-center !w-full !px-4">
+            <h2
+              className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase !relative !z-10"
+              style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+            >
+              PAST <span className="text-[#E7000B]">GLORIES</span>
             </h2>
-            <div className="!h-1 !w-24 !bg-red-600 !mx-auto !shadow-[0_0_15px_rgba(220, 38, 38, 0.9)] !relative !z-10"></div>
           </div>
 
           {/* Rotate Indicator */}
@@ -151,7 +153,7 @@ const PastGlories = () => {
                       <div className="!relative !w-full !flex-1 !bg-zinc-950 !overflow-hidden">
                         <Image
                           src={item.img}
-                          alt={item.title}
+                          alt={item.img}
                           fill
                           unoptimized={true}
                           className="!object-cover !transition-all !duration-500 pointer-events-none"

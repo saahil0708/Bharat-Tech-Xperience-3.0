@@ -66,13 +66,15 @@ function CommunityPartner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="!mb-20"
+          className="!mb-20 !text-center !w-full !px-4"
         >
-          <div className="!inline-block !relative">
-            <h2 className="text-3xl md:text-5xl font-orbitron font-black text-white !tracking-widest text-center uppercase drop-shadow-[0_0_15px_rgba(220,38,38,0.6)]">
-              COMMUNITY PARTNERS
+          <div className="!inline-block !relative !w-full">
+            <h2
+                className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
+                style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+            >
+              COMMUNITY <span className="text-[#E7000B]">PARTNERS</span>
             </h2>
-            <div className="!absolute !-bottom-2 !left-0 !right-0 !h-[2px] !bg-gradient-to-r !from-transparent !via-red-600 !to-transparent !shadow-[0_0_15px_rgba(220,38,38,0.8)]"></div>
           </div>
           <p className="!mt-10 !text-red-500/80 !text-sm md:!text-base !font-mono !tracking-[0.5em] !uppercase">
             /// COLLABORATING FOR A BETTER TOMORROW ///

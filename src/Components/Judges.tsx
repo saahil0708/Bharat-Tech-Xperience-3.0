@@ -59,14 +59,14 @@ export default function AnimatedTestimonials() {
   return (
     <>
       {/* Section Heading */}
-      <div className="!mb-16 !ml-130">
+      <div className="!mb-16 !text-center !w-full !px-4">
         <h2
-          className="!text-4xl md:!text-6xl !ml-5 !font-black !text-white !tracking-widest !mb-4"
-          style={{ textShadow: "0 0 15px rgba(220, 38, 38, 0.4)" }}
+          className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
+          style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
         >
-          OUR JUDGES
+          OUR <span className="text-[#E7000B]">JUDGES</span>
         </h2>
-        <div className="!h-1 !w-24 !bg-red-600 !ml-50 !shadow-[0_0_10px_rgba(220,38,38,0.8)]"></div>
+        <div className="h-1 w-20 md:w-24 bg-[#B30000] mx-auto shadow-[0_0_15px_#B30000]"></div>
         <p className="!mt-6 !text-gray-500 !text-xs !tracking-[0.4em] !uppercase font-orbitron">
           Guided by Experience, Driven by Excellence
         </p>
