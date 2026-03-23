@@ -11,7 +11,7 @@ const Contact = () => {
     };
 
     const handleWhatsApp = () => {
-        window.open("https://wa.me/919587308788", "_blank");
+        window.open("https://wa.me/919474156798", "_blank");
     };
 
     const handleLocation = () => {
@@ -66,7 +66,7 @@ const Contact = () => {
                                     </div>
                                     <div className="text-center">
                                         <h3 className="text-white font-bold text-lg uppercase tracking-wider font-orbitron mb-1">WhatsApp</h3>
-                                        <p className="text-gray-500 text-xs font-orbitron group-hover:text-gray-300 transition-colors">+91 95873 08788</p>
+                                        <p className="text-gray-500 text-xs font-orbitron group-hover:text-gray-300 transition-colors">+91 94741 56798</p>
                                     </div>
                                 </div>
                                 <Button className="!bg-red-600 !hover:bg-red-500 !py-1 hover:ring-red-500 !text-white !tracking-wider !w-full relative z-10" onClick={handleWhatsApp}>

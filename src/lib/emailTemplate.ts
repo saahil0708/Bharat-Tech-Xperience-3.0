@@ -1,8 +1,10 @@
 export const generateRegistrationEmailHTML = (
   teamName: string,
   leaderName: string,
-  totalParticipants: number
+  totalParticipants: number,
+  institutionName?: string
 ) => {
+
   return `<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -83,7 +85,14 @@ export const generateRegistrationEmailHTML = (
                     <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px;">SQUAD DESIGNATION</span>
                     <strong style="font-size: 16px; color: #f3f4f6; letter-spacing: 1px; display: block;">${teamName.toUpperCase()}</strong>
                   </p>
+                  ${institutionName ? `
                   <p style="margin: 0 0 15px 0;">
+                    <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px;">INSTITUTION / ORGANIZATION</span>
+                    <strong style="font-size: 16px; color: #f3f4f6; letter-spacing: 1px; display: block;">${institutionName.toUpperCase()}</strong>
+                  </p>
+                  ` : ''}
+                  <p style="margin: 0 0 15px 0;">
+
                     <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px;">TEAM LEADER (COMMS RELAY)</span>
                     <strong style="font-size: 16px; color: #f3f4f6; letter-spacing: 1px; display: block;">${leaderName.toUpperCase()}</strong>
                   </p>

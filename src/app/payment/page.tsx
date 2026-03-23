@@ -347,7 +347,14 @@ export default function PaymentPage() {
                                     <p className="text-gray-500 text-xs tracking-widest mb-1">TOTAL OPERATIVES</p>
                                     <p className="text-gray-200 uppercase tracking-wider">{teamData.total_participants}</p>
                                 </div>
+                                {teamData.institution_name && (
+                                    <div className="md:col-span-2">
+                                        <p className="text-gray-500 text-xs tracking-widest mb-1">INSTITUTION / ORGANIZATION</p>
+                                        <p className="text-gray-200 uppercase tracking-wider">{teamData.institution_name}</p>
+                                    </div>
+                                )}
                             </div>
+
 
                             <div className="pt-4 !border-t !border-gray-800 flex flex-col items-center gap-8">
                                 {/* Accommodation Logic */}

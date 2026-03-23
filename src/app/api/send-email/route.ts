@@ -5,7 +5,7 @@ import path from 'path';
 
 export async function POST(req: Request) {
     try {
-        const { email, teamName, leaderName, totalParticipants } = await req.json();
+        const { email, teamName, leaderName, totalParticipants, institutionName } = await req.json();
 
         if (!email || !teamName || !leaderName) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -24,7 +24,8 @@ export async function POST(req: Request) {
             }
         });
 
-        const htmlContent = generateRegistrationEmailHTML(teamName, leaderName, totalParticipants);
+        const htmlContent = generateRegistrationEmailHTML(teamName, leaderName, totalParticipants, institutionName);
+
 
         const mailOptions = {
             from: `"Bharat Tech Xperience" <${process.env.EMAIL_USER}>`,

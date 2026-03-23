@@ -31,6 +31,8 @@ export default function RegisterPage() {
     const [requiresAccommodation, setRequiresAccommodation] = useState(false);
     const [referralType, setReferralType] = useState<'individual' | 'community' | 'other' | null>(null);
     const [referralValue, setReferralValue] = useState('');
+    const [institutionName, setInstitutionName] = useState('');
+
 
     const addMember = () => {
         if (members.length + 1 < 5) {
@@ -82,8 +84,10 @@ export default function RegisterPage() {
                         project_description: projectDescription,
                         ppt_link: pptLink,
                         total_participants: totalParticipants,
-                        reference_source: referralType ? `${referralType} - ${referralValue}` : null
+                        reference_source: referralType ? `${referralType} - ${referralValue}` : null,
+                        institution_name: institutionName
                     },
+
                 ])
                 .select()
                 .single();
@@ -116,8 +120,10 @@ export default function RegisterPage() {
                     email: leader.email,
                     teamName: teamName,
                     leaderName: leader.name,
-                    totalParticipants: totalParticipants
+                    totalParticipants: totalParticipants,
+                    institutionName: institutionName
                 });
+
             } catch (emailErr) {
                 console.error("Error triggering email notification:", emailErr);
             }
@@ -210,7 +216,18 @@ export default function RegisterPage() {
                                         className="w-full !bg-black/60 !border !border-gray-800 !text-white !px-3 !py-2 focus:outline-none focus:!border-red-600 focus:ring-1 focus:!ring-red-600 transition-all placeholder:!text-gray-600 group-hover:!border-red-900/50 clip-input text-lg"
                                     />
                                 </div>
+                                <div className="relative group !pt-4">
+                                    <input
+                                        type="text"
+                                        value={institutionName}
+                                        onChange={(e) => setInstitutionName(e.target.value)}
+                                        required
+                                        placeholder="ENTER INSTITUTION / ORGANIZATION NAME"
+                                        className="w-full !bg-black/60 !border !border-gray-800 !text-white !px-3 !py-2 focus:outline-none focus:!border-red-600 focus:ring-1 focus:!ring-red-600 transition-all placeholder:!text-gray-600 group-hover:!border-red-900/50 clip-input text-lg"
+                                    />
+                                </div>
                             </div>
+
 
                             {/* Leader Details */}
                             <div className="space-y-6">
