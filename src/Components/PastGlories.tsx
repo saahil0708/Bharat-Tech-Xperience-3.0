@@ -10,7 +10,7 @@ const PastGlories = () => {
   const [selectedImg, setSelectedImg] = useState<StaticImageData | string | null>(null);
 
   const achievements = [
-    { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwa0Izfw4TzMs9YjkuK2Ll4V50POAiUJDGtbIC" },
+    { img: "https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZiRluhi59KHJzBmlOE1WU3aIdNZyMqTDc5XjF" },
     { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6fZzFq81KwuCfiQ05yDXgBbSLRa9HoVYPcjO" },
     { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwNuwb5n3sZz4xSQRU3mCBHlitA1PfuWvEFd0I" },
     { img: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwhWlEfTRrzwxlpCMGVZTSqXOW6J9tLvg4Yny3" },
@@ -105,7 +105,7 @@ const PastGlories = () => {
               className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase !relative !z-10"
               style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
             >
-              PAST <span className="text-[#E7000B]">GLORIES</span>
+              PAST <span className="text-[#E7000B]">GLIMPSES</span>
             </h2>
           </div>
 
