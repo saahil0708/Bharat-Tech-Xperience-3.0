@@ -339,26 +339,42 @@ export default function Mentors() {
         </div>
 
         {/* Cards Grid */}
-        <div className="!relative !min-h-[400px] !flex !items-center">
-
-          <AnimatePresence mode="wait">
+        <div className="!relative !min-h-[400px] !flex !items-center !justify-center !w-full">
+          
+          {/* Glass Overlay with Badge */}
+          <div className="!absolute !inset-[-1rem] sm:!inset-[-2rem] !z-30 !flex !items-center !justify-center !bg-[#050505]/40 !backdrop-blur-[8px] !rounded-[3rem] !border !border-white/5">
             <motion.div
-              key={currentPage}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="!grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-3 !gap-10 !w-full !py-10"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="!px-8 !py-8 md:!px-12 md:!py-10 !rounded-3xl !bg-white/5 !border !border-white/10 !backdrop-blur-xl !flex !flex-col !items-center !gap-4 !shadow-[0_0_50px_rgba(255,46,46,0.2)]"
             >
-              {currentMentors.map((mentor) => (
-                <MentorCard
-                  key={mentor.id}
-                  mentor={mentor}
-                  onOpen={() => setSelectedMentor(mentor)}
-                />
-              ))}
+              <BadgeCheck className="!text-[#FF2E2E]" size={56} />
+              <h3 className="!text-3xl md:!text-5xl !font-black !text-white !tracking-tighter !uppercase !text-center">To Be Revealed</h3>
+              <p className="!text-[#FF2E2E] !text-xs !font-black !tracking-[0.4em] !uppercase !text-center">Stay Tuned for Updates</p>
             </motion.div>
-          </AnimatePresence>
+          </div>
+
+          <div className="!w-full !opacity-30 !pointer-events-none !select-none">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentPage}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="!grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-3 !gap-10 !w-full !py-10"
+              >
+                {currentMentors.map((mentor) => (
+                  <MentorCard
+                    key={mentor.id}
+                    mentor={mentor}
+                    onOpen={() => setSelectedMentor(mentor)}
+                  />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* CTA */}
