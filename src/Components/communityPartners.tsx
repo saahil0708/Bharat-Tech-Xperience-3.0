@@ -1,28 +1,56 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 
 function CommunityPartner() {
 
-  const logos = [
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwoW6qXYZeKCsIgtOy5bkW72uzPHZp0RdDjqcU",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw76UkMmKqp3x8IhQD2sAd415uMWqlSt6gkTac",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw3vUYiubzTfnObYWXHhZLywvtoAjKru4VC7F2",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwAVqkiTowEIAec5uWFbLDYhZVH4CgdOfGknTy",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwiSA0gJQQwoHfyVvJKutbB78lpdSP6RxiZDLq",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw42nunzg5XSgGi0zO2J6NLEl8jvFsmrefIVyx",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwMiFmjBfm1C4FYUOjBSKVHG78WwoEfivlhQu9",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6uNRhs81KwuCfiQ05yDXgBbSLRa9HoVYPcjO",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwh96Wrw8RrzwxlpCMGVZTSqXOW6J9tLvg4Yny",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwEigaGxUp02FXN3PZszLetEjQYwMdGfRcDyJ1",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6qAk6C81KwuCfiQ05yDXgBbSLRa9HoVYPcjO",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6sPvP5T81KwuCfiQ05yDXgBbSLRa9HoVYPcj",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwLtHNbHOzQCIdZh7qbLnk0RsHeOgu8vTD3pWE",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwWqhJ0jD61eHzR9fY2JxIZSPhmyKbLOcEMwUq",
-    "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwN96dVqsZz4xSQRU3mCBHlitA1PfuWvEFd0I6",
-  ]
+  type TabId = 'community' | 'innovation' | 'mediaEcosystem' | 'corporate';
+  const [activeTab, setActiveTab] = useState<TabId>('community');
+
+  const partnerData = {
+    community: [
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwoW6qXYZeKCsIgtOy5bkW72uzPHZp0RdDjqcU",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw76UkMmKqp3x8IhQD2sAd415uMWqlSt6gkTac",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw3vUYiubzTfnObYWXHhZLywvtoAjKru4VC7F2",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwAVqkiTowEIAec5uWFbLDYhZVH4CgdOfGknTy",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwiSA0gJQQwoHfyVvJKutbB78lpdSP6RxiZDLq",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw42nunzg5XSgGi0zO2J6NLEl8jvFsmrefIVyx",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwMiFmjBfm1C4FYUOjBSKVHG78WwoEfivlhQu9",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6uNRhs81KwuCfiQ05yDXgBbSLRa9HoVYPcjO",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwh96Wrw8RrzwxlpCMGVZTSqXOW6J9tLvg4Yny",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwEigaGxUp02FXN3PZszLetEjQYwMdGfRcDyJ1",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6qAk6C81KwuCfiQ05yDXgBbSLRa9HoVYPcjO",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6sPvP5T81KwuCfiQ05yDXgBbSLRa9HoVYPcj",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwLtHNbHOzQCIdZh7qbLnk0RsHeOgu8vTD3pWE",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwWqhJ0jD61eHzR9fY2JxIZSPhmyKbLOcEMwUq",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwN96dVqsZz4xSQRU3mCBHlitA1PfuWvEFd0I6",
+    ],
+    innovation: [
+      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner",
+      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner",
+      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner",
+      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner"
+    ],
+    mediaEcosystem: [
+      "https://placehold.co/400x400/18181b/ef4444?text=Media+Partner",
+      "https://placehold.co/400x400/18181b/ef4444?text=Media+Partner",
+      "https://placehold.co/400x400/18181b/ef4444?text=Media+Partner"
+    ],
+    corporate: [
+      "https://placehold.co/400x400/18181b/ef4444?text=Corporate+Partner",
+      "https://placehold.co/400x400/18181b/ef4444?text=Corporate+Partner",
+      "https://placehold.co/400x400/18181b/ef4444?text=Corporate+Partner"
+    ]
+  };
+
+  const tabs = [
+    { id: 'community', label: 'Community' },
+    { id: 'innovation', label: 'Innovation' },
+    { id: 'mediaEcosystem', label: 'Media & Ecosystem' },
+    { id: 'corporate', label: 'Corporate' }
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,7 +101,7 @@ function CommunityPartner() {
                 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
                 style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
             >
-              COMMUNITY <span className="text-[#E7000B]">PARTNERS</span>
+              OUR <span className="text-[#E7000B]">PARTNERS</span>
             </h2>
           </div>
           <p className="!mt-10 !text-red-500/80 !text-sm md:!text-base !font-mono !tracking-[0.5em] !uppercase">
@@ -81,17 +109,36 @@ function CommunityPartner() {
           </p>
         </motion.div>
 
+        {/* Tabs Selection */}
+        <div className="!flex !flex-wrap !justify-center !gap-4 md:!gap-8 !mb-12 !relative !z-20">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as TabId)}
+              className={`!text-xs md:!text-sm font-orbitron !tracking-widest !uppercase !transition-all !duration-300 !pb-2 !relative ${
+                activeTab === tab.id
+                  ? '!text-red-500 !font-bold !border-b-2 !border-red-500 -mb-[2px]'
+                  : '!text-gray-500 hover:!text-red-300'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         {/* Partners Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="!grid !grid-cols-1 sm:!grid-cols-2 md:!grid-cols-3 lg:!grid-cols-5 !gap-8 md:!gap-12 !mb-20"
-        >
-          {logos.map((logo, index) => (
-            <motion.div
-              key={index}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeTab}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+            className="!grid !grid-cols-1 sm:!grid-cols-2 md:!grid-cols-3 lg:!grid-cols-5 !gap-8 md:!gap-12 !mb-20 !min-h-[200px]"
+          >
+            {partnerData[activeTab].map((logo, index) => (
+              <motion.div
+                key={index}
               variants={itemVariants}
               className="!group !relative !aspect-square !flex !items-center !justify-center !bg-zinc-900/20 !backdrop-blur-xl !border !border-white/5 !rounded-xl !p-6 md:!p-8 !transition-all !duration-500 hover:!border-red-500/40 hover:!scale-[1.05] hover:!shadow-[0_0_50px_rgba(220,38,38,0.2)] !cursor-pointer"
             >
@@ -115,12 +162,13 @@ function CommunityPartner() {
               </div>
 
               {/* Hover Reveal Badge */}
-              <div className="!absolute !-bottom-3 !left-1/2 !-translate-x-1/2 !bg-red-600 !text-white !text-[10px] !font-bold !px-3 !py-1 !rounded-full !opacity-0 group-hover:!opacity-100 !transition-all !duration-300 !tracking-widest !uppercase !shadow-[0_0_10px_rgba(220,38,38,0.5)]">
-                Partner
+              <div className="!absolute !-bottom-3 !left-1/2 !-translate-x-1/2 !bg-red-600 !text-white !text-[10px] !font-bold !px-3 !py-1 !rounded-full !opacity-0 group-hover:!opacity-100 !transition-all !duration-300 !tracking-widest !uppercase !shadow-[0_0_10px_rgba(220,38,38,0.5)] whitespace-nowrap">
+                {tabs.find(t => t.id === activeTab)?.label} Partner
               </div>
             </motion.div>
           ))}
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Join Button */}
         <motion.div 
@@ -137,7 +185,7 @@ function CommunityPartner() {
             className="inline-block md:!px-10 !px-8 !py-3 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group"
             style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
           >
-            <span className="relative z-10 uppercase tracking-widest">Join as Community Partner</span>
+            <span className="relative z-10 uppercase tracking-widest">Join as a Partner</span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
           </Link>
         </motion.div>

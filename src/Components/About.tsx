@@ -29,13 +29,14 @@ const About = () => {
 
     return (
         <section id="about" className="!relative !w-full !py-24 !flex !items-center !justify-center !overflow-hidden !z-20 !min-h-screen">
-            {/* Background Video */}
+            {/* Background Video - Increased z-index to composite properly over the dark overlays */}
             <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="!absolute !inset-0 !w-full !h-full !object-cover !opacity-30 !z-0"
+                className="!absolute !inset-0 !w-full !h-full !object-cover !z-[9] !pointer-events-none"
+                style={{ mixBlendMode: 'screen', opacity: 0.30 }}
             >
                 <source src="https://14wgjdss3w.ufs.sh/f/ImvjWigzci0ZDXssMor6eLOCVu3qXz5kBA2UdjWyK8vogR0I" type="video/mp4" />
             </video>
@@ -181,14 +182,16 @@ const About = () => {
                                 className="!relative !w-full !max-w-md !aspect-[4/3] !z-10"
                             >
                                 {/* Community Image */}
-                                <div className="!relative !w-full !h-full !overflow-hidden !border-2 !border-gray-800 hover:!border-red-600 !transition-colors !duration-500 !shadow-[0_0_30px_rgba(220,38,38,0.15)]">
-                                    <Image
-                                        src="https://14wgjdss3w.ufs.sh/f/ImvjWigzci0Zya2CBWJFnSIJycEK9T8vGaN6OqDf471Xi2ko"
-                                        alt="Bharat Tech Community"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        className="!object-cover !opacity-80 hover:!opacity-100 !transition-all !duration-700 hover:!scale-105"
-                                    />
+                                <div className="!relative !w-full !h-full !overflow-hidden !transition-colors !duration-500 hover:!shadow-[0_0_30px_rgba(220,38,38,0.15)]">
+                                    <div className="!absolute !inset-2 md:!inset-4">
+                                        <Image
+                                            src="https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwQsbMm7gYaMrzqbwX4Algs3U6BdNIpZiFneDf"
+                                            alt="Bharat Tech Community"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            className="!object-contain !opacity-80 hover:!opacity-100 !transition-all !duration-700 hover:!scale-105"
+                                        />
+                                    </div>
 
                                     {/* Tech Overlay lines */}
                                     <div className="!absolute !inset-0 !bg-[linear-gradient(rgba(220,38,38,0.1)_1px,transparent_1px)] !bg-[length:100%_4px] !pointer-events-none"></div>
