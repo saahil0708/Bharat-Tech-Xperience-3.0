@@ -264,11 +264,15 @@ export default function HeroSection() {
           </div>
         </motion.div>
         <div className="flex flex-col md:flex-row items-center justify-center !gap-6 !mt-8">
-          <Link target="blank" href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" className="!px-4 !py-3 text-white bg-red-600 rounded-sm" download="Bharat-Tech-Guidelines.pdf">
-            <button type="button" className="font-bold">Download Guidelines</button>
+          <Link 
+            target="blank" 
+            href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" 
+            className="inline-block !px-10 !py-3 text-white bg-red-600 font-orbitron text-base font-bold transition-all duration-300 hover:bg-red-700 hover:[clip-path:polygon(10%_0,100%_0,100%_70%,90%_100%,0_100%,0_30%)] active:scale-95 group overflow-hidden relative rounded-sm" 
+            download="Bharat-Tech-Guidelines.pdf"
+          >
+            <span className="relative z-10 uppercase tracking-widest">Download Guidelines</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
           </Link>
-
-
         </div>
       </div>
 
