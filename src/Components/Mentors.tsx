@@ -306,18 +306,17 @@ export default function Mentors() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="!text-center !mb-6"
+          className="!text-center !mb-6 !w-full !px-4"
         >
-          <span className="!text-[#B30000] !text-xs !font-black !tracking-[0.8em] !uppercase !block !mb-2">
+          <span className="!text-[#B30000] !text-xs !font-black !tracking-[0.8em] !uppercase !block !mb-2 font-orbitron">
             EXPERT COUNCIL
           </span>
-          <h2 className="!text-4xl md:!text-5xl !font-black !text-white !tracking-tighter">
-            MEET OUR <span className="!text-[#FF2E2E]">MENTORS</span>
+          <h2
+            className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
+            style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+          >
+            MEET OUR <span className="text-[#E7000B]">MENTORS</span>
           </h2>
-          <div
-            className="!h-1 !w-24 !bg-[#B30000] !mt-4 !rounded-full !mx-auto"
-            style={{ boxShadow: '0 0 20px #B30000' }}
-          />
         </motion.div>
 
         {/* Navigation */}

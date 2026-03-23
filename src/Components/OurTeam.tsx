@@ -54,7 +54,6 @@ export default function OurTeam() {
                 <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white !tracking-wider md:!tracking-widest text-center leading-tight md:leading-normal" style={{ textShadow: '0 0 20px rgba(220,38,38,0.5)' }}>
                     MEET THE <br className="md:hidden" /><span className="text-red-500">TECH OPERATIVES</span>
                 </h2>
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] md:w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
             </div>
 
             {/* Expanding Gallery */}

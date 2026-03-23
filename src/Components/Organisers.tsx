@@ -82,16 +82,16 @@ export default function Organisers() {
 
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-900 to-transparent opacity-50 z-0"></div>
 
-            <div className="relative flex flex-col items-center justify-center w-full max-w-[90vw] md:w-max mx-auto !mb-16 z-10">
+            <div className="relative flex flex-col items-center justify-center w-full max-w-[90vw] md:w-max mx-auto !mb-16 z-10 !text-center !px-4">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl md:text-5xl font-orbitron font-black text-white !tracking-widest text-center uppercase drop-shadow-[0_0_15px_rgba(220,38,38,0.6)]"
+                    className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
+                    style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
                 >
-                    MEET THE <span className="text-red-600 block sm:inline mt-2 sm:mt-0 font-azonix">ORGANISERS</span>
+                    MEET THE <span className="text-[#E7000B] block sm:inline mt-2 sm:mt-0">ORGANISERS</span>
                 </motion.h2>
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[60%] md:w-[120%] h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
             </div>
 
             {/* Main Content Area */}

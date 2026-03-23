@@ -56,10 +56,12 @@ const About = () => {
                 <div className="!w-full md:!w-1/2 !relative !z-10">
                     {/* Header */}
                     <div className="!mb-6 !text-left">
-                        <h2 className="!text-6xl md:!text-8xl !font-black font-azonix !text-white !tracking-tighter !mb-2 !drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">
-                            ABOUT <span className="!text-red-600">US</span>
+                        <h2
+                            className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
+                            style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+                        >
+                            ABOUT <span className="text-[#E7000B]">US</span>
                         </h2>
-                        <div className="!w-24 !h-2 !bg-red-600 !shadow-[0_0_20px_red] !mb-8"></div>
 
                         {/* Tabs */}
                         <div className="!flex !gap-8 !pb-0">

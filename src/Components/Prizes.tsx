@@ -203,12 +203,13 @@ const Prizes = () => {
 
       <div className="!max-w-7xl !mx-auto !px-4 !relative !z-10 !w-full !text-center">
         {/* Header Section */}
-        <div className="!mb-10">
-          <h2 className="!text-4xl md:!text-6xl !font-black !text-white !tracking-widest !mb-3"
-            style={{ textShadow: "0 0 25px rgba(220, 38, 38, 0.6)" }}>
-            PRIZES
+        <div className="!mb-10 !text-center !w-full !px-4">
+          <h2
+            className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
+            style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+          >
+            <span className="text-[#E7000B]">PRIZES</span>
           </h2>
-          <div className="!h-1 !w-28 !bg-red-600 !mx-auto !shadow-[0_0_20px_rgba(220,38,38,1)]"></div>
           <p className="!mt-6 !text-gray-500 !text-xs !tracking-[0.5em] !uppercase font-orbitron">
             Enter the portal of glory
           </p>

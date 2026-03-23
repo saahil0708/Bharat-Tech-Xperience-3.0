@@ -30,9 +30,12 @@ const Contact = () => {
                 <div className="!flex !flex-col !items-center !text-center !gap-12">
 
                     {/* Contact Info Centered */}
-                    <div className="!w-full !max-w-3xl">
-                        <h2 className="!text-5xl md:!text-7xl !font-black !text-white !mb-8 !tracking-tight">
-                            GET IN <span className="!text-red-600" style={{ textShadow: "0 0 20px red" }}>TOUCH</span>
+                    <div className="!w-full !max-w-3xl !text-center !px-4">
+                        <h2
+                            className="text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-white mb-4 font-orbitron uppercase"
+                            style={{ textShadow: "0 0 30px rgba(179,0,0,0.6)" }}
+                        >
+                            GET IN <span className="text-[#E7000B]">TOUCH</span>
                         </h2>
 
                         <p className="!text-gray-400 !text-lg !mb-12 !leading-relaxed font-orbitron">
