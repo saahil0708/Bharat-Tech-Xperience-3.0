@@ -115,6 +115,7 @@ export default function RegisterPage() {
             }
 
             // 3. Send Email Notification via Nodemailer
+            let emailSent = false;
             try {
                 const emailResponse = await axios.post('/api/send-email', {
                     email: leader.email,
@@ -123,7 +124,7 @@ export default function RegisterPage() {
                     totalParticipants: totalParticipants,
                     institutionName: institutionName
                 });
-
+                emailSent = true;
             } catch (emailErr) {
                 console.error("Error triggering email notification:", emailErr);
             }
@@ -131,8 +132,10 @@ export default function RegisterPage() {
             setNotification({
                 isOpen: true,
                 type: 'success',
-                title: 'CLASSIFIED PROTOCOL ACCEPTED',
-                message: 'Your squad has successfully breached the perimeter and registered for Round 1. Stay frosty.'
+                title: emailSent ? 'CLASSIFIED PROTOCOL ACCEPTED' : 'REGISTRATION SUCCESSFUL (Email Failed)',
+                message: emailSent 
+                    ? 'Your squad has successfully breached the perimeter and registered for Round 1. Check your email for confirmation.'
+                    : 'Your squad is registered, but we couldn\'t send the confirmation email. Please contact admins for verification.'
             });
 
         } catch (error: any) {

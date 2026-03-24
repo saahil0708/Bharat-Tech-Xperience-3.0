@@ -4,7 +4,6 @@ import Image, { StaticImageData } from "next/image";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import ParticleBackground from "./ParticleBackground";
 import { MoveHorizontal } from "lucide-react";
-import TeamWork from '../Images/TeamWork.jpg';
 
 const PastGlories = () => {
   const [selectedImg, setSelectedImg] = useState<StaticImageData | string | null>(null);
