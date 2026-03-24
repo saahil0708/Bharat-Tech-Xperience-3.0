@@ -26,22 +26,47 @@ function CommunityPartner() {
       "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwLtHNbHOzQCIdZh7qbLnk0RsHeOgu8vTD3pWE",
       "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwWqhJ0jD61eHzR9fY2JxIZSPhmyKbLOcEMwUq",
       "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwN96dVqsZz4xSQRU3mCBHlitA1PfuWvEFd0I6",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2aFLNaJqGzP7bQY08D9JOZ2Awrv1flkWEndI",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw3gdy4AbzTfnObYWXHhZLywvtoAjKru4VC7F2",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwqiB4jUKA4TC96RsL1tyDZSnQBWV2jxieHfUE",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwMrBustfm1C4FYUOjBSKVHG78WwoEfivlhQu9",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwrAcZJ39ef8kx1I2ZbXgMTL3Ocjn0SHUWmFap",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwgvR2h1mY4a8b9h0q7wrkDyXFA3QEOKWIscMo",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw3QLOwtbzTfnObYWXHhZLywvtoAjKru4VC7F2",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwRl91jwr6eyIdB2Sm3aJgKwZ04OjANnDGxzov",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwlKTefyv4PqtZOHdMBaDyR9oGbpusSQLezk5h",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwiopkaiQQwoHfyVvJKutbB78lpdSP6RxiZDLq",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwNwFElBsZz4xSQRU3mCBHlitA1PfuWvEFd0I6",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwloYPmyv4PqtZOHdMBaDyR9oGbpusSQLezk5h",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwati3aF4TzMs9YjkuK2Ll4V50POAiUJDGtbIC",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwDtM05PEYaPt4TShqEbQKRAnD8c0MVzjZpu9O",
     ],
     innovation: [
-      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner",
-      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner",
-      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner",
-      "https://placehold.co/400x400/18181b/ef4444?text=Innovation+Partner"
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw82doVZNP54HUlTxSYFwonIQL97RJiCdOgBrX",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2b8w2qJqGzP7bQY08D9JOZ2Awrv1flkWEndI",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwUsToOeuBRgrXxDp5P6uomMqW30alVJfFdkcy",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwooDdQvZeKCsIgtOy5bkW72uzPHZp0RdDjqcU",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwDq5Nw3EYaPt4TShqEbQKRAnD8c0MVzjZpu9O",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwTwEeYOAp42W7h8KBFY3GzX9edEQyLfS1nATk",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwHv0ckziX46SdfkNqM9jAUsP02Jg8tzaubOIB",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6IyxbY81KwuCfiQ05yDXgBbSLRa9HoVYPcjO"
     ],
     mediaEcosystem: [
-      "https://placehold.co/400x400/18181b/ef4444?text=Media+Partner",
-      "https://placehold.co/400x400/18181b/ef4444?text=Media+Partner",
-      "https://placehold.co/400x400/18181b/ef4444?text=Media+Partner"
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwuhoLU0wYX4CwyixjLAMZzK0pW6T8hP3mFJOt",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwtruyedCEeBCb7YwIHRDU3XdWkLPn4Ny02jh9",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwC6h0eZyVsQx5cK3pBhO1ZlvzDUbWCGmHfRa9"
     ],
     corporate: [
-      "https://placehold.co/400x400/18181b/ef4444?text=Corporate+Partner",
-      "https://placehold.co/400x400/18181b/ef4444?text=Corporate+Partner",
-      "https://placehold.co/400x400/18181b/ef4444?text=Corporate+Partner"
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwTknFajAp42W7h8KBFY3GzX9edEQyLfS1nATk",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwGaTlU0tPAaJIVGdiTRZtqKm6Xvy15s4lrH39",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwDQYLijEYaPt4TShqEbQKRAnD8c0MVzjZpu9O",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwDy12L6EYaPt4TShqEbQKRAnD8c0MVzjZpu9O",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw3aao2tbzTfnObYWXHhZLywvtoAjKru4VC7F2",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwDHlonoKEYaPt4TShqEbQKRAnD8c0MVzjZpu9",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw4vQHFp5XSgGi0zO2J6NLEl8jvFsmrefIVyxt",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwGeTdIStPAaJIVGdiTRZtqKm6Xvy15s4lrH39",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwJW0S9j1KkDQqawzAI8ZNX09jtiV74cubPdEG",
+      "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwvJHuaRdRA0qDQSsBxCVPkM1ZXJKF5jN7rwgG"
     ]
   };
 
