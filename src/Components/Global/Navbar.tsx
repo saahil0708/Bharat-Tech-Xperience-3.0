@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from '../../Images/Logo.png';
+import { Landmark } from "lucide-react";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navItems = [
-        { label: "HOME", href: "#home" },
         { label: "ABOUT", href: "#about" },
+        { label: "PROBLEM", href: "#problem-statements" },
         { label: "TIMELINE", href: "#timeline" },
         { label: "PRIZES", href: "#prizes" },
         { label: "SPONSORS", href: "#sponsors" },
@@ -23,13 +24,18 @@ export default function Navbar() {
                 <div className="flex w-full items-center justify-between h-20">
 
                     {/* Logo/Brand */}
-                    <div className="flex-shrink-0 md:w-1/3 flex justify-start">
+                    <div className="flex-shrink-0 md:w-1/3 flex justify-start items-center gap-4">
                         <Link
                             href="#home"
                             className="text-xl font-bold text-white tracking-wider hover:text-red-500 transition-colors duration-300"
                         >
                             <Image src={Logo} alt="Logo" width={100} height={100} />
                         </Link>
+                        {/* Govt of Punjab Badge */}
+                        <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/50 border border-white/10 text-[9px] font-bold text-gray-300 tracking-widest uppercase">
+                            <Landmark className="w-3.5 h-3.5 text-red-500" />
+                            <span>Backed by Govt. of Punjab</span>
+                        </div>
                     </div>
 
                     {/* Navigation Links (Desktop) - Centered */}
