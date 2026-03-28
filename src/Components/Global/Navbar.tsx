@@ -32,10 +32,10 @@ export default function Navbar() {
                             <Image src={Logo} alt="Logo" width={100} height={100} />
                         </Link>
                         {/* Govt of Punjab Badge */}
-                        <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/50 border border-white/10 text-[9px] font-bold text-gray-300 tracking-widest uppercase">
+                        {/* <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/50 border border-white/10 text-[9px] font-bold text-gray-300 tracking-widest uppercase">
                             <Landmark className="w-3.5 h-3.5 text-red-500" />
                             <span>Backed by Govt. of Punjab</span>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Navigation Links (Desktop) - Centered */}
