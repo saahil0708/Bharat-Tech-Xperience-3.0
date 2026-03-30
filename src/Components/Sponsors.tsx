@@ -14,7 +14,7 @@ const Sponsors = () => {
         { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5BeAwRBKzPWfylH5GYExmgnb83j4RheVQD0JN", alt: "Sponsor 4" },
         { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5UNr23LL1ow0iF26LZCWSKfchnXvyTAIzdqmP", alt: "Sponsor 5" },
         { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5tVLYGpIEyKp7vbuh4aZnGcCs8ARDxHFO2LY0", alt: "Sponsor 6" },
-        { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5cgty3j0u6HcFB7k2VRJ8AqU5Zp3NvPCXnStY", alt: "Sponsor 7" },
+        { src: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw3aao2tbzTfnObYWXHhZLywvtoAjKru4VC7F2", alt: "Sponsor 7" },
         { src: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5gh8CwAcLOBCxgv7HbYAsdorPphtX2Fejq9kE", alt: "Sponsor 8" }
     ];
 

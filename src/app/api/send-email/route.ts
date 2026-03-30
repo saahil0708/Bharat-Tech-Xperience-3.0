@@ -12,12 +12,19 @@ export async function POST(req: Request) {
         }
 
         // Configure Nodemailer transporter
-        // IMPORTANT: Make sure you add these environment variables in your .env file
+        const emailUser = process.env.EMAIL_USER;
+        const emailPass = process.env.EMAIL_PASS?.replace(/\s+/g, ''); // Trim spaces for Gmail app passwords
+
+        if (!emailUser || !emailPass) {
+            console.error('Email credentials missing in environment variables');
+            return NextResponse.json({ error: 'Email service misconfigured' }, { status: 500 });
+        }
+
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.EMAIL_USER, // e.g., your gmail address
-                pass: process.env.EMAIL_PASS, // e.g., an App Password generated in Google Account settings
+                user: emailUser,
+                pass: emailPass,
             },
             tls: {
                 rejectUnauthorized: false
@@ -25,27 +32,30 @@ export async function POST(req: Request) {
         });
 
         const htmlContent = generateRegistrationEmailHTML(teamName, leaderName, totalParticipants, institutionName);
-
+        const logoPath = path.join(process.cwd(), 'src/Images/Logo.png');
 
         const mailOptions = {
-            from: `"Bharat Tech Xperience" <${process.env.EMAIL_USER}>`,
+            from: `"Bharat Tech Xperience" <${emailUser}>`,
             to: email,
             subject: `HAWKINS LAB: PROTOCOL INITIATED - ${teamName.toUpperCase()}`,
             html: htmlContent,
             attachments: [
                 {
                     filename: 'Logo.png',
-                    path: path.join(process.cwd(), 'src/Images/Logo.png'),
-                    cid: 'btxlogo' // embedding the image inline
+                    path: logoPath,
+                    cid: 'btxlogo'
                 }
             ]
         };
 
         const info = await transporter.sendMail(mailOptions);
-
         return NextResponse.json({ success: true, messageId: info.messageId });
     } catch (error: any) {
         console.error('Error sending email:', error);
-        return NextResponse.json({ error: 'Internal server error', details: error.message }, { status: 500 });
+        // Include specific error message in response for easier debugging
+        return NextResponse.json({ 
+            error: 'Internal server error', 
+            details: error.message 
+        }, { status: 500 });
     }
 }

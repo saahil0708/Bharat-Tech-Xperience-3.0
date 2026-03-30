@@ -15,6 +15,7 @@ import OurTeam from "@/Components/OurTeam";
 import CommunityPartner from "@/Components/communityPartners";
 import Mentors from '@/Components/Mentors';
 import PastGlories from "@/Components/PastGlories";
+import ProblemStatements from "@/Components/ProblemStatements";
 
 export default function Layout() {
     return (
@@ -25,6 +26,7 @@ export default function Layout() {
             {/* Main Content Wrapper */}
             <main className="relative bg-black z-10">
                 <HomePage />
+                <ProblemStatements />
                 <TimeLine />
                 <Prizes />
                 <CommunityPartner />
