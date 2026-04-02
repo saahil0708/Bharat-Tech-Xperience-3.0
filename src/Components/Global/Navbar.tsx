@@ -9,6 +9,7 @@ import StrangerThingsModal from "../StrangerThingsModal";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isRegClosedModalOpen, setIsRegClosedModalOpen] = useState(false);
 
     const navItems = [
         { label: "ABOUT", href: "#about" },
@@ -62,14 +63,14 @@ export default function Navbar() {
 
                     {/* Register Button */}
                     <div className="flex-shrink-0 md:w-1/3 md:flex justify-end">
-                        <Link
-                            href="/register"
-                            className="ml-4 !px-7 !py-2 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group flex items-center justify-center"
+                        <button
+                            onClick={() => setIsRegClosedModalOpen(true)}
+                            className="ml-4 !px-7 !py-2 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group"
                             style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
                         >
                             <span className="relative z-10">Register Now</span>
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-                        </Link>
+                        </button>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -126,20 +127,28 @@ export default function Navbar() {
                     ))}
                     {/* Mobile Register Button */}
                     <div className="px-4 py-4 flex justify-center">
-                        <Link
-                            href="/register"
+                        <button
                             onClick={() => {
+                                setIsRegClosedModalOpen(true);
                                 setIsMobileMenuOpen(false);
                             }}
-                            className="w-full !py-3 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] relative overflow-hidden group flex items-center justify-center"
+                            className="w-full !py-3 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] relative overflow-hidden group"
                             style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
                         >
                             <span className="relative z-10">Register Now</span>
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>
+            {/* Registration Closed Modal */}
+            <StrangerThingsModal
+                isOpen={isRegClosedModalOpen}
+                onClose={() => setIsRegClosedModalOpen(false)}
+                title="REGISTRATION CLOSED"
+                message="We're sorry, but registrations for Bharat Tech Xperience 3.0 are now closed. Stay tuned for future updates!"
+                type="error"
+            />
         </nav>
     );
 }

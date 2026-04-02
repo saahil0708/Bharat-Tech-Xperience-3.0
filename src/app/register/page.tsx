@@ -21,7 +21,7 @@ type Member = {
 };
 
 export default function RegisterPage() {
-    const isRegistrationClosed = false;
+    const isRegistrationClosed = true;
     // const router = useRouter();
     const [teamName, setTeamName] = useState('');
     const [leader, setLeader] = useState<Member>({ name: '', email: '', phone: '' });
@@ -134,7 +134,7 @@ export default function RegisterPage() {
                 isOpen: true,
                 type: 'success',
                 title: emailSent ? 'CLASSIFIED PROTOCOL ACCEPTED' : 'REGISTRATION SUCCESSFUL (Email Failed)',
-                message: emailSent 
+                message: emailSent
                     ? 'Your squad has successfully breached the perimeter and registered for Round 1. Check your email for confirmation.'
                     : 'Your squad is registered, but we couldn\'t send the confirmation email. Please contact admins for verification.'
             });
@@ -191,8 +191,8 @@ export default function RegisterPage() {
                     </div>
 
                     <div className="pt-8">
-                        <Link 
-                            href="/" 
+                        <Link
+                            href="/"
                             className="inline-flex items-center gap-3 px-10 py-4 bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-black transition-all duration-500 font-bold tracking-[0.2em] uppercase group shadow-[0_0_30px_rgba(220,38,38,0.2)] hover:shadow-[0_0_50px_rgba(220,38,38,0.5)]"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-x-2 transition-transform duration-300">

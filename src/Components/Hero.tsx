@@ -233,7 +233,7 @@ export default function HeroSection() {
               </motion.h2>
             </motion.div>
           </div>
-          
+
 
           {/* Decorative Divider with Text */}
           <div className="!flex !items-center !justify-center w-full max-w-5xl !mx-auto !mt-12 !mb-6 !px-4">
@@ -264,22 +264,14 @@ export default function HeroSection() {
           </div>
         </motion.div>
         <div className="flex flex-col md:flex-row items-center justify-center !gap-6 !mt-8">
-          <Link 
-            href="/register"
-            className="inline-block !px-12 !py-3 text-white bg-red-600 font-orbitron text-base font-bold transition-all duration-300 hover:bg-red-700 active:scale-95 group overflow-hidden relative rounded-sm shadow-[0_0_20px_rgba(220,38,38,0.4)]"
-            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
-          >
-            <span className="relative z-10 uppercase tracking-widest">Register Now</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
-          </Link>
-          <Link 
-            target="blank" 
-            href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI" 
-            className="inline-block !px-10 !py-3 text-white border border-red-600/50 bg-transparent font-orbitron text-base font-bold transition-all duration-300 hover:bg-red-600/10 active:scale-95 group overflow-hidden relative rounded-sm" 
+          <Link
+            target="blank"
+            href="https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw2zFIbKJqGzP7bQY08D9JOZ2Awrv1flkWEndI"
+            className="inline-block !px-10 !py-3 text-white bg-red-600 font-orbitron text-base font-bold transition-all duration-300 hover:bg-red-700 hover:[clip-path:polygon(10%_0,100%_0,100%_70%,90%_100%,0_100%,0_30%)] active:scale-95 group overflow-hidden relative rounded-sm"
             download="Bharat-Tech-Guidelines.pdf"
           >
-            <span className="relative z-10 uppercase tracking-widest text-red-500 group-hover:text-red-400">Download Guidelines</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-600/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+            <span className="relative z-10 uppercase tracking-widest">Download Guidelines</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
           </Link>
         </div>
       </div>
