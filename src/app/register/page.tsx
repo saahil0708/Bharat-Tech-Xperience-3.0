@@ -21,7 +21,7 @@ type Member = {
 };
 
 export default function RegisterPage() {
-    const isRegistrationClosed = true;
+    const isRegistrationClosed = false;
     // const router = useRouter();
     const [teamName, setTeamName] = useState('');
     const [leader, setLeader] = useState<Member>({ name: '', email: '', phone: '' });
