@@ -21,9 +21,9 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="absolute top-0 left-0 flex justify-center items-center w-full z-50 bg-transparent">
-            <div className="max-w-6xl mx-auto !px-6 !sm:px-6 lg:px-8 w-full">
-                <div className="flex w-full items-center justify-between h-20">
+        <nav className="!absolute !top-0 !left-0 !flex !justify-center !items-center !w-full !z-[100] !bg-transparent">
+            <div className="!max-w-6xl !mx-auto !px-6 !sm:px-6 lg:!px-8 !w-full">
+                <div className="!flex !w-full !items-center !justify-between !h-20">
 
                     {/* Logo/Brand */}
                     <div className="flex-shrink-0 md:w-1/3 flex justify-start items-center gap-4">
