@@ -21,6 +21,7 @@ type Member = {
 };
 
 export default function RegisterPage() {
+    const isRegistrationClosed = true;
     // const router = useRouter();
     const [teamName, setTeamName] = useState('');
     const [leader, setLeader] = useState<Member>({ name: '', email: '', phone: '' });
@@ -156,6 +157,65 @@ export default function RegisterPage() {
         setIsLoading(true);
         await handleSupabaseInsert();
     };
+
+    if (isRegistrationClosed) {
+        return (
+            <main className="min-h-screen bg-black text-white p-5 flex items-center justify-center relative overflow-hidden">
+                {/* Background Ambience */}
+                <div className="fixed inset-0 pointer-events-none">
+                    <Image
+                        src={MindFlare}
+                        alt="Background"
+                        fill
+                        className="object-cover opacity-60"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-black/80"></div>
+                </div>
+
+                <div className="relative z-10 max-w-4xl w-full text-center space-y-12">
+                    <div className="space-y-4">
+                        <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter text-red-600 drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] uppercase" style={{ fontFamily: "'ITC Benguiat', serif" }}>
+                            REGISTRATION<br />CLOSED
+                        </h1>
+                        <div className="h-1 w-64 bg-gradient-to-r from-transparent via-red-600 to-transparent mx-auto shadow-[0_0_15px_red]"></div>
+                    </div>
+
+                    <div className="space-y-6">
+                        <p className="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
+                            The perimeter has been sealed. Bharat Tech Xperience 3.0 registrations are now <span className="text-red-500 font-bold">OFFLINE</span>.
+                        </p>
+                        <p className="text-gray-500 uppercase tracking-[0.3em] text-sm italic">
+                            /// Access Denied by Protocol ///
+                        </p>
+                    </div>
+
+                    <div className="pt-8">
+                        <Link 
+                            href="/" 
+                            className="inline-flex items-center gap-3 px-10 py-4 bg-transparent border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-black transition-all duration-500 font-bold tracking-[0.2em] uppercase group shadow-[0_0_30px_rgba(220,38,38,0.2)] hover:shadow-[0_0_50px_rgba(220,38,38,0.5)]"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-x-2 transition-transform duration-300">
+                                <path d="M19 12H5M12 19l-7-7 7-7" />
+                            </svg>
+                            Return to Safe Zone
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Decorative UI elements */}
+                <div className="absolute top-10 left-10 text-red-900/40 font-mono text-[10px] hidden md:block">
+                    [SYSTEM_LOG]: REG_WINDOW_EXPIRED<br />
+                    [STATUS]: ARCHIVED<br />
+                    [TIMESTAMP]: 2026.04.02.11.42.34
+                </div>
+                <div className="absolute bottom-10 right-10 text-red-900/40 font-mono text-[10px] hidden md:block text-right">
+                    BHARAT_TECH_FORCE_PROTOCOL_V3<br />
+                    SECURE_TERMINAL_01
+                </div>
+            </main>
+        );
+    }
 
     return (
         <main className="!min-h-screen !bg-black !text-white !pt-10 !pb-12 !px-4 selection:!bg-red-900 selection:!text-white relative overflow-hidden">
