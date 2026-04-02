@@ -2,103 +2,203 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { BadgeCheck, Instagram, Linkedin, Github, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { BadgeCheck, Linkedin, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import ElectricBorder from './ElectricBorder ';
 
 interface Mentor {
   id: number;
   name: string;
   role: string;
+  company: string;
   image: string;
   bio: string;
   socials: {
     linkedin?: string;
-    instagram?: string;
-    github?: string;
   };
 }
 
 const mentorsData: Mentor[] = [
   {
     id: 1,
-    name: "Vikram Singh",
-    role: "Head of Innovation",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop",
-    bio: "Visionary leader focused on disruptive technologies and global AI architecture strategy.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Yash Khandelwal",
+    role: "Founder / Senior System Engineer",
+    company: "Xpensease / Infosys",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw1rc8tvnhLXfCZ8OjK0TYSwvp4n9VGQzUolki",
+    bio: "A tech-driven founder with hands-on expertise in Flutter, Firebase, GCP, and fintech product development.",
+    socials: { linkedin: "https://www.linkedin.com/in/yashkhandelwal10/" }
   },
   {
     id: 2,
-    name: "Sarah Chen",
-    role: "Cybersecurity Expert",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop",
-    bio: "Passionate about building secure systems and mentoring the next generation of defenders.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Yuvraj",
+    role: "Software Engineer",
+    company: "Deloitte",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwDvpxiIEYaPt4TShqEbQKRAnD8c0MVzjZpu9O",
+    bio: "A tech-driven founder with hands-on expertise in Flutter, Firebase, GCP, and fintech product development.",
+    socials: { linkedin: "https://www.linkedin.com/in/yuvrajroy03" }
   },
+  
   {
     id: 3,
-    name: "Arjun Mehta",
-    role: "Full Stack Architect",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
-    bio: "Expert in building scalable web applications and high-performance distributed systems.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Loveleen Kaur",
+    role: "Senior Software Engineer",
+    company: "Twin Health",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwn17kLq2rJMho5TI2U9s1FYPm6GOaNxujpiHQ",
+    bio: "Hailing from the technology field, she loves logic, but also has a passion for creativity.",
+    socials: { linkedin: "https://www.linkedin.com/in/loveleen-kaur/" }
   },
   {
     id: 4,
-    name: "Elena Rodriguez",
-    role: "UI/UX Design Lead",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop",
-    bio: "Crafting immersive digital experiences that combine aesthetics with seamless function.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Piyush Sharma",
+    role: "Tech Mentor | Influencer",
+    company: "TrickyMan",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwuFjtFBwYX4CwyixjLAMZzK0pW6T8hP3mFJOt",
+    bio: "The founder of Youtube channel @TrickyMan, a web geek, solo entrepreneur and loves making things on the Internet.",
+    socials: { linkedin: "https://www.linkedin.com/in/piyush-sharmaaaa/" }
   },
   {
     id: 5,
-    name: "David Park",
-    role: "Cloud Infrastructure",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop",
-    bio: "Optimizing global cloud architectures and implementing robust DevOps frameworks.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Pranav Kumar",
+    role: "Technical Lead",
+    company: "Wipro",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwCtKn0hyVsQx5cK3pBhO1ZlvzDUbWCGmHfRa9",
+    bio: "Innovative IT professional with a proven track record of over 8 years in the industry, fueling business success through cutting-edge solutions.",
+    socials: { linkedin: "https://www.linkedin.com/in/pranav-kumar-verma/" }
   },
   {
     id: 6,
-    name: "Anya Sharma",
-    role: "Data Science Lead",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop",
-    bio: "Extracting actionable insights from complex datasets to drive business intelligence.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Kanishk Tyagi",
+    role: "Senior Software Engineer",
+    company: "American Express",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwGMmbxFtPAaJIVGdiTRZtqKm6Xvy15s4lrH39",
+    bio: "Aspiring Data Analyst with a strong foundation in customer support, problem-solving, and data-driven decision-making. ",
+    socials: { linkedin: "https://www.linkedin.com/in/kanishk-tyagi-32970a173/" }
   },
   {
     id: 7,
-    name: "Marcus Thorne",
-    role: "Blockchain Dev",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop",
-    bio: "Pioneering decentralized solutions and smart contract security in the Web3 space.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Jyoti Mishra",
+    role: "Software Engineer",
+    company: "Everts.io",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwswfPrsMUYOTv7p5jLqE90fwVSbiXxDJyRGth",
+    bio: "DevOps Engineer working on AWS, Docker, Jenkins, Terraform, Bazel and Ansible.",
+    socials: { linkedin: "https://www.linkedin.com/in/jyotim29/" }
   },
   {
     id: 8,
-    name: "Leila Jafari",
-    role: "Mobile Strategy",
-    image: "https://images.unsplash.com/photo-1567532939604-b6c5b0ad2ea6?q=80&w=1974&auto=format&fit=crop",
-    bio: "Engineering high-performance native and cross-platform mobile experiences.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Praveen Jaiswal",
+    role: "Blockchain Dev",
+    company: "Polygon",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwgJD9yqY4a8b9h0q7wrkDyXFA3QEOKWIscMoV",
+    bio: "Pioneering decentralized solutions and smart contract security in the Web3 space.",
+    socials: { linkedin: "#" }
   },
   {
     id: 9,
-    name: "Hiroshi Tanaka",
-    role: "AI Research",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop",
-    bio: "Advancing natural language processing and computer vision field research.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
+    name: "Naveen Jaiswal",
+    role: "Software Developer",
+    company: "ENTAB",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwHLmqIAiX46SdfkNqM9jAUsP02Jg8tzaubOIB",
+    bio: "Full-stack developer crafting scalable apps with modern web technologies",
+    socials: { linkedin: "https://www.linkedin.com/in/naveen-jaiswal/" }
   },
   {
     id: 10,
-    name: "Sophia Bennett",
-    role: "Product Manager",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1974&auto=format&fit=crop",
-    bio: "Defining product roadmaps and bridge the gap between users and engineering.",
-    socials: { linkedin: "#", instagram: "#", github: "#" }
-  }
+    name: "Tathagat Kumar",
+    role: "Founder & Startup Mentor",
+    company: "Foundr Flow",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwylYQztjXWRnlctd78Q3gaEevU4bui2wrzoIk",
+    bio: "As a startup mentor and ecosystem enabler, I am focused on empowering the next generation of founders through practical mentorship, strategic guidance, and community-led innovation.",
+    socials: { linkedin: "https://www.linkedin.com/in/heytathagat/" }
+  },
+  {
+    id: 11,
+    name: "Gurpreet Singh Sodhi",
+    role: "Co Founder & CTO",
+    company: "Momentum Software",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwao2A3n4TzMs9YjkuK2Ll4V50POAiUJDGtbIC",
+    bio: "Building AI-Powered Solutions for Enterprises & Growing Businesses",
+    socials: { linkedin: "https://www.linkedin.com/in/gurpreetsodhi/" }
+  },
+  {
+    id: 12,
+    name: "Chhavi Garg",
+    role: "Founder & Community Lead ",
+    company: "Arexa , Bharat XR",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw58RA2ynzcew7W8RNMtfy41VHZUlCxb39uvLE",
+    bio: "XR innovator empowering creators through immersive tech and learning",
+    socials: { linkedin: "https://www.linkedin.com/in/chhavigg/" }
+  },
+  {
+    id: 13,
+    name: "Ayush Gupta",
+    role: "NEXTJS Developer",
+    company: "Jungleworks",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw6sZgg1281KwuCfiQ05yDXgBbSLRa9HoVYPcj",
+    bio: "Full-stack developer building scalable apps with Next.js and Rails",
+    socials: { linkedin: "https://www.linkedin.com/in/ayush-gupta-0a7126211/" }
+  },
+  {
+    id: 14,
+    name: "Keshav Gambhir",
+    role: "Product marketing",
+    company: "Silstone group & Doctustech",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwUEoLOruBRgrXxDp5P6uomMqW30alVJfFdkcy",
+    bio: "Product marketer driving growth through strategy, storytelling, and execution",
+    socials: { linkedin: "https://www.linkedin.com/in/keshav-gambhir/" }
+  },
+  {
+    id: 15,
+    name: "Abhishek Saini",
+    role: "Software Localization Engineer",
+    company: "Welocalize",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw1lKji9hLXfCZ8OjK0TYSwvp4n9VGQzUolkiB",
+    bio: "Software engineer passionate about problem-solving, innovation, and building impactful solutions",
+    socials: { linkedin: "https://www.linkedin.com/in/abhisheksaini03/" }
+  },
+  {
+    id: 16,
+    name: "Amber Hashmi",
+    role: "Associate Software Engineer ",
+    company: "NeoSoft Technologies",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwo16nyPZeKCsIgtOy5bkW72uzPHZp0RdDjqcU",
+    bio: "In the world of bits and bytes, I translate ideas into reality.",
+    socials: { linkedin: "https://www.linkedin.com/in/amber-hashmi-940689253/" }
+  },
+  {
+    id: 17,
+    name: "Anam Rashid",
+    role: "Associate Software Engineer ",
+    company: "NeoSoft Technologies",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwn5ZPBw2rJMho5TI2U9s1FYPm6GOaNxujpiHQ",
+    bio: "In the world of bits and bytes, I translate ideas into reality.",
+    socials: { linkedin: "https://www.linkedin.com/in/anam-rashid-b3527a255/" }
+  },
+  {
+    id: 17,
+    name: "Muntaha",
+    role: "Software Engineer  ",
+    company: "Revocept Solutions",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4CwyAm80ljXWRnlctd78Q3gaEevU4bui2wrzoIk",
+    bio: "In the world of bits and bytes, I translate ideas into reality.",
+    socials: { linkedin: "https://www.linkedin.com/in/muntaha-tabassum/" }
+  },
+  {
+    id: 17,
+    name: "Vaishnavi Bajpai",
+    role: "Application Developer",
+    company: "Caelius Consulting",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cwlm5QKHrv4PqtZOHdMBaDyR9oGbpusSQLezk5",
+    bio: "I thrive at the intersection of technology, creativity, and leadership — always eager to connect, collaborate, and build something meaningful. ",
+    socials: { linkedin: "https://www.linkedin.com/in/vaishnavibajpai90/" }
+  },
+  {
+    id: 17,
+    name: "Laxmi Rajput",
+    role: "Application Developer",
+    company: "Caelius Consulting",
+    image: "https://syogjecvuh.ufs.sh/f/utT2UGwYX4Cw8dspb4NP54HUlTxSYFwonIQL97RJiCdOgBrX",
+    bio: "Application developer crafting user-friendly and scalable digital solutions",
+    socials: { linkedin: "https://www.linkedin.com/in/laxmi-rajput-b51452253/" }
+  },
 ];
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
@@ -134,12 +234,15 @@ const MentorModal = ({ mentor, onClose }: { mentor: Mentor; onClose: () => void 
 
       {/* Right Side: Content */}
       <div className="!flex-1 !p-8 md:!p-12 !flex !flex-col !justify-center !relative !z-10">
-        <div className="!mb-8">
+          <div className="!mb-8">
           <div className="!flex !items-center !gap-3 !mb-2">
             <h2 className="!text-3xl md:!text-5xl !font-black !text-white !tracking-tighter">{mentor.name}</h2>
             <BadgeCheck className="!text-[#FF2E2E]" size={32} />
           </div>
-          <p className="!text-[#FF2E2E] !text-xs !font-black !tracking-[0.5em] !uppercase !opacity-80">{mentor.role}</p>
+          <div className="!flex !flex-col !gap-1">
+            <p className="!text-[#FF2E2E] !text-xs !font-black !tracking-[0.5em] !uppercase !opacity-80">{mentor.role}</p>
+            <p className="!text-white/60 !text-[10px] !font-bold !tracking-[0.2em] !uppercase">@ {mentor.company}</p>
+          </div>
         </div>
 
         <div className="!space-y-8">
@@ -160,18 +263,6 @@ const MentorModal = ({ mentor, onClose }: { mentor: Mentor; onClose: () => void 
                 <a href={mentor.socials.linkedin} target="_blank" rel="noopener noreferrer"
                   className="!p-4 !rounded-2xl !bg-white/5 !border !border-white/10 !text-white hover:!bg-[#FF2E2E] hover:!border-[#FF2E2E] hover:!shadow-[0_0_30px_rgba(255,46,46,0.4)] hover:!-translate-y-1 !transition-all !duration-300">
                   <Linkedin size={24} />
-                </a>
-              )}
-              {mentor.socials.github && (
-                <a href={mentor.socials.github} target="_blank" rel="noopener noreferrer"
-                  className="!p-4 !rounded-2xl !bg-white/5 !border !border-white/10 !text-white hover:!bg-[#FF2E2E] hover:!border-[#FF2E2E] hover:!shadow-[0_0_30px_rgba(255,46,46,0.4)] hover:!-translate-y-1 !transition-all !duration-300">
-                  <Github size={24} />
-                </a>
-              )}
-              {mentor.socials.instagram && (
-                <a href={mentor.socials.instagram} target="_blank" rel="noopener noreferrer"
-                  className="!p-4 !rounded-2xl !bg-white/5 !border !border-white/10 !text-white hover:!bg-[#FF2E2E] hover:!border-[#FF2E2E] hover:!shadow-[0_0_30px_rgba(255,46,46,0.4)] hover:!-translate-y-1 !transition-all !duration-300">
-                  <Instagram size={24} />
                 </a>
               )}
             </div>
@@ -243,11 +334,12 @@ const MentorCard = ({ mentor, onOpen }: { mentor: Mentor; onOpen: () => void }) 
       {/* Always visible content layer */}
       <div className="!absolute !inset-0 !flex !flex-col !justify-end !items-center !pb-8 !px-6 !z-20">
         <div className="!flex !flex-col !items-center !text-center !w-full">
-          <div className="!flex !items-center !justify-center !gap-1.5 !mb-1.5">
+          <div className="!flex !items-center !justify-center !gap-1.5 !mb-1">
             <h3 className="!text-2xl !font-black !text-white !tracking-tight">{mentor.name}</h3>
             <BadgeCheck className="!text-[#FF2E2E]" size={20} />
           </div>
-          <p className="!text-[#FF2E2E] !text-[10px] !font-black !tracking-[0.4em] !uppercase !mb-5">{mentor.role}</p>
+          <p className="!text-[#FF2E2E] !text-[10px] !font-black !tracking-[0.4em] !uppercase !mb-1">{mentor.role}</p>
+          <p className="!text-white/40 !text-[9px] !font-bold !tracking-[0.2em] !uppercase !mb-5">@ {mentor.company}</p>
           
           <motion.button
             whileHover={{ scale: 1.05, y: -2 }}
@@ -340,21 +432,7 @@ export default function Mentors() {
         {/* Cards Grid */}
         <div className="!relative !min-h-[400px] !flex !items-center !justify-center !w-full">
           
-          {/* Glass Overlay with Badge */}
-          <div className="!absolute !inset-[-1rem] sm:!inset-[-2rem] !z-30 !flex !items-center !justify-center !bg-[#050505]/40 !backdrop-blur-[8px] !rounded-[3rem] !border !border-white/5">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="!px-8 !py-8 md:!px-12 md:!py-10 !rounded-3xl !bg-white/5 !border !border-white/10 !backdrop-blur-xl !flex !flex-col !items-center !gap-4 !shadow-[0_0_50px_rgba(255,46,46,0.2)]"
-            >
-              <BadgeCheck className="!text-[#FF2E2E]" size={56} />
-              <h3 className="!text-3xl md:!text-5xl !font-black !text-white !tracking-tighter !uppercase !text-center">To Be Revealed</h3>
-              <p className="!text-[#FF2E2E] !text-xs !font-black !tracking-[0.4em] !uppercase !text-center">Stay Tuned for Updates</p>
-            </motion.div>
-          </div>
-
-          <div className="!w-full !opacity-30 !pointer-events-none !select-none">
+          <div className="!w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentPage}
