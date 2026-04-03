@@ -61,17 +61,7 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    {/* Register Button */}
-                    <div className="flex-shrink-0 md:w-1/3 md:flex justify-end">
-                        <Link
-                            href="/register"
-                            className="ml-4 !px-7 !py-2 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] hover:shadow-[0_0_25px_rgba(220,38,38,0.8)] relative overflow-hidden group flex items-center justify-center"
-                            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
-                        >
-                            <span className="relative z-10">Register Now</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-                        </Link>
-                    </div>
+
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center">
@@ -125,17 +115,7 @@ export default function Navbar() {
                             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                         </Link>
                     ))}
-                    <div className="px-4 py-4 flex justify-center">
-                        <Link
-                            href="/register"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="w-full !py-3 bg-red-600 text-white font-orbitron text-base font-bold hover:bg-red-700 transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(220,38,38,0.5)] relative overflow-hidden group flex items-center justify-center"
-                            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)' }}
-                        >
-                            <span className="relative z-10">Register Now</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-                        </Link>
-                    </div>
+
                 </div>
             </div>
 
